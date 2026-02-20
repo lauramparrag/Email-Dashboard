@@ -174,14 +174,14 @@
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────────────
 var DEFAULT_DATA = [
-  { date:"Jan 15", month:"January",  label:"Webinar Reg. #1",   type:"Webinar",    sent:126,   delivered:123,   uniqueOpens:37,   openRate:38.21, uniqueClicks:24,   uniqueCTR:19.51, uniqueCTOR:51.06, optOuts:1,  optOutRate:0.81 },
-  { date:"Jan 15", month:"January",  label:"Webinar Promo",     type:"Webinar",    sent:21115, delivered:20553, uniqueOpens:7966, openRate:38.76, uniqueClicks:3777, uniqueCTR:18.38, uniqueCTOR:47.41, optOuts:41, optOutRate:0.20 },
-  { date:"Jan 22", month:"January",  label:"Newsletter",        type:"Newsletter", sent:20631, delivered:20508, uniqueOpens:6172, openRate:30.10, uniqueClicks:1236, uniqueCTR:6.03,  uniqueCTOR:20.03, optOuts:15, optOutRate:0.07 },
-  { date:"Jan 29", month:"January",  label:"Webinar Reg. #2",   type:"Webinar",    sent:18810, delivered:18731, uniqueOpens:3959, openRate:21.14, uniqueClicks:1054, uniqueCTR:5.63,  uniqueCTOR:26.62, optOuts:17, optOutRate:0.09 },
-  { date:"Feb 5",  month:"February", label:"Newsletter",        type:"Newsletter", sent:20433, delivered:20349, uniqueOpens:5715, openRate:28.08, uniqueClicks:3031, uniqueCTR:14.90, uniqueCTOR:53.04, optOuts:21, optOutRate:0.10 },
-  { date:"Feb 9",  month:"February", label:"Webinar Reg. #3",   type:"Webinar",    sent:20343, delivered:20297, uniqueOpens:5922, openRate:29.18, uniqueClicks:2429, uniqueCTR:11.97, uniqueCTOR:41.02, optOuts:37, optOutRate:0.18 },
-  { date:"Feb 13", month:"February", label:"Webinar Follow-up", type:"Webinar",    sent:98,    delivered:85,    uniqueOpens:38,   openRate:38.78, uniqueClicks:17,   uniqueCTR:17.35, uniqueCTOR:44.74, optOuts:0,  optOutRate:0.00 },
-  { date:"Feb 19", month:"February", label:"Newsletter",        type:"Newsletter", sent:20067, delivered:19993, uniqueOpens:5561, openRate:27.81, uniqueClicks:3826, uniqueCTR:19.14, uniqueCTOR:68.80, optOuts:5,  optOutRate:0.03 },
+  { date:"Jan 15", month:"January",  label:"Webinar Reg. #1",   name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-1", type:"Webinar",    sent:126,   delivered:123,   uniqueOpens:37,   openRate:38.21, uniqueClicks:24,   uniqueCTR:19.51, uniqueCTOR:51.06, optOuts:1,  optOutRate:0.81 },
+  { date:"Jan 15", month:"January",  label:"Webinar Promo",     name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Email-1",              type:"Webinar",    sent:21115, delivered:20553, uniqueOpens:7966, openRate:38.76, uniqueClicks:3777, uniqueCTR:18.38, uniqueCTOR:47.41, optOuts:41, optOutRate:0.20 },
+  { date:"Jan 22", month:"January",  label:"Newsletter",        name:"EN_GL_Newsletter_Jan22",                                                            type:"Newsletter", sent:20631, delivered:20508, uniqueOpens:6172, openRate:30.10, uniqueClicks:1236, uniqueCTR:6.03,  uniqueCTOR:20.03, optOuts:15, optOutRate:0.07 },
+  { date:"Jan 29", month:"January",  label:"Webinar Reg. #2",   name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-2",  type:"Webinar",    sent:18810, delivered:18731, uniqueOpens:3959, openRate:21.14, uniqueClicks:1054, uniqueCTR:5.63,  uniqueCTOR:26.62, optOuts:17, optOutRate:0.09 },
+  { date:"Feb 5",  month:"February", label:"Newsletter",        name:"EN_GL_Newsletter_Feb5",                                                             type:"Newsletter", sent:20433, delivered:20349, uniqueOpens:5715, openRate:28.08, uniqueClicks:3031, uniqueCTR:14.90, uniqueCTOR:53.04, optOuts:21, optOutRate:0.10 },
+  { date:"Feb 9",  month:"February", label:"Webinar Reg. #3",   name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-3",  type:"Webinar",    sent:20343, delivered:20297, uniqueOpens:5922, openRate:29.18, uniqueClicks:2429, uniqueCTR:11.97, uniqueCTOR:41.02, optOuts:37, optOutRate:0.18 },
+  { date:"Feb 13", month:"February", label:"Webinar Follow-up", name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Follow-up",             type:"Webinar",    sent:98,    delivered:85,    uniqueOpens:38,   openRate:38.78, uniqueClicks:17,   uniqueCTR:17.35, uniqueCTOR:44.74, optOuts:0,  optOutRate:0.00 },
+  { date:"Feb 19", month:"February", label:"Newsletter",        name:"EN_GL_Newsletter_Feb-19",                                                           type:"Newsletter", sent:20067, delivered:19993, uniqueOpens:5561, openRate:27.81, uniqueClicks:3826, uniqueCTR:19.14, uniqueCTOR:68.80, optOuts:5,  optOutRate:0.03 },
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
@@ -252,7 +252,7 @@ function parseCSV(text) {
     else label = rawName.split("-").slice(-2).join(" ")||rawName.slice(-20);
     var dateStr = cols[0]||"";
     var month   = MONTHS_MAP[dateStr.slice(0,3).toLowerCase()] || dateStr;
-    parsed.push({ date:dateStr, month:month, label:label, type:cols[2]||"Other",
+    parsed.push({ date:dateStr, month:month, label:label, name:rawName, type:cols[2]||"Other",
       sent:pi(cols[3]), delivered:pi(cols[4]), uniqueOpens:pi(cols[7]),
       openRate:pf(cols[8]), uniqueClicks:pi(cols[9]), uniqueCTR:pf(cols[10]),
       uniqueCTOR:pf(cols[11]), optOuts:pi(cols[14]), optOutRate:pf(cols[15]) });
@@ -415,7 +415,7 @@ function renderTable() {
     var ooC   = metricColor(r.optOutRate, optRates,  true);
     return "<tr>"+
       '<td style="color:#94a3b8;font-family:\'DM Mono\',monospace;font-size:11px;white-space:nowrap;">'+r.date+"</td>"+
-      '<td style="color:#334155;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+r.label+"</td>"+
+      '<td style="color:#334155;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:DM Mono,monospace;font-size:11px;" title="'+r.name+'">'+r.name+"</td>"+
       '<td><span class="badge" style="background:'+tc+'1a;color:'+tc+'">'+r.type+"</span></td>"+
       '<td class="mono">'+fmt(r.sent)+"</td>"+
       '<td class="mono">'+fmt(r.delivered)+"</td>"+
@@ -428,7 +428,7 @@ function renderTable() {
 
   document.getElementById("table-wrap").innerHTML =
     "<table><thead><tr>"+
-    "<th>Date</th><th>Campaign</th><th>Type</th><th>Sent</th><th>Delivered</th>"+
+    "<th>Date</th><th>Email Name</th><th>Type</th><th>Sent</th><th>Delivered</th>"+
     "<th>Open Rate</th><th>Unique CTR</th><th>Unique CTOR</th><th>Opt-Outs</th>"+
     "</tr></thead><tbody>"+rows+"</tbody></table>";
 }
