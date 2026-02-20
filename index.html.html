@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Marketing Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f1f5f9; font-family: 'Lato', sans-serif; color: #1e293b; }
+
+    .page { padding: 28px 24px; max-width: 1400px; margin: 0 auto; }
+
+    .header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+    .header-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; color: #94a3b8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .header-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
+    .header-title span { color: #d97706; }
+    .header-sub { color: #94a3b8; font-size: 12px; margin-top: 5px; font-family: 'DM Mono', monospace; }
+    .header-btns { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .btn-reset { background: transparent; color: #94a3b8; border: 1px solid #e2e8f0; border-radius: 8px; padding: 9px 16px; font-size: 12px; cursor: pointer; font-family: 'DM Mono', monospace; transition: all 0.15s; }
+    .btn-reset:hover { border-color: #94a3b8; color: #475569; }
+    .btn-import { background: #0284c7; color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Lato', sans-serif; transition: background 0.15s; }
+    .btn-import:hover { background: #0369a1; }
+
+    .pill { padding: 6px 16px; border-radius: 999px; font-size: 12px; cursor: pointer; font-family: 'DM Mono', monospace; font-weight: 500; border: 1px solid #e2e8f0; background: #fff; color: #64748b; transition: all 0.18s; }
+    .pill.active-dark  { background: #0f172a; color: #fff; border-color: transparent; }
+    .pill.active-amber { background: #d97706; color: #fff; border-color: transparent; }
+    .pill.active-sky   { background: #0284c7; color: #fff; border-color: transparent; }
+
+    .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .filter-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #cbd5e1; letter-spacing: 1px; text-transform: uppercase; margin-right: 2px; }
+    .filter-divider { width: 1px; height: 28px; background: #e2e8f0; margin: 0 4px; }
+
+    .import-panel { background: #fff; border: 1px solid #bae6fd; border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 4px 24px rgba(2,132,199,0.06); }
+    .import-panel h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: #0f172a; margin-bottom: 6px; }
+    .import-panel p { color: #64748b; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .import-panel strong { color: #0284c7; }
+    .import-textarea { width: 100%; min-height: 120px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; font-family: 'DM Mono', monospace; font-size: 12px; color: #334155; background: #f8fafc; line-height: 1.6; resize: vertical; outline: none; transition: border 0.18s; }
+    .import-textarea:focus { border-color: #0284c7; }
+    .import-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .btn-go { background: #0284c7; color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Lato', sans-serif; }
+    .btn-go:hover { background: #0369a1; }
+    .msg-err { color: #e11d48; font-size: 12px; font-family: 'DM Mono', monospace; }
+    .msg-ok  { color: #16a34a; font-size: 12px; font-weight: 700; font-family: 'DM Mono', monospace; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .kpi-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .kpi-label { color: #64748b; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 8px; }
+    .kpi-value { color: #0f172a; font-size: 26px; font-weight: 800; font-family: 'Syne', sans-serif; line-height: 1; }
+    .kpi-sub   { color: #94a3b8; font-size: 12px; margin-top: 5px; }
+
+    .chart-grid-2   { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .chart-grid-3-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .chart-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px 18px 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .label-bar  { width: 3px; height: 16px; background: #d97706; border-radius: 2px; flex-shrink: 0; }
+    .label-text { color: #64748b; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: 'DM Mono', monospace; font-weight: 500; }
+    .chart-wrap { position: relative; }
+    .chart-legend { display: flex; gap: 16px; justify-content: center; margin-top: 8px; }
+    .chart-legend span { font-size: 11px; color: #94a3b8; font-family: 'DM Mono', monospace; }
+
+    .table-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px 18px 8px; margin-bottom: 20px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    thead tr { border-bottom: 2px solid #f1f5f9; }
+    th { padding: 8px 12px; text-align: left; color: #94a3b8; font-family: 'DM Mono', monospace; font-weight: 500; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid #f8fafc; cursor: default; }
+    tbody tr:hover td { background: #f8fafc; }
+    td { padding: 10px 12px; }
+    .badge { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 600; }
+    .mono { font-family: 'DM Mono', monospace; }
+
+    .footer { text-align: center; color: #cbd5e1; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; padding-bottom: 8px; margin-top: 4px; }
+
+    @media (max-width: 700px) {
+      .chart-grid-2, .chart-grid-3-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="header-eyebrow">Email Marketing Intelligence</div>
+      <div class="header-title">Campaign <span>Dashboard</span></div>
+      <div class="header-sub" id="header-sub"></div>
+    </div>
+    <div class="header-btns">
+      <button class="btn-reset" onclick="resetAll()">&#8635; Reset</button>
+      <button class="btn-import" id="btn-import" onclick="toggleImport()">+ Update Data</button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <span class="filter-label">Type</span>
+    <button class="pill" id="pill-All"        onclick="setType('All')">All</button>
+    <button class="pill" id="pill-Newsletter" onclick="setType('Newsletter')">Newsletter</button>
+    <button class="pill" id="pill-Webinar"    onclick="setType('Webinar')">Webinar</button>
+    <div class="filter-divider"></div>
+    <span class="filter-label">Month</span>
+    <div id="month-pills" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+  </div>
+
+  <!-- Import Panel -->
+  <div id="import-panel" style="display:none;" class="import-panel">
+    <h3>Paste your spreadsheet data</h3>
+    <p>Select all rows in your Google Sheet (including the header row), copy with Ctrl/Cmd+C, and paste below. Charts and KPIs refresh instantly.<br>
+    <strong>Tip:</strong> New months appear automatically in the filter after import.</p>
+    <textarea id="paste-area" class="import-textarea" placeholder="Date&#9;Email&#9;Type&#9;Sent&#9;Delivered&#9;...&#10;Jan 15&#9;EN_GL_...&#9;Webinar&#9;20000&#9;..."></textarea>
+    <div class="import-actions">
+      <button class="btn-go" onclick="doImport()">Import &amp; Refresh Charts</button>
+      <span id="import-msg"></span>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <!-- Charts -->
+  <div id="charts-section">
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Unique Open Rate Over Time</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-openrate"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Unique CTR Over Time</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-ctr"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-grid-3-2">
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Delivered vs Unique Opens vs Unique Clicks</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-volume"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Unique CTOR by Campaign</span></div>
+        <div class="chart-wrap" style="height:190px;"><canvas id="c-ctor"></canvas></div>
+        <div class="chart-legend">
+          <span><span style="color:#d97706;">&#9679;</span> Webinar</span>
+          <span><span style="color:#0284c7;">&#9679;</span> Newsletter</span>
+        </div>
+      </div>
+    </div>
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Open Rate vs CTR vs CTOR</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-triple"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Opt-Outs per Campaign</span></div>
+        <div class="chart-wrap" style="height:185px;"><canvas id="c-optout"></canvas></div>
+        <div class="chart-legend">
+          <span><span style="color:#16a34a;">&#9679;</span> Lowest</span>
+          <span><span style="color:#e11d48;">&#9679;</span> Highest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <div class="section-label"><div class="label-bar"></div><span class="label-text">Full Campaign Breakdown</span></div>
+    <div id="table-wrap"></div>
+  </div>
+
+  <div class="footer">EMAIL MARKETING DASHBOARD &middot; LIVE DATA</div>
+</div>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+var DEFAULT_DATA = [
+  { date:"Jan 15", month:"January",  label:"Webinar Reg. #1",   type:"Webinar",    sent:126,   delivered:123,   uniqueOpens:37,   openRate:38.21, uniqueClicks:24,   uniqueCTR:19.51, uniqueCTOR:51.06, optOuts:1,  optOutRate:0.81 },
+  { date:"Jan 15", month:"January",  label:"Webinar Promo",     type:"Webinar",    sent:21115, delivered:20553, uniqueOpens:7966, openRate:38.76, uniqueClicks:3777, uniqueCTR:18.38, uniqueCTOR:47.41, optOuts:41, optOutRate:0.20 },
+  { date:"Jan 22", month:"January",  label:"Newsletter",        type:"Newsletter", sent:20631, delivered:20508, uniqueOpens:6172, openRate:30.10, uniqueClicks:1236, uniqueCTR:6.03,  uniqueCTOR:20.03, optOuts:15, optOutRate:0.07 },
+  { date:"Jan 29", month:"January",  label:"Webinar Reg. #2",   type:"Webinar",    sent:18810, delivered:18731, uniqueOpens:3959, openRate:21.14, uniqueClicks:1054, uniqueCTR:5.63,  uniqueCTOR:26.62, optOuts:17, optOutRate:0.09 },
+  { date:"Feb 5",  month:"February", label:"Newsletter",        type:"Newsletter", sent:20433, delivered:20349, uniqueOpens:5715, openRate:28.08, uniqueClicks:3031, uniqueCTR:14.90, uniqueCTOR:53.04, optOuts:21, optOutRate:0.10 },
+  { date:"Feb 9",  month:"February", label:"Webinar Reg. #3",   type:"Webinar",    sent:20343, delivered:20297, uniqueOpens:5922, openRate:29.18, uniqueClicks:2429, uniqueCTR:11.97, uniqueCTOR:41.02, optOuts:37, optOutRate:0.18 },
+  { date:"Feb 13", month:"February", label:"Webinar Follow-up", type:"Webinar",    sent:98,    delivered:85,    uniqueOpens:38,   openRate:38.78, uniqueClicks:17,   uniqueCTR:17.35, uniqueCTOR:44.74, optOuts:0,  optOutRate:0.00 },
+  { date:"Feb 19", month:"February", label:"Newsletter",        type:"Newsletter", sent:20067, delivered:19993, uniqueOpens:5561, openRate:27.81, uniqueClicks:3826, uniqueCTR:19.14, uniqueCTOR:68.80, optOuts:5,  optOutRate:0.03 },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var allData     = JSON.parse(JSON.stringify(DEFAULT_DATA));
+var activeType  = "All";
+var activeMonth = "All";
+var importOpen  = false;
+var chartInst   = {};
+
+// ── COLOURS ──────────────────────────────────────────────────────────────────
+var AMBER = "#d97706";
+var SKY   = "#0284c7";
+var ROSE  = "#e11d48";
+var SAGE  = "#16a34a";
+var GRID  = "#f1f5f9";
+var TYPE_COLOR = { Webinar: AMBER, Newsletter: SKY };
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function fmt(n)  { return n >= 1000 ? (n/1000).toFixed(1)+"k" : String(n); }
+function pct(n)  { return Number(n).toFixed(2)+"%"; }
+function mean(arr, k) { return arr.length ? arr.reduce(function(a,b){ return a+b[k]; },0)/arr.length : 0; }
+
+function rgba(hex, a) {
+  var r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return "rgba("+r+","+g+","+b+","+a+")";
+}
+
+function metricColor(value, all, invert) {
+  if (all.length < 2) return "#334155";
+  var s  = all.slice().sort(function(a,b){ return a-b; });
+  var lo = s[Math.floor(s.length*0.33)];
+  var hi = s[Math.floor(s.length*0.67)];
+  var c  = value >= hi ? SAGE : value <= lo ? ROSE : "#334155";
+  if (invert) c = c===SAGE ? ROSE : c===ROSE ? SAGE : "#334155";
+  return c;
+}
+
+function getFiltered() {
+  return allData
+    .filter(function(d){ return activeType==="All"  || d.type===activeType;  })
+    .filter(function(d){ return activeMonth==="All" || d.month===activeMonth; });
+}
+function getChartData() {
+  return getFiltered().filter(function(d){ return d.sent > 500; });
+}
+
+// ── CSV PARSER ────────────────────────────────────────────────────────────────
+var MONTHS_MAP = { jan:"January",feb:"February",mar:"March",apr:"April",may:"May",jun:"June",jul:"July",aug:"August",sep:"September",oct:"October",nov:"November",dec:"December" };
+
+function parseCSV(text) {
+  var lines = text.trim().split("\n").filter(function(l){ return l; });
+  if (lines.length < 2) return null;
+  var firstCell = lines[0].split("\t")[0].toLowerCase().trim();
+  var hasHeader = isNaN(firstCell) && firstCell !== "";
+  var dataLines = hasHeader ? lines.slice(1) : lines;
+  var parsed = [];
+  for (var i=0; i<dataLines.length; i++) {
+    var cols = dataLines[i].split("\t").map(function(c){ return c.trim(); });
+    if (cols.length < 10) continue;
+    var pf = function(v){ return parseFloat((v||"0").replace("%","").replace(",",""))||0; };
+    var pi = function(v){ return parseInt((v||"0").replace(/,/g,""),10)||0; };
+    var rawName = cols[1]||"";
+    var label = rawName;
+    if (rawName.indexOf("Newsletter")>-1)                                        label = "Newsletter";
+    else if (rawName.indexOf("Follow-up")>-1||rawName.indexOf("Followup")>-1)   label = "Follow-up";
+    else if (rawName.indexOf("Registrant")>-1 && rawName.match(/-(\d+)$/))      label = "Webinar Reg. #"+rawName.match(/-(\d+)$/)[1];
+    else if (rawName.indexOf("Webinar")>-1)                                      label = "Webinar";
+    else label = rawName.split("-").slice(-2).join(" ")||rawName.slice(-20);
+    var dateStr = cols[0]||"";
+    var month   = MONTHS_MAP[dateStr.slice(0,3).toLowerCase()] || dateStr;
+    parsed.push({ date:dateStr, month:month, label:label, type:cols[2]||"Other",
+      sent:pi(cols[3]), delivered:pi(cols[4]), uniqueOpens:pi(cols[7]),
+      openRate:pf(cols[8]), uniqueClicks:pi(cols[9]), uniqueCTR:pf(cols[10]),
+      uniqueCTOR:pf(cols[11]), optOuts:pi(cols[14]), optOutRate:pf(cols[15]) });
+  }
+  return parsed.length ? parsed : null;
+}
+
+// ── CHART HELPERS ─────────────────────────────────────────────────────────────
+Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.color       = "#94a3b8";
+var gridOpts = { color: GRID, drawBorder: false };
+
+function baseScales(yFmt) {
+  return {
+    x: { grid: gridOpts, ticks: { font:{ size:11 } } },
+    y: { grid: gridOpts, ticks: { font:{ size:10 }, callback: yFmt } }
+  };
+}
+
+function destroyCharts() {
+  Object.values(chartInst).forEach(function(c){ c.destroy(); });
+  chartInst = {};
+}
+
+// ── RENDER CHARTS ─────────────────────────────────────────────────────────────
+function rebuildCharts() {
+  destroyCharts();
+  var cd     = getChartData();
+  var labels = cd.map(function(d){ return d.date; });
+
+  // 1. Open Rate
+  chartInst.openrate = new Chart(document.getElementById("c-openrate"), {
+    type: "line",
+    data: { labels: labels, datasets: [{
+      label:"Open Rate", data: cd.map(function(d){ return d.openRate; }),
+      borderColor:AMBER, backgroundColor:rgba(AMBER,0.12), borderWidth:2.5, fill:true, tension:0.35,
+      pointBackgroundColor:AMBER, pointBorderColor:"#fff", pointBorderWidth:2, pointRadius:4, pointHoverRadius:6
+    }]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:function(c){ return " "+c.parsed.y.toFixed(2)+"%"; } } } },
+      scales: baseScales(function(v){ return v+"%"; }) }
+  });
+
+  // 2. CTR
+  chartInst.ctr = new Chart(document.getElementById("c-ctr"), {
+    type: "line",
+    data: { labels: labels, datasets: [{
+      label:"Unique CTR", data: cd.map(function(d){ return d.uniqueCTR; }),
+      borderColor:SKY, backgroundColor:rgba(SKY,0.12), borderWidth:2.5, fill:true, tension:0.35,
+      pointBackgroundColor:SKY, pointBorderColor:"#fff", pointBorderWidth:2, pointRadius:4, pointHoverRadius:6
+    }]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:function(c){ return " "+c.parsed.y.toFixed(2)+"%"; } } } },
+      scales: baseScales(function(v){ return v+"%"; }) }
+  });
+
+  // 3. Volume
+  chartInst.volume = new Chart(document.getElementById("c-volume"), {
+    type: "bar",
+    data: { labels: labels, datasets: [
+      { label:"Delivered",     data:cd.map(function(d){ return d.delivered;    }), backgroundColor:"#e2e8f0", borderRadius:4 },
+      { label:"Unique Opens",  data:cd.map(function(d){ return d.uniqueOpens;  }), backgroundColor:AMBER,     borderRadius:4 },
+      { label:"Unique Clicks", data:cd.map(function(d){ return d.uniqueClicks; }), backgroundColor:SKY,       borderRadius:4 },
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{size:11}, boxWidth:12, boxHeight:12 } }, tooltip:{ callbacks:{ label:function(c){ return " "+c.dataset.label+": "+fmt(c.parsed.y); } } } },
+      scales: baseScales(function(v){ return fmt(v); }) }
+  });
+
+  // 4. CTOR horizontal
+  chartInst.ctor = new Chart(document.getElementById("c-ctor"), {
+    type: "bar",
+    data: { labels: labels, datasets: [{
+      label:"CTOR",
+      data: cd.map(function(d){ return d.uniqueCTOR; }),
+      backgroundColor: cd.map(function(d){ return d.type==="Newsletter" ? SKY : AMBER; }),
+      borderRadius:4
+    }]},
+    options: { indexAxis:"y", responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:function(c){ return " "+c.parsed.x.toFixed(2)+"%"; } } } },
+      scales: {
+        x: { grid: gridOpts, ticks:{ font:{size:10}, callback:function(v){ return v+"%"; } } },
+        y: { grid:{ display:false }, ticks:{ font:{size:10} } }
+      }
+    }
+  });
+
+  // 5. Triple line
+  chartInst.triple = new Chart(document.getElementById("c-triple"), {
+    type: "line",
+    data: { labels: labels, datasets: [
+      { label:"Open Rate",  data:cd.map(function(d){ return d.openRate;   }), borderColor:AMBER, backgroundColor:"transparent", borderWidth:2, fill:false, tension:0.35, pointBackgroundColor:AMBER, pointBorderColor:"#fff", pointBorderWidth:2, pointRadius:3, pointHoverRadius:5 },
+      { label:"Unique CTR", data:cd.map(function(d){ return d.uniqueCTR;  }), borderColor:SKY,   backgroundColor:"transparent", borderWidth:2, fill:false, tension:0.35, pointBackgroundColor:SKY,   pointBorderColor:"#fff", pointBorderWidth:2, pointRadius:3, pointHoverRadius:5 },
+      { label:"CTOR",       data:cd.map(function(d){ return d.uniqueCTOR; }), borderColor:ROSE,  backgroundColor:"transparent", borderWidth:2, fill:false, tension:0.35, borderDash:[5,3], pointBackgroundColor:ROSE, pointBorderColor:"#fff", pointBorderWidth:2, pointRadius:3, pointHoverRadius:5 },
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{size:11}, boxWidth:12, boxHeight:12 } }, tooltip:{ callbacks:{ label:function(c){ return " "+c.dataset.label+": "+c.parsed.y.toFixed(2)+"%"; } } } },
+      scales: baseScales(function(v){ return v+"%"; }) }
+  });
+
+  // 6. Opt-outs
+  var optRates = cd.map(function(d){ return d.optOutRate; });
+  chartInst.optout = new Chart(document.getElementById("c-optout"), {
+    type: "bar",
+    data: { labels: labels, datasets: [{
+      label:"Opt-Outs",
+      data: cd.map(function(d){ return d.optOuts; }),
+      backgroundColor: cd.map(function(d){ return metricColor(d.optOutRate, optRates, true); }),
+      borderRadius:4
+    }]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:function(c){ return " "+c.parsed.y+" opt-outs"; } } } },
+      scales: baseScales(function(v){ return v; }) }
+  });
+}
+
+// ── RENDER KPIs ───────────────────────────────────────────────────────────────
+function renderKPIs() {
+  var f        = getFiltered();
+  var totalSent= f.reduce(function(a,b){ return a+b.sent; },0);
+  var totalDel = f.reduce(function(a,b){ return a+b.delivered; },0);
+  var avgOpen  = f.length ? mean(f,"openRate").toFixed(2) : "—";
+  var avgCTR   = f.length ? mean(f,"uniqueCTR").toFixed(2) : "—";
+  var totalOpt = f.reduce(function(a,b){ return a+b.optOuts; },0);
+  var delPct   = totalSent ? ((totalDel/totalSent)*100).toFixed(1) : 0;
+
+  var cards = [
+    { label:"Total Sent",     value:fmt(totalSent), sub:f.length+" campaign"+(f.length!==1?"s":""),  color:AMBER },
+    { label:"Delivered",      value:fmt(totalDel),  sub:delPct+"% delivery rate",                   color:SKY   },
+    { label:"Avg Open Rate",  value:avgOpen+"%",    sub:"unique opens",                             color:AMBER },
+    { label:"Avg Unique CTR", value:avgCTR+"%",     sub:"click-through rate",                       color:SKY   },
+    { label:"Total Opt-Outs", value:totalOpt,       sub:"across filtered campaigns",                color:ROSE  },
+  ];
+
+  document.getElementById("kpi-grid").innerHTML = cards.map(function(c){
+    return '<div class="kpi-card" style="border-top:3px solid '+c.color+'">'+
+      '<div class="kpi-label">'+c.label+'</div>'+
+      '<div class="kpi-value">'+c.value+'</div>'+
+      '<div class="kpi-sub">'+c.sub+'</div>'+
+    '</div>';
+  }).join("");
+
+  document.getElementById("header-sub").textContent =
+    f.length+" campaign"+(f.length!==1?"s":"")+" \u00b7 "+totalSent.toLocaleString()+" total sends";
+}
+
+// ── RENDER TABLE ──────────────────────────────────────────────────────────────
+function renderTable() {
+  var f         = getFiltered();
+  var openRates = f.map(function(d){ return d.openRate;   });
+  var ctrs      = f.map(function(d){ return d.uniqueCTR;  });
+  var ctors     = f.map(function(d){ return d.uniqueCTOR; });
+  var optRates  = f.map(function(d){ return d.optOutRate; });
+
+  var rows = f.map(function(r){
+    var tc    = TYPE_COLOR[r.type] || "#64748b";
+    var orC   = metricColor(r.openRate,   openRates, false);
+    var cC    = metricColor(r.uniqueCTR,  ctrs,      false);
+    var coC   = metricColor(r.uniqueCTOR, ctors,     false);
+    var ooC   = metricColor(r.optOutRate, optRates,  true);
+    return "<tr>"+
+      '<td style="color:#94a3b8;font-family:\'DM Mono\',monospace;font-size:11px;white-space:nowrap;">'+r.date+"</td>"+
+      '<td style="color:#334155;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+r.label+"</td>"+
+      '<td><span class="badge" style="background:'+tc+'1a;color:'+tc+'">'+r.type+"</span></td>"+
+      '<td class="mono">'+fmt(r.sent)+"</td>"+
+      '<td class="mono">'+fmt(r.delivered)+"</td>"+
+      '<td class="mono" style="font-weight:600;color:'+orC+'">'+pct(r.openRate)+"</td>"+
+      '<td class="mono" style="font-weight:600;color:'+cC+'">'+pct(r.uniqueCTR)+"</td>"+
+      '<td class="mono" style="font-weight:600;color:'+coC+'">'+pct(r.uniqueCTOR)+"</td>"+
+      '<td class="mono"><span style="font-weight:600;color:'+ooC+'">'+r.optOuts+'</span><span style="color:#cbd5e1;font-size:10px;margin-left:4px;">('+r.optOutRate.toFixed(2)+"%)</span></td>"+
+    "</tr>";
+  }).join("");
+
+  document.getElementById("table-wrap").innerHTML =
+    "<table><thead><tr>"+
+    "<th>Date</th><th>Campaign</th><th>Type</th><th>Sent</th><th>Delivered</th>"+
+    "<th>Open Rate</th><th>Unique CTR</th><th>Unique CTOR</th><th>Opt-Outs</th>"+
+    "</tr></thead><tbody>"+rows+"</tbody></table>";
+}
+
+// ── RENDER MONTH PILLS ────────────────────────────────────────────────────────
+function renderMonthPills() {
+  var seen = {}, months = [];
+  allData.forEach(function(d){ if (!seen[d.month]) { seen[d.month]=true; months.push(d.month); } });
+  var all = ["All"].concat(months);
+  document.getElementById("month-pills").innerHTML = all.map(function(m){
+    var cls = "pill" + (activeMonth===m ? " active-dark" : "");
+    return '<button class="'+cls+'" onclick="setMonth(\''+m+'\')">'+m+"</button>";
+  }).join("");
+}
+
+// ── TYPE PILL HIGHLIGHTS ──────────────────────────────────────────────────────
+function updateTypePills() {
+  ["All","Newsletter","Webinar"].forEach(function(t){
+    var el = document.getElementById("pill-"+t);
+    if (!el) return;
+    el.className = "pill";
+    if (t===activeType) {
+      if (t==="Newsletter") el.classList.add("active-sky");
+      else if (t==="Webinar") el.classList.add("active-amber");
+      else el.classList.add("active-dark");
+    }
+  });
+}
+
+// ── FULL RENDER ───────────────────────────────────────────────────────────────
+function render() {
+  updateTypePills();
+  renderMonthPills();
+  renderKPIs();
+  var cd = getChartData();
+  document.getElementById("charts-section").style.display = cd.length ? "" : "none";
+  if (cd.length) rebuildCharts();
+  renderTable();
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+function setType(t)  { activeType=t;  render(); }
+function setMonth(m) { activeMonth=m; render(); }
+
+function toggleImport() {
+  importOpen = !importOpen;
+  document.getElementById("import-panel").style.display = importOpen ? "" : "none";
+  document.getElementById("btn-import").textContent = importOpen ? "\u2715 Close" : "+ Update Data";
+}
+
+function doImport() {
+  var text   = document.getElementById("paste-area").value;
+  var parsed = parseCSV(text);
+  var msg    = document.getElementById("import-msg");
+  if (!parsed) {
+    msg.className = "msg-err";
+    msg.textContent = "Couldn't parse that. Make sure you copied from your spreadsheet with the header row included.";
+  } else {
+    allData = parsed;
+    activeType="All"; activeMonth="All";
+    render();
+    msg.className = "msg-ok";
+    msg.textContent = "\u2713 Imported "+parsed.length+" campaigns!";
+    setTimeout(function(){
+      toggleImport();
+      document.getElementById("paste-area").value = "";
+      msg.textContent = "";
+    }, 1800);
+  }
+}
+
+function resetAll() {
+  allData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  activeType="All"; activeMonth="All";
+  render();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
