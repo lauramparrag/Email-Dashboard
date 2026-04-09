@@ -319,17 +319,16 @@ function rebuildCharts(){
 function renderKPIs(){
   var f=getFiltered();
   var totalSent=f.reduce(function(a,b){return a+b.sent;},0);
-  var totalDel=f.reduce(function(a,b){return a+b.delivered;},0);
   var avgOpen=f.length?mean(f,"openRate").toFixed(2):"--";
   var avgCTR=f.length?mean(f,"uniqueCTR").toFixed(2):"--";
+  var avgCTOR=f.length?mean(f,"uniqueCTOR").toFixed(2):"--";
   var totalOpt=f.reduce(function(a,b){return a+b.optOuts;},0);
-  var delPct=totalSent?((totalDel/totalSent)*100).toFixed(1):0;
   var cards=[
-    {label:"Total Sent",    value:fmt(totalSent),sub:f.length+" campaign"+(f.length!==1?"s":""),cls:"c-dark"},
-    {label:"Delivered",     value:fmt(totalDel), sub:delPct+"% delivery rate",                 cls:"c-light"},
-    {label:"Avg Open Rate", value:avgOpen+"%",   sub:"unique opens",                           cls:"c-dark"},
-    {label:"Avg Unique CTR",value:avgCTR+"%",    sub:"click-through rate",                     cls:"c-light"},
-    {label:"Total Opt-Outs",value:totalOpt,      sub:"across filtered campaigns",              cls:"c-orange"}
+    {label:"Total Sent",      value:fmt(totalSent), sub:f.length+" campaign"+(f.length!==1?"s":""),cls:"c-dark"},
+    {label:"Avg Open Rate",   value:avgOpen+"%",    sub:"unique opens",                           cls:"c-dark"},
+    {label:"Avg Unique CTR",  value:avgCTR+"%",     sub:"click-through rate",                     cls:"c-light"},
+    {label:"Avg Unique CTOR", value:avgCTOR+"%",    sub:"click-to-open rate",                     cls:"c-light"},
+    {label:"Total Opt-Outs",  value:totalOpt,       sub:"across filtered campaigns",              cls:"c-orange"}
   ];
   document.getElementById("kpi-grid").innerHTML=cards.map(function(c){
     return '<div class="kpi-card '+c.cls+'"><div class="kpi-label">'+c.label+'</div><div class="kpi-value">'+c.value+'</div><div class="kpi-sub">'+c.sub+'</div></div>';
