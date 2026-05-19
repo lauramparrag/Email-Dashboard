@@ -48,9 +48,11 @@
     .kpi-card.c-dark::before{background:#003b71;}
     .kpi-card.c-light::before{background:#139dd8;}
     .kpi-card.c-orange::before{background:#ff6600;}
+    .kpi-card.c-green::before{background:#38a169;}
     .kpi-label{font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;}
     .kpi-value{font-size:28px;font-weight:800;color:#003b71;line-height:1;}
     .kpi-card.c-orange .kpi-value{color:#ff6600;}
+    .kpi-card.c-green .kpi-value{color:#38a169;}
     .kpi-sub{font-size:11px;color:#a0b4c8;margin-top:6px;font-weight:400;}
     .gl-divider{height:1px;background:#d0dde9;margin:22px 0;}
     .chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
@@ -104,8 +106,8 @@
   <div id="import-panel" style="display:none;" class="import-panel">
     <h3>Paste your spreadsheet data</h3>
     <p>Select all rows in your Google Sheet (including the header row), copy with Ctrl/Cmd+C, and paste below.<br>
-    <strong>Tip:</strong> New months and types appear automatically after import.</p>
-    <textarea id="paste-area" class="import-textarea" placeholder="Date&#9;Email&#9;Type&#9;Sent&#9;Delivered&#9;..."></textarea>
+    <strong>Tip:</strong> New months and types appear automatically after import. Include a <strong>Registrations</strong> column as the last column.</p>
+    <textarea id="paste-area" class="import-textarea" placeholder="Date&#9;Email&#9;Type&#9;Sent&#9;Delivered&#9;...&#9;Registrations"></textarea>
     <div class="import-actions">
       <button class="btn-go" onclick="doImport()">Import &amp; Refresh</button>
       <span id="import-msg"></span>
@@ -155,6 +157,20 @@
         </div>
       </div>
     </div>
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Webinar Registrations per Campaign</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-regs"></canvas></div>
+        <div class="chart-legend">
+          <span><span style="color:#38a169;">&#9679;</span> Highest</span>
+          <span><span style="color:#139dd8;">&#9679;</span> Others</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="section-label"><div class="label-bar"></div><span class="label-text">Registration Rate (Regs / Delivered) Over Time</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-regrate"></canvas></div>
+      </div>
+    </div>
   </div>
 
   <div class="gl-divider"></div>
@@ -169,25 +185,32 @@
 
 <script>
 var DEFAULT_DATA = [
-  {date:"Jan 15",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-1",type:"Webinar",   sent:126,  delivered:123,  uniqueOpens:37,  openRate:38.21,uniqueClicks:24,  uniqueCTR:19.51,uniqueCTOR:51.06,optOuts:1, optOutRate:0.81},
-  {date:"Jan 15",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Email-1",             type:"Webinar",   sent:21115,delivered:20553,uniqueOpens:7966,openRate:38.76,uniqueClicks:3777,uniqueCTR:18.38,uniqueCTOR:47.41,optOuts:41,optOutRate:0.20},
-  {date:"Jan 22",month:"January",  name:"EN_GL_Newsletter_Jan22",                                                           type:"Newsletter",sent:20631,delivered:20508,uniqueOpens:6172,openRate:30.10,uniqueClicks:1236,uniqueCTR:6.03, uniqueCTOR:20.03,optOuts:15,optOutRate:0.07},
-  {date:"Jan 29",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-2", type:"Webinar",   sent:18810,delivered:18731,uniqueOpens:3959,openRate:21.14,uniqueClicks:1054,uniqueCTR:5.63, uniqueCTOR:26.62,optOuts:17,optOutRate:0.09},
-  {date:"Feb 5", month:"February", name:"EN_GL_Newsletter_Feb5",                                                            type:"Newsletter",sent:20433,delivered:20349,uniqueOpens:5715,openRate:28.08,uniqueClicks:3031,uniqueCTR:14.90,uniqueCTOR:53.04,optOuts:21,optOutRate:0.10},
-  {date:"Feb 9", month:"February", name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-3", type:"Webinar",   sent:20343,delivered:20297,uniqueOpens:5922,openRate:29.18,uniqueClicks:2429,uniqueCTR:11.97,uniqueCTOR:41.02,optOuts:37,optOutRate:0.18},
-  {date:"Feb 13",month:"February", name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Follow-up",           type:"Webinar",   sent:98,   delivered:85,   uniqueOpens:38,  openRate:38.78,uniqueClicks:17,  uniqueCTR:17.35,uniqueCTOR:44.74,optOuts:0, optOutRate:0.00},
-  {date:"Feb 19",month:"February", name:"EN_GL_Newsletter_Feb-19",                                                          type:"Newsletter",sent:20067,delivered:19993,uniqueOpens:5978,openRate:29.90,uniqueClicks:3844,uniqueCTR:19.23,uniqueCTOR:64.30,optOuts:7, optOutRate:0.04},
-  {date:"Feb 24",month:"February", name:"EN_GL_Webinar_When-Translation-Lives-Everywhere",                                  type:"Webinar",   sent:20126,delivered:20094,uniqueOpens:4499,openRate:22.39,uniqueClicks:2078,uniqueCTR:10.34,uniqueCTOR:46.19,optOuts:11,optOutRate:0.05},
-  {date:"Feb 26",month:"February", name:"EN_GL_Email-Webinar-The-2026-Reality-of-AI-in-Global-Content",                    type:"Webinar",   sent:20084,delivered:20052,uniqueOpens:4476,openRate:22.32,uniqueClicks:2030,uniqueCTR:10.12,uniqueCTOR:45.35,optOuts:5, optOutRate:0.02},
-  {date:"Mar 3", month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-Email-2",                          type:"Webinar",   sent:20047,delivered:19955,uniqueOpens:4952,openRate:24.82,uniqueClicks:1153,uniqueCTR:5.78, uniqueCTOR:23.28,optOuts:19,optOutRate:0.10},
-  {date:"Mar 5", month:"March",    name:"EN_GL_Newsletter-Mar-5",                                                           type:"Newsletter",sent:19950,delivered:19926,uniqueOpens:4750,openRate:23.84,uniqueClicks:1222,uniqueCTR:6.13, uniqueCTOR:25.73,optOuts:14,optOutRate:0.07},
-  {date:"Mar 10",month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-Email-3",                          type:"Webinar",   sent:19915,delivered:19848,uniqueOpens:5104,openRate:25.72,uniqueClicks:2474,uniqueCTR:12.46,uniqueCTOR:48.47,optOuts:7, optOutRate:0.04},
-  {date:"Mar 17",month:"March",    name:"EN_GL_Email-GlobalLink-Next-Save-the-Date-EMEA",                                   type:"Event",     sent:2444, delivered:2356, uniqueOpens:673, openRate:28.57,uniqueClicks:146, uniqueCTR:6.20, uniqueCTOR:21.69,optOuts:6, optOutRate:0.25},
-  {date:"Mar 17",month:"March",    name:"EN_GL_Email-GlobalLink-Next-Save-the-Date-US",                                     type:"Event",     sent:2697, delivered:2656, uniqueOpens:671, openRate:25.26,uniqueClicks:233, uniqueCTR:8.77, uniqueCTOR:34.72,optOuts:3, optOutRate:0.11},
-  {date:"Mar 18",month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-FUP",                              type:"Webinar",   sent:49,   delivered:49,   uniqueOpens:10,  openRate:20.41,uniqueClicks:2,   uniqueCTR:4.08, uniqueCTOR:20.00,optOuts:0, optOutRate:0.00},
-  {date:"Mar 19",month:"March",    name:"EN_GL_Newsletter-Mar-19",                                                          type:"Newsletter",sent:19520,delivered:19480,uniqueOpens:5504,openRate:28.25,uniqueClicks:1411,uniqueCTR:7.24, uniqueCTOR:25.64,optOuts:9, optOutRate:0.05},
-  {date:"Mar 24",month:"March",    name:"EN_GL_Webinar_Reality-of-AI-in-Global-Content-Email-2",                            type:"Webinar",   sent:19502,delivered:19462,uniqueOpens:4425,openRate:22.74,uniqueClicks:1007,uniqueCTR:5.17, uniqueCTOR:22.76,optOuts:14,optOutRate:0.07},
-  {date:"Mar 31",month:"March",    name:"EN_GL_Webinar_Reality-of-AI-in-Global-Content-Follow-Up",                          type:"Webinar",   sent:104,  delivered:104,  uniqueOpens:32,  openRate:30.77,uniqueClicks:13,  uniqueCTR:12.50,uniqueCTOR:40.63,optOuts:0, optOutRate:0.00}
+  {date:"Jan 15",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-1",type:"Webinar",   sent:126,  delivered:123,  uniqueOpens:47,  openRate:38.21,uniqueClicks:24,  uniqueCTR:19.51,uniqueCTOR:51.06,optOuts:1, optOutRate:0.81,registrations:null},
+  {date:"Jan 15",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Email-1",             type:"Webinar",   sent:21115,delivered:20553,uniqueOpens:7966,openRate:38.76,uniqueClicks:3777,uniqueCTR:18.38,uniqueCTOR:47.41,optOuts:41,optOutRate:0.20,registrations:4},
+  {date:"Jan 22",month:"January",  name:"EN_GL_Newsletter_Jan22",                                                           type:"Newsletter",sent:20631,delivered:20508,uniqueOpens:6172,openRate:30.10,uniqueClicks:1236,uniqueCTR:6.03, uniqueCTOR:20.03,optOuts:15,optOutRate:0.07,registrations:1},
+  {date:"Jan 29",month:"January",  name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-2", type:"Webinar",   sent:18810,delivered:18731,uniqueOpens:3959,openRate:21.14,uniqueClicks:1054,uniqueCTR:5.63, uniqueCTOR:26.62,optOuts:17,optOutRate:0.09,registrations:null},
+  {date:"Feb 5", month:"February", name:"EN_GL_Newsletter_Feb5",                                                            type:"Newsletter",sent:20433,delivered:20349,uniqueOpens:5715,openRate:28.08,uniqueClicks:3031,uniqueCTR:14.90,uniqueCTOR:53.04,optOuts:21,optOutRate:0.10,registrations:null},
+  {date:"Feb 9", month:"February", name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Registrants-Email-3", type:"Webinar",   sent:20343,delivered:20297,uniqueOpens:5922,openRate:29.18,uniqueClicks:2429,uniqueCTR:11.97,uniqueCTOR:41.02,optOuts:37,optOutRate:0.18,registrations:2},
+  {date:"Feb 13",month:"February", name:"EN_GL_Webinar_Website-Considerations-for-China-Office-Hours-Follow-up",           type:"Webinar",   sent:98,   delivered:85,   uniqueOpens:38,  openRate:38.78,uniqueClicks:17,  uniqueCTR:17.35,uniqueCTOR:44.74,optOuts:0, optOutRate:0.00,registrations:null},
+  {date:"Feb 19",month:"February", name:"EN_GL_Newsletter_Feb-19",                                                          type:"Newsletter",sent:20067,delivered:19993,uniqueOpens:5978,openRate:29.90,uniqueClicks:3844,uniqueCTR:19.23,uniqueCTOR:64.30,optOuts:7, optOutRate:0.04,registrations:13},
+  {date:"Feb 24",month:"February", name:"EN_GL_Webinar_When-Translation-Lives-Everywhere",                                  type:"Webinar",   sent:20126,delivered:20094,uniqueOpens:4499,openRate:22.39,uniqueClicks:2078,uniqueCTR:10.34,uniqueCTOR:46.19,optOuts:11,optOutRate:0.05,registrations:9},
+  {date:"Feb 26",month:"February", name:"EN_GL_Email-Webinar-The-2026-Reality-of-AI-in-Global-Content",                    type:"Webinar",   sent:20084,delivered:20052,uniqueOpens:4476,openRate:22.32,uniqueClicks:2030,uniqueCTR:10.12,uniqueCTOR:45.35,optOuts:5, optOutRate:0.02,registrations:17},
+  {date:"Mar 3", month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-Email-2",                          type:"Webinar",   sent:20047,delivered:19955,uniqueOpens:4952,openRate:24.82,uniqueClicks:1153,uniqueCTR:5.78, uniqueCTOR:23.28,optOuts:19,optOutRate:0.10,registrations:5},
+  {date:"Mar 5", month:"March",    name:"EN_GL_Newsletter-Mar-5",                                                           type:"Newsletter",sent:19950,delivered:19926,uniqueOpens:4750,openRate:23.84,uniqueClicks:1222,uniqueCTR:6.13, uniqueCTOR:25.73,optOuts:14,optOutRate:0.07,registrations:7},
+  {date:"Mar 10",month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-Email-3",                          type:"Webinar",   sent:19915,delivered:19848,uniqueOpens:5104,openRate:25.72,uniqueClicks:2474,uniqueCTR:12.46,uniqueCTOR:48.47,optOuts:7, optOutRate:0.04,registrations:1},
+  {date:"Mar 17",month:"March",    name:"EN_GL_Email-GlobalLink-Next-Save-the-Date-EMEA",                                   type:"Event",     sent:2444, delivered:2356, uniqueOpens:673, openRate:28.57,uniqueClicks:146, uniqueCTR:6.20, uniqueCTOR:21.69,optOuts:6, optOutRate:0.25,registrations:null},
+  {date:"Mar 17",month:"March",    name:"EN_GL_Email-GlobalLink-Next-Save-the-Date-US",                                     type:"Event",     sent:2697, delivered:2656, uniqueOpens:671, openRate:25.26,uniqueClicks:233, uniqueCTR:8.77, uniqueCTOR:34.72,optOuts:3, optOutRate:0.11,registrations:null},
+  {date:"Mar 18",month:"March",    name:"EN_GL_Webinar_When-Translation-Lives-Everywhere-FUP",                              type:"Webinar",   sent:49,   delivered:49,   uniqueOpens:10,  openRate:20.41,uniqueClicks:2,   uniqueCTR:4.08, uniqueCTOR:20.00,optOuts:0, optOutRate:0.00,registrations:null},
+  {date:"Mar 19",month:"March",    name:"EN_GL_Newsletter-Mar-19",                                                          type:"Newsletter",sent:19520,delivered:19480,uniqueOpens:5504,openRate:28.25,uniqueClicks:1411,uniqueCTR:7.24, uniqueCTOR:25.64,optOuts:9, optOutRate:0.05,registrations:4},
+  {date:"Mar 24",month:"March",    name:"EN_GL_Webinar_Reality-of-AI-in-Global-Content-Email-2",                            type:"Webinar",   sent:19502,delivered:19462,uniqueOpens:4425,openRate:22.74,uniqueClicks:1007,uniqueCTR:5.17, uniqueCTOR:22.76,optOuts:14,optOutRate:0.07,registrations:5},
+  {date:"Mar 31",month:"March",    name:"EN_GL_Webinar_Reality-of-AI-in-Global-Content-Follow-Up",                          type:"Webinar",   sent:104,  delivered:104,  uniqueOpens:32,  openRate:30.77,uniqueClicks:13,  uniqueCTR:12.50,uniqueCTOR:40.63,optOuts:0, optOutRate:0.00,registrations:null},
+  {date:"Apr 2", month:"April",    name:"EN_GL_Newsletter-Apr-2",                                                           type:"Newsletter",sent:19414,delivered:19327,uniqueOpens:3511,openRate:18.17,uniqueClicks:778, uniqueCTR:4.03, uniqueCTOR:22.16,optOuts:7, optOutRate:0.04,registrations:null},
+  {date:"Apr 7", month:"April",    name:"EN_GL_Webinar_Website-Ask-an-Expert-AI-&-Localization-Office-Hours-Email-1",       type:"Webinar",   sent:19345,delivered:19299,uniqueOpens:4423,openRate:22.92,uniqueClicks:976, uniqueCTR:5.06, uniqueCTOR:22.07,optOuts:28,optOutRate:0.15,registrations:2},
+  {date:"Apr 14",month:"April",    name:"EN_GL_Webinar_Ask-an-Expert-AI-&-Localization-Office-Hours-Email-2",               type:"Webinar",   sent:19357,delivered:19291,uniqueOpens:6840,openRate:35.46,uniqueClicks:2086,uniqueCTR:10.81,uniqueCTOR:30.50,optOuts:23,optOutRate:0.12,registrations:9},
+  {date:"Apr 17",month:"April",    name:"EN_GL_Webinar_Ask-an-Expert-AI-&-Localization-Office-Hours",                       type:"Webinar",   sent:19203,delivered:18894,uniqueOpens:5013,openRate:26.53,uniqueClicks:1020,uniqueCTR:5.40, uniqueCTOR:20.35,optOuts:11,optOutRate:0.06,registrations:2},
+  {date:"Apr 22",month:"April",    name:"EN_GL_Webinar_Ask-an-Expert-AI-&-Localization-Office-Hours-FUP",                   type:"Webinar",   sent:21,   delivered:21,   uniqueOpens:7,   openRate:33.33,uniqueClicks:1,   uniqueCTR:4.76, uniqueCTOR:14.29,optOuts:0, optOutRate:0.00,registrations:null},
+  {date:"Apr 23",month:"April",    name:"EN_GL_Newsletter-Apr-23",                                                           type:"Newsletter",sent:18996,delivered:18924,uniqueOpens:3708,openRate:19.59,uniqueClicks:947, uniqueCTR:5.00, uniqueCTOR:25.54,optOuts:9, optOutRate:0.05,registrations:2},
+  {date:"Apr 28",month:"April",    name:"EN_GL_Email-A-Look-Inside-the-GlobalLink-Product-Roadmap-Email-1",                  type:"Webinar",   sent:23830,delivered:23515,uniqueOpens:7781,openRate:33.09,uniqueClicks:1506,uniqueCTR:6.40, uniqueCTOR:19.35,optOuts:44,optOutRate:0.19,registrations:34}
 ];
 
 var allData = JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -213,6 +236,7 @@ function getFiltered(){
                 .filter(function(d){return activeMonth==="All"||d.month===activeMonth;});
 }
 function getChartData(){return getFiltered().filter(function(d){return d.sent>500;});}
+function getRegData(){return getChartData().filter(function(d){return d.registrations!==null && d.registrations>0;});}
 
 var MONTHS_MAP={jan:"January",feb:"February",mar:"March",apr:"April",may:"May",jun:"June",jul:"July",aug:"August",sep:"September",oct:"October",nov:"November",dec:"December"};
 function parseCSV(text){
@@ -230,10 +254,13 @@ function parseCSV(text){
     var rawName=cols[1]||"";
     var dateStr=cols[0]||"";
     var month=MONTHS_MAP[dateStr.slice(0,3).toLowerCase()]||dateStr;
+    var regsRaw=cols[15]||"";
+    var regs=regsRaw===""?null:pi(regsRaw);
     parsed.push({date:dateStr,month:month,name:rawName,type:cols[2]||"Other",
       sent:pi(cols[3]),delivered:pi(cols[4]),uniqueOpens:pi(cols[7]),
       openRate:pf(cols[8]),uniqueClicks:pi(cols[9]),uniqueCTR:pf(cols[10]),
-      uniqueCTOR:pf(cols[11]),optOuts:pi(cols[14]),optOutRate:pf(cols[15])});
+      uniqueCTOR:pf(cols[11]),optOuts:pi(cols[14]),optOutRate:pf(cols[15]?cols[15]:"0"),
+      registrations:regs});
   }
   return parsed.length?parsed:null;
 }
@@ -314,6 +341,32 @@ function rebuildCharts(){
       plugins:{legend:{display:false},tooltip:{...T,callbacks:{label:function(c){return " "+c.parsed.y+" opt-outs";}}}},
       scales:baseScales(function(v){return v;})}
   });
+
+  // Registrations bar chart
+  var rd=getRegData();
+  if(rd.length){
+    var regVals=rd.map(function(d){return d.registrations;});
+    var maxReg=Math.max.apply(null,regVals);
+    chartInst.regs=new Chart(document.getElementById("c-regs"),{
+      type:"bar",
+      data:{labels:rd.map(function(d){return d.date;}),datasets:[{label:"Registrations",data:regVals,
+        backgroundColor:regVals.map(function(v){return v===maxReg?GREEN:rgba(LIGHT,0.75);}),borderRadius:4}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{...T,callbacks:{label:function(c){return " "+c.parsed.y+" registrations";}}}},
+        scales:baseScales(function(v){return v;})}
+    });
+
+    // Registration rate line chart (regs / delivered * 100)
+    var rrLabels=rd.map(function(d){return d.date;});
+    var rrVals=rd.map(function(d){return d.delivered>0?parseFloat((d.registrations/d.delivered*100).toFixed(4)):0;});
+    chartInst.regrate=new Chart(document.getElementById("c-regrate"),{
+      type:"line",
+      data:{labels:rrLabels,datasets:[areaDs("Reg Rate",rrVals,GREEN)]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{...T,callbacks:{label:function(c){return " "+c.parsed.y.toFixed(3)+"%";}}}},
+        scales:baseScales(function(v){return v+"%";})}
+    });
+  }
 }
 
 function renderKPIs(){
@@ -323,12 +376,14 @@ function renderKPIs(){
   var avgCTR=f.length?mean(f,"uniqueCTR").toFixed(2):"--";
   var avgCTOR=f.length?mean(f,"uniqueCTOR").toFixed(2):"--";
   var totalOpt=f.reduce(function(a,b){return a+b.optOuts;},0);
+  var totalRegs=f.reduce(function(a,b){return a+(b.registrations||0);},0);
   var cards=[
-    {label:"Total Sent",      value:fmt(totalSent), sub:f.length+" campaign"+(f.length!==1?"s":""),cls:"c-dark"},
-    {label:"Avg Open Rate",   value:avgOpen+"%",    sub:"unique opens",                           cls:"c-dark"},
-    {label:"Avg Unique CTR",  value:avgCTR+"%",     sub:"click-through rate",                     cls:"c-light"},
-    {label:"Avg Unique CTOR", value:avgCTOR+"%",    sub:"click-to-open rate",                     cls:"c-light"},
-    {label:"Total Opt-Outs",  value:totalOpt,       sub:"across filtered campaigns",              cls:"c-orange"}
+    {label:"Total Sent",        value:fmt(totalSent), sub:f.length+" campaign"+(f.length!==1?"s":""),cls:"c-dark"},
+    {label:"Avg Open Rate",     value:avgOpen+"%",    sub:"unique opens",                            cls:"c-dark"},
+    {label:"Avg Unique CTR",    value:avgCTR+"%",     sub:"click-through rate",                      cls:"c-light"},
+    {label:"Avg Unique CTOR",   value:avgCTOR+"%",    sub:"click-to-open rate",                      cls:"c-light"},
+    {label:"Total Registrations",value:totalRegs,     sub:"webinar sign-ups tracked",                cls:"c-green"},
+    {label:"Total Opt-Outs",    value:totalOpt,       sub:"across filtered campaigns",               cls:"c-orange"}
   ];
   document.getElementById("kpi-grid").innerHTML=cards.map(function(c){
     return '<div class="kpi-card '+c.cls+'"><div class="kpi-label">'+c.label+'</div><div class="kpi-value">'+c.value+'</div><div class="kpi-sub">'+c.sub+'</div></div>';
@@ -340,10 +395,18 @@ function renderTable(){
   var f=getFiltered();
   var orAll=f.map(function(d){return d.openRate;}),ctrAll=f.map(function(d){return d.uniqueCTR;}),
       ctorAll=f.map(function(d){return d.uniqueCTOR;}),ooAll=f.map(function(d){return d.optOutRate;});
+  var regsAll=f.filter(function(d){return d.registrations!==null;}).map(function(d){return d.registrations;});
   var rows=f.map(function(r){
     var tc=TYPE_COLOR[r.type]||"#6b8cae";
     var orC=metricColor(r.openRate,orAll,false),cC=metricColor(r.uniqueCTR,ctrAll,false),
         coC=metricColor(r.uniqueCTOR,ctorAll,false),ooC=metricColor(r.optOutRate,ooAll,true);
+    var regCell;
+    if(r.registrations===null){
+      regCell='<td style="color:#d0dde9;font-size:11px;text-align:center;">—</td>';
+    } else {
+      var regC=metricColor(r.registrations,regsAll,false);
+      regCell='<td style="font-weight:700;color:'+regC+';font-size:12px;text-align:center;">'+r.registrations+'</td>';
+    }
     return "<tr>"+
       '<td style="color:#a0b4c8;font-size:11px;white-space:nowrap;font-weight:500;">'+r.date+"</td>"+
       '<td style="color:#003b71;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;" title="'+r.name+'">'+r.name+"</td>"+
@@ -354,10 +417,11 @@ function renderTable(){
       '<td style="font-weight:600;color:'+cC+';font-size:11px;">'+pct(r.uniqueCTR)+"</td>"+
       '<td style="font-weight:600;color:'+coC+';font-size:11px;">'+pct(r.uniqueCTOR)+"</td>"+
       '<td style="font-size:11px;"><span style="font-weight:600;color:'+ooC+';">'+r.optOuts+'</span><span style="color:#a0b4c8;font-size:10px;margin-left:4px;">('+r.optOutRate.toFixed(2)+"%)</span></td>"+
+      regCell+
     "</tr>";
   }).join("");
   document.getElementById("table-wrap").innerHTML=
-    "<table><thead><tr><th>Date</th><th>Email Name</th><th>Type</th><th>Sent</th><th>Delivered</th><th>Open Rate</th><th>Unique CTR</th><th>Unique CTOR</th><th>Opt-Outs</th></tr></thead><tbody>"+rows+"</tbody></table>";
+    "<table><thead><tr><th>Date</th><th>Email Name</th><th>Type</th><th>Sent</th><th>Delivered</th><th>Open Rate</th><th>Unique CTR</th><th>Unique CTOR</th><th>Opt-Outs</th><th>Registrations</th></tr></thead><tbody>"+rows+"</tbody></table>";
 }
 
 function renderMonthPills(){
