@@ -262,6 +262,60 @@ td{padding:10px 12px;}
   .chart-grid-2,.chart-grid-3-2,.cg-2,.cg-3,.rg-2,.dos-donts{grid-template-columns:1fr;}
   .section,.site-header,.nav-bar{padding-left:20px;padding-right:20px;}
 }
+
+/* ── COMPOSER TAB ── */
+.composer-layout{display:grid;grid-template-columns:400px 1fr;gap:20px;align-items:start;}
+.composer-left{display:flex;flex-direction:column;gap:14px;}
+.composer-right{position:sticky;top:72px;}
+.comp-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);}
+.comp-card-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a0b4c8;margin-bottom:12px;}
+.comp-field-label{font-size:11px;font-weight:600;color:var(--blue-dark);margin-bottom:5px;}
+.comp-type-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.comp-type-pill,.comp-seq-pill{padding:5px 14px;border-radius:999px;font-size:11px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;border:1.5px solid var(--border);background:transparent;color:var(--muted);transition:all .18s;}
+.comp-type-pill:hover,.comp-seq-pill:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
+.comp-type-pill.active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark);}
+.comp-seq-pill.active{background:var(--blue-primary);color:#fff;border-color:var(--blue-primary);}
+.comp-textarea{width:100%;min-height:130px;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'Inter',sans-serif;font-size:12px;color:var(--text);background:var(--surface);resize:vertical;outline:none;transition:border .18s;line-height:1.7;}
+.comp-textarea:focus{border-color:var(--blue-primary);}
+.comp-extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.comp-input{width:100%;border:1.5px solid var(--border);border-radius:7px;padding:8px 11px;font-family:'Inter',sans-serif;font-size:12px;color:var(--text);background:var(--surface);outline:none;transition:border .18s;}
+.comp-input:focus{border-color:var(--blue-primary);}
+.comp-generate-btn{width:100%;padding:13px;background:var(--blue-dark);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;letter-spacing:.3px;}
+.comp-generate-btn:hover{background:var(--blue-primary);}
+.comp-generate-btn:disabled{background:#a0b4c8;cursor:not-allowed;}
+.comp-error{color:#E53D2E;font-size:12px;margin-top:8px;font-weight:500;}
+.comp-output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.comp-output-title{font-size:13px;font-weight:700;color:var(--blue-dark);}
+.comp-action-btn{padding:7px 16px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:var(--blue-dark);color:#fff;border:none;transition:all .2s;}
+.comp-action-btn:hover{background:var(--blue-primary);}
+.comp-action-btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
+.comp-action-btn-ghost:hover{background:var(--blue-wash);color:var(--blue-dark);border-color:var(--blue-dark);}
+#comp-output-wrap{background:#fff;border:1.5px solid var(--border);border-radius:14px;min-height:500px;box-shadow:var(--shadow);overflow:hidden;}
+.comp-empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;text-align:center;min-height:460px;}
+.comp-empty-icon{font-size:32px;margin-bottom:16px;opacity:.3;}
+.comp-empty-title{font-size:14px;font-weight:700;color:var(--blue-dark);margin-bottom:8px;opacity:.5;}
+.comp-empty-sub{font-size:12px;color:var(--muted);max-width:300px;line-height:1.7;}
+.comp-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;min-height:460px;gap:16px;}
+.comp-loading-dots{display:flex;gap:8px;}
+.comp-loading-dots span{width:8px;height:8px;border-radius:50%;background:var(--blue-primary);animation:compPulse 1.2s ease-in-out infinite;}
+.comp-loading-dots span:nth-child(2){animation-delay:.2s;}
+.comp-loading-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes compPulse{0%,80%,100%{opacity:.2;transform:scale(.8);}40%{opacity:1;transform:scale(1);}}
+.comp-loading-text{font-size:12px;color:var(--muted);}
+.comp-result{padding:24px 28px;}
+.comp-result-subject{background:linear-gradient(135deg,var(--blue-wash),#EBE0FF);border-radius:10px;padding:16px 18px;margin-bottom:20px;}
+.comp-result-subject-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-primary);margin-bottom:6px;}
+.comp-result-subject-line{font-size:15px;font-weight:700;color:var(--blue-dark);line-height:1.4;}
+.comp-result-alt-label{font-size:10px;color:var(--muted);margin-top:10px;margin-bottom:6px;font-weight:600;}
+.comp-result-alt{font-size:12px;color:var(--blue-dark);padding:6px 10px;background:#fff;border-radius:6px;border-left:3px solid var(--blue-primary);margin-bottom:5px;line-height:1.4;}
+.comp-result-body-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a0b4c8;margin-bottom:12px;}
+.comp-result-body{font-size:13px;color:var(--text);line-height:1.8;white-space:pre-wrap;}
+.comp-result-notes{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
+.comp-result-notes-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a0b4c8;margin-bottom:8px;}
+.comp-result-note{font-size:11px;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--blue-wash);display:flex;gap:7px;line-height:1.5;}
+.comp-result-note:last-child{border-bottom:none;}
+.comp-result-note::before{content:"→";color:var(--blue-primary);font-weight:700;flex-shrink:0;}
+@media(max-width:820px){.composer-layout{grid-template-columns:1fr;}.composer-right{position:static;}.comp-extras-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -288,6 +342,7 @@ td{padding:10px 12px;}
   <button class="nav-tab active" onclick="showTab('metrics',this)">📊 Metrics</button>
   <button class="nav-tab" onclick="showTab('content',this)">✉️ Content Intelligence</button>
   <button class="nav-tab" onclick="showTab('recs',this)">💡 Recommendations</button>
+  <button class="nav-tab" onclick="showTab('composer',this)">✍️ Email Composer</button>
 </nav>
 
 
@@ -559,6 +614,78 @@ td{padding:10px 12px;}
   <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
 </section>
 
+
+<!-- ══════════════ TAB: COMPOSER ══════════════ -->
+<section class="section" id="sec-composer">
+  <div class="sec-eyebrow">AI-Powered</div>
+  <div class="sec-title">Email Composer</div>
+  <div class="sec-desc">Describe the email you need and the composer writes it using your real campaign data, top-performing subject patterns, and recommendations — all in GlobalLink's voice.</div>
+
+  <div class="composer-layout">
+    <div class="composer-left">
+      <div class="comp-card">
+        <div class="comp-card-label">Email Type</div>
+        <div class="comp-type-pills">
+          <button class="comp-type-pill active" onclick="setCompType('Webinar Invite',this)">Webinar Invite</button>
+          <button class="comp-type-pill" onclick="setCompType('Webinar Follow-up',this)">Follow-up</button>
+          <button class="comp-type-pill" onclick="setCompType('Newsletter',this)">Newsletter</button>
+          <button class="comp-type-pill" onclick="setCompType('Last Call / Urgency',this)">Last Call</button>
+          <button class="comp-type-pill" onclick="setCompType('Event Save the Date',this)">Event</button>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-card-label">Position in Series</div>
+        <div class="comp-type-pills">
+          <button class="comp-seq-pill active" onclick="setCompSeq('Email 1 — first invite',this)">Email 1</button>
+          <button class="comp-seq-pill" onclick="setCompSeq('Email 2 — new angle, not a reminder',this)">Email 2</button>
+          <button class="comp-seq-pill" onclick="setCompSeq('Email 3 — last call with urgency',this)">Email 3 / Last Call</button>
+          <button class="comp-seq-pill" onclick="setCompSeq('Follow-up with recording link',this)">Follow-up</button>
+          <button class="comp-seq-pill" onclick="setCompSeq('Standalone — not part of a series',this)">Standalone</button>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-card-label">Describe this email</div>
+        <textarea id="comp-prompt" class="comp-textarea" placeholder="e.g. Webinar on June 15 about AI quality governance — how enterprise teams measure and improve AI translation output. Speaker is Imran Sadiq, VP Technology Solutions. Key topics: COMET scoring, closed quality loops, when human review still matters."></textarea>
+      </div>
+      <div class="comp-card">
+        <div class="comp-card-label">Optional details</div>
+        <div class="comp-extras-grid">
+          <div><div class="comp-field-label">Speaker name &amp; title</div><input id="comp-speaker" class="comp-input" placeholder="e.g. Imran Sadiq, VP Tech Solutions"/></div>
+          <div><div class="comp-field-label">Date &amp; time</div><input id="comp-date" class="comp-input" placeholder="e.g. June 15 at 11:00 AM CT"/></div>
+          <div><div class="comp-field-label">CTA button label</div><input id="comp-cta" class="comp-input" placeholder="e.g. Register Now"/></div>
+          <div><div class="comp-field-label">Tone</div>
+            <select id="comp-tone" class="comp-input">
+              <option value="first-person expert (recommended)">First-person expert</option>
+              <option value="professional and concise">Professional &amp; concise</option>
+              <option value="bold and provocative">Bold &amp; provocative</option>
+              <option value="warm and conversational">Warm &amp; conversational</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="comp-generate-btn" id="comp-btn" onclick="generateEmail()"><span id="comp-btn-text">✦ Generate Email</span></button>
+      <div id="comp-error" class="comp-error" style="display:none;"></div>
+    </div>
+
+    <div class="composer-right">
+      <div class="comp-output-header">
+        <div class="comp-output-title">Generated Email</div>
+        <div style="display:flex;gap:8px;">
+          <button class="comp-action-btn" id="comp-copy-btn" onclick="copyEmail()" style="display:none;">Copy</button>
+          <button class="comp-action-btn comp-action-btn-ghost" id="comp-regen-btn" onclick="generateEmail()" style="display:none;">↺ Regenerate</button>
+        </div>
+      </div>
+      <div id="comp-output-wrap">
+        <div class="comp-empty-state">
+          <div class="comp-empty-icon">✦</div>
+          <div class="comp-empty-title">Your email will appear here</div>
+          <div class="comp-empty-sub">Fill in the brief on the left and hit Generate. The composer uses your real campaign data and what's worked for your audience.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
+</section>
 
 <script>
 // ─────────────────────── DATA ───────────────────────
@@ -1001,6 +1128,149 @@ function resetAll(){
 }
 
 render();
+
+// ── COMPOSER ──────────────────────────────────────────
+var compType = "Webinar Invite";
+var compSeq  = "Email 1 — first invite";
+
+function setCompType(t, btn) {
+  compType = t;
+  document.querySelectorAll(".comp-type-pill").forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+}
+function setCompSeq(s, btn) {
+  compSeq = s;
+  document.querySelectorAll(".comp-seq-pill").forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+}
+
+function buildSystemPrompt() {
+  var bl = allData.filter(function(d){ return d.sent > 500; });
+  var topOR   = [...bl].sort(function(a,b){ return b.OR   - a.OR;   }).slice(0,5);
+  var topCTOR = [...bl].sort(function(a,b){ return b.CTOR - a.CTOR; }).slice(0,3);
+  var avgOR   = (bl.reduce(function(s,d){ return s+d.OR;   },0)/bl.length).toFixed(1);
+  var avgCTOR = (bl.reduce(function(s,d){ return s+d.CTOR; },0)/bl.length).toFixed(1);
+  var totalSent = allData.reduce(function(s,d){ return s+d.sent; },0).toLocaleString();
+  var topSubjOR   = topOR  .map(function(d){ return '- "'+d.subj+'" ('+d.OR  .toFixed(1)+'% OR, '+d.CTOR.toFixed(1)+'% CTOR)'; }).join("\n");
+  var topSubjCTOR = topCTOR.map(function(d){ return '- "'+d.subj+'" ('+d.CTOR.toFixed(1)+'% CTOR)'; }).join("\n");
+
+  return "You are an expert email copywriter for GlobalLink by TransPerfect — a B2B enterprise technology company specialising in AI-powered translation and localisation.\n\n" +
+"You write marketing emails for enterprise localisation leaders, content ops, marketing, and IT decision-makers.\n\n" +
+"PERFORMANCE DATA FROM OUR REAL CAMPAIGNS ("+bl.length+" campaigns, "+totalSent+" total sends):\n" +
+"- Our average open rate: "+avgOR+"%  (industry avg: 21.5%)\n" +
+"- Our average CTOR: "+avgCTOR+"%  (industry avg: 10.5%)\n\n" +
+"TOP 5 SUBJECT LINES BY OPEN RATE — study these patterns:\n"+topSubjOR+"\n\n" +
+"TOP 3 BY CTOR:\n"+topSubjCTOR+"\n\n" +
+"WHAT WORKS FOR OUR AUDIENCE:\n" +
+"1. Direct questions and personal challenges outperform descriptive subjects by 10-15pp\n" +
+"2. First-person voice from a named expert drives the highest registrations\n" +
+"3. Specific time refs ('tomorrow at 12 PM CT') beat vague ones ('this week')\n" +
+"4. Bold contrarian POV hooks drive high CTOR ('Speed Isn't a Strategy' → 64.3% CTOR)\n" +
+"5. Stat-led subjects work: '74% Say...' > 'Most leaders say...'\n" +
+"6. Email 2 in a series needs a completely different angle — not a reminder\n" +
+"7. Last call emails consistently outperform Email 1 — always send them\n\n" +
+"WHAT DOES NOT WORK:\n" +
+"- 'Webinar:' or 'Live Webinar:' subject prefixes — our lowest performers\n" +
+"- Multiple competing CTAs in one email\n" +
+"- Body copy that just recaps the previous email\n" +
+"- Vague CTAs like 'Learn More' — use specific action language\n\n" +
+"GLOBALLINK VOICE:\n" +
+"- Practitioner to practitioner — peer-level, not vendor-level\n" +
+"- Confident and direct, never salesy\n" +
+"- Short sentences, 2-3 line paragraphs max\n" +
+"- Uses {{Recipient.FirstName}} for personalisation\n\n" +
+"Respond with valid JSON only — no markdown fences, no explanation outside the JSON:\n" +
+'{"subject":"primary subject line","subjectAlts":["alt 1","alt 2"],"body":"full email body (use \\n for line breaks)","notes":["why the subject works","one key copy decision","one suggested A/B test"]}';
+}
+
+async function generateEmail() {
+  var prompt = document.getElementById("comp-prompt").value.trim();
+  if (!prompt) {
+    var err = document.getElementById("comp-error");
+    err.textContent = "Please describe the email before generating.";
+    err.style.display = "block";
+    return;
+  }
+  document.getElementById("comp-error").style.display = "none";
+
+  var speaker = document.getElementById("comp-speaker").value.trim();
+  var date    = document.getElementById("comp-date").value.trim();
+  var cta     = document.getElementById("comp-cta").value.trim();
+  var tone    = document.getElementById("comp-tone").value;
+
+  var userMsg = "Write a "+compType+" email ("+compSeq+").\n\n" +
+    "Brief: "+prompt+"\n" +
+    (speaker ? "Speaker: "+speaker+"\n" : "") +
+    (date    ? "Date/time: "+date+"\n"  : "") +
+    (cta     ? "CTA label: "+cta+"\n"  : "") +
+    "Tone: "+tone;
+
+  var btn = document.getElementById("comp-btn");
+  btn.disabled = true;
+  document.getElementById("comp-btn-text").textContent = "Generating…";
+  document.getElementById("comp-copy-btn").style.display = "none";
+  document.getElementById("comp-regen-btn").style.display = "none";
+  document.getElementById("comp-output-wrap").innerHTML =
+    '<div class="comp-loading"><div class="comp-loading-dots"><span></span><span></span><span></span></div>' +
+    '<div class="comp-loading-text">Writing your email using your campaign data…</div></div>';
+
+  try {
+    var resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system: buildSystemPrompt(),
+        messages: [{role:"user", content:userMsg}]
+      })
+    });
+    var data = await resp.json();
+    var raw = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : "";
+    raw = raw.replace(/```json\s*/gi,"").replace(/```\s*/g,"").trim();
+    var result = JSON.parse(raw);
+    renderEmailOutput(result);
+    document.getElementById("comp-copy-btn").style.display = "inline-block";
+    document.getElementById("comp-regen-btn").style.display = "inline-block";
+  } catch(e) {
+    document.getElementById("comp-output-wrap").innerHTML =
+      '<div class="comp-loading"><div class="comp-loading-text" style="color:#E53D2E;">Something went wrong — please try again.</div></div>';
+  }
+  btn.disabled = false;
+  document.getElementById("comp-btn-text").textContent = "✦ Generate Email";
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderEmailOutput(r) {
+  var alts  = (r.subjectAlts||[]).map(function(s){ return '<div class="comp-result-alt">'+escHtml(s)+'</div>'; }).join("");
+  var notes = (r.notes||[]).map(function(n){ return '<div class="comp-result-note">'+escHtml(n)+'</div>'; }).join("");
+  document.getElementById("comp-output-wrap").innerHTML =
+    '<div class="comp-result">' +
+      '<div class="comp-result-subject">' +
+        '<div class="comp-result-subject-label">Recommended Subject Line</div>' +
+        '<div class="comp-result-subject-line">'+escHtml(r.subject||"")+'</div>' +
+        (alts ? '<div class="comp-result-alt-label">Alternatives</div>'+alts : '') +
+      '</div>' +
+      '<div class="comp-result-body-label">Email Body</div>' +
+      '<div class="comp-result-body">'+escHtml(r.body||"")+'</div>' +
+      (notes ? '<div class="comp-result-notes"><div class="comp-result-notes-label">Copywriting Notes</div>'+notes+'</div>' : '') +
+    '</div>';
+}
+
+function copyEmail() {
+  var subj = document.querySelector(".comp-result-subject-line");
+  var body = document.querySelector(".comp-result-body");
+  if (!subj || !body) return;
+  navigator.clipboard.writeText("SUBJECT: "+subj.textContent+"\n\n"+body.textContent).then(function(){
+    var btn = document.getElementById("comp-copy-btn");
+    var orig = btn.textContent;
+    btn.textContent = "✓ Copied!";
+    setTimeout(function(){ btn.textContent = orig; }, 2000);
+  });
+}
 </script>
 </body>
 </html>
