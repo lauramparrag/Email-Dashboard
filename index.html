@@ -117,7 +117,17 @@ body{font-family:'Inter',sans-serif;background:var(--blue-wash);color:var(--text
 .pill.pW{background:var(--blue-primary);color:#fff;border-color:var(--blue-primary);}
 .pill.pN{background:var(--teal);color:#fff;border-color:var(--teal);}
 .pill.pE{background:var(--purple);color:#fff;border-color:var(--purple);}
-.pill.pM{background:var(--orange);color:#fff;border-color:var(--orange);}
+.custom-select{position:relative;user-select:none;}
+.custom-select-trigger{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:500;color:var(--muted);background:var(--white);cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;white-space:nowrap;}
+.custom-select-trigger:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
+.custom-select.open .custom-select-trigger{border-color:var(--blue-primary);color:var(--blue-primary);}
+.custom-select.open #month-chevron{transform:rotate(180deg);}
+#month-chevron{transition:transform .2s;flex-shrink:0;color:inherit;}
+.custom-select-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#fff;border:1.5px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,63,199,.12);z-index:999;min-width:150px;overflow:hidden;padding:4px;}
+.custom-select.open .custom-select-menu{display:block;}
+.custom-select-option{padding:8px 12px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;border-radius:7px;transition:all .15s;font-family:'Inter',sans-serif;}
+.custom-select-option:hover{background:var(--blue-wash);color:var(--blue-primary);}
+.custom-select-option.selected{background:var(--blue-wash);color:var(--blue-primary);font-weight:700;}
 
 /* ── IMPORT ── */
 .import-panel{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:24px;margin-bottom:28px;box-shadow:var(--shadow);}
@@ -306,6 +316,8 @@ td{padding:10px 12px;}
 .comp-result-subject{background:linear-gradient(135deg,var(--blue-wash),#EBE0FF);border-radius:10px;padding:16px 18px;margin-bottom:20px;}
 .comp-result-subject-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-primary);margin-bottom:6px;}
 .comp-result-subject-line{font-size:15px;font-weight:700;color:var(--blue-dark);line-height:1.4;}
+.comp-result-preview-label{font-size:10px;color:var(--muted);margin-top:10px;margin-bottom:4px;font-weight:600;letter-spacing:.5px;}
+.comp-result-preview{font-size:12px;color:var(--muted);font-style:italic;padding:6px 10px;background:rgba(255,255,255,.7);border-radius:6px;border-left:3px solid var(--teal);line-height:1.5;}
 .comp-result-alt-label{font-size:10px;color:var(--muted);margin-top:10px;margin-bottom:6px;font-weight:600;}
 .comp-result-alt{font-size:12px;color:var(--blue-dark);padding:6px 10px;background:#fff;border-radius:6px;border-left:3px solid var(--blue-primary);margin-bottom:5px;line-height:1.4;}
 .comp-result-body-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a0b4c8;margin-bottom:12px;}
@@ -315,7 +327,140 @@ td{padding:10px 12px;}
 .comp-result-note{font-size:11px;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--blue-wash);display:flex;gap:7px;line-height:1.5;}
 .comp-result-note:last-child{border-bottom:none;}
 .comp-result-note::before{content:"→";color:var(--blue-primary);font-weight:700;flex-shrink:0;}
-@media(max-width:820px){.composer-layout{grid-template-columns:1fr;}.composer-right{position:static;}.comp-extras-grid{grid-template-columns:1fr;}}
+/* ── SUB-NAV ── */
+.sub-nav{display:flex;gap:0;margin-bottom:28px;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:4px;width:fit-content;box-shadow:var(--shadow);}
+.sub-tab{padding:7px 20px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;border:1.5px solid transparent;background:transparent;color:var(--muted);transition:all .18s;}
+.sub-tab:hover{color:var(--blue-dark);border-color:var(--border);}
+.sub-tab.active{background:#fff;color:var(--blue-dark);font-weight:700;border:1.5px solid var(--border);box-shadow:0 1px 6px rgba(0,63,199,.1);}
+
+/* ── NURTURE TAB ── */
+.nurture-funnel{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px;}
+.nf-card{border-radius:14px;padding:22px 24px;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+.nf-tofu{background:linear-gradient(135deg,#EBE0FF,#F5F2FF);}
+.nf-mofu{background:linear-gradient(135deg,#D2E6FA,#EBF4FF);}
+.nf-bofu{background:linear-gradient(135deg,#D0F5EE,#E8FBF7);}
+.nf-stage-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.nf-tofu .nf-stage-label{color:var(--purple);}
+.nf-mofu .nf-stage-label{color:var(--blue-primary);}
+.nf-bofu .nf-stage-label{color:#00966D;}
+.nf-score{font-size:10px;font-weight:500;border-radius:999px;padding:2px 10px;display:inline-block;margin-bottom:14px;}
+.nf-tofu .nf-score{background:rgba(101,49,204,.1);color:var(--purple);}
+.nf-mofu .nf-score{background:rgba(0,63,199,.1);color:var(--blue-primary);}
+.nf-bofu .nf-score{background:rgba(0,150,109,.1);color:#00966D;}
+.nf-stat-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;}
+.nf-stat{flex:1;min-width:60px;}
+.nf-stat-val{font-size:22px;font-weight:800;color:var(--blue-dark);line-height:1;}
+.nf-stat-label{font-size:10px;color:var(--muted);margin-top:3px;}
+.nf-completion-track{height:6px;background:rgba(0,0,0,.08);border-radius:3px;overflow:hidden;margin-top:4px;}
+.nf-completion-fill{height:100%;border-radius:3px;}
+.nf-tofu .nf-completion-fill{background:var(--purple);}
+.nf-mofu .nf-completion-fill{background:var(--blue-primary);}
+.nf-bofu .nf-completion-fill{background:#00966D;}
+.nf-completion-label{font-size:10px;color:var(--muted);margin-top:5px;}
+
+.nurture-flow{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px 28px;box-shadow:var(--shadow);}
+.nflow-stage{text-align:center;flex:1;}
+.nflow-num{font-size:28px;font-weight:800;color:var(--blue-dark);}
+.nflow-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.nflow-sub{font-size:11px;color:var(--muted);margin-top:4px;}
+.nflow-arrow{display:flex;flex-direction:column;align-items:center;padding:0 16px;color:#a0b4c8;flex-shrink:0;}
+.nflow-arrow svg{margin-bottom:3px;}
+.nflow-pct{font-size:10px;font-weight:600;color:var(--blue-primary);}
+
+.nurture-stage-section{margin-bottom:28px;}
+.nurture-stage-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.nsh-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.nsh-title{font-size:16px;font-weight:800;color:var(--blue-dark);}
+.nsh-desc{font-size:12px;color:var(--muted);margin-left:auto;}
+
+.nurture-steps-grid{display:grid;gap:10px;}
+.ns-row{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:120px 1fr 1fr 1fr 1fr 1fr 80px;gap:12px;align-items:center;transition:border-color .2s;}
+.ns-row:hover{border-color:var(--blue-primary);}
+.ns-row-header{background:transparent;border:none;box-shadow:none;padding:4px 20px;}
+.ns-step-name{font-size:12px;font-weight:700;color:var(--blue-dark);}
+.ns-step-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.ns-metric{text-align:center;}
+.ns-metric-val{font-size:13px;font-weight:700;color:var(--blue-dark);}
+.ns-metric-label{font-size:9px;color:var(--muted);letter-spacing:.5px;margin-top:2px;}
+.ns-bar-wrap{height:5px;background:var(--blue-wash);border-radius:3px;margin-top:6px;overflow:hidden;}
+.ns-bar{height:100%;border-radius:3px;}
+.ns-dropoff{text-align:center;}
+.ns-dropoff-val{font-size:12px;font-weight:700;}
+.ns-dropoff-label{font-size:9px;color:var(--muted);margin-top:2px;}
+
+.nurture-insight-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px;}
+.ni-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);}
+.ni-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a0b4c8;margin-bottom:10px;}
+.ni-finding{font-size:12px;color:var(--blue-dark);line-height:1.6;}
+.ni-finding strong{color:var(--blue-primary);}
+.ni-alert{background:rgba(250,100,25,.06);border:1.5px solid rgba(250,100,25,.2);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--blue-dark);line-height:1.6;margin-top:10px;}
+.ni-alert::before{content:"⚠ ";color:var(--orange);font-weight:700;}
+.ni-good{background:rgba(0,150,109,.06);border:1.5px solid rgba(0,150,109,.2);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--blue-dark);line-height:1.6;margin-top:10px;}
+.ni-good::before{content:"✓ ";color:#00966D;font-weight:700;}
+@media(max-width:820px){.nurture-funnel,.nurture-insight-grid{grid-template-columns:1fr;}.ns-row{grid-template-columns:1fr 1fr;}.nurture-flow{flex-direction:column;}}
+.ci-section-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);margin-top:4px;}
+
+/* ── INSIGHTS TAB ── */
+.ins-hero-card{border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+.ins-green{background:linear-gradient(135deg,rgba(0,150,109,.07),rgba(0,150,109,.03));border:1.5px solid rgba(0,150,109,.2);}
+.ins-orange{background:linear-gradient(135deg,rgba(250,100,25,.07),rgba(250,100,25,.03));border:1.5px solid rgba(250,100,25,.2);}
+.ins-blue{background:linear-gradient(135deg,rgba(0,63,199,.07),rgba(0,63,199,.03));border:1.5px solid rgba(0,63,199,.2);}
+.ins-hero-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.ins-green .ins-hero-label{color:#00966D;}
+.ins-orange .ins-hero-label{color:var(--orange);}
+.ins-blue .ins-hero-label{color:var(--blue-primary);}
+.ins-item{font-size:12px;color:var(--blue-dark);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+.ins-item:last-child{border-bottom:none;}
+.ins-item-num{font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.ins-green .ins-item-num{color:#00966D;}
+.ins-orange .ins-item-num{color:var(--orange);}
+.ins-blue .ins-item-num{color:var(--blue-primary);}
+.ins-item-stat{font-size:10px;font-weight:700;color:var(--muted);margin-top:3px;}
+
+.ins-deep-toggle{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 20px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:0;transition:all .2s;user-select:none;}
+.ins-deep-toggle:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
+
+/* ── OUR AUDIENCE TAB ── */
+.aud-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+.aud-signal-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;}
+.aud-signal-tag{font-size:10px;font-weight:700;letter-spacing:.5px;padding:3px 10px;border-radius:999px;display:inline-block;width:fit-content;}
+.aud-signal-title{font-size:13px;font-weight:700;color:var(--blue-dark);line-height:1.3;}
+.aud-signal-body{font-size:12px;color:var(--muted);line-height:1.7;flex:1;}
+.aud-signal-examples{display:flex;flex-direction:column;gap:5px;margin-top:4px;}
+.aud-ex{font-size:11px;color:var(--blue-dark);padding:5px 9px;background:rgba(0,150,109,.07);border-radius:6px;line-height:1.4;}
+.aud-ex-no{background:rgba(250,100,25,.07);color:var(--orange);}
+.aud-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+.aud-card-title{font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:8px;line-height:1.3;}
+.aud-card-body{font-size:12px;color:var(--muted);line-height:1.7;}
+.aud-proof{font-size:10px;color:var(--muted);font-style:italic;padding:6px 10px;background:var(--blue-wash);border-radius:6px;}
+.aud-voice-row{display:flex;align-items:flex-start;gap:8px;}
+.aud-voice-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:5px;flex-shrink:0;margin-top:1px;}
+.aud-v-yes{background:rgba(0,150,109,.1);color:#00966D;}
+.aud-v-no{background:rgba(250,100,25,.1);color:var(--orange);}
+.aud-voice-text{font-size:11px;color:var(--blue-dark);line-height:1.5;}
+.aud-rule{font-size:12px;color:var(--blue-dark);padding:8px 12px;border-radius:7px;margin-bottom:8px;line-height:1.5;}
+.aud-rule:last-child{margin-bottom:0;}
+.aud-rule-good{background:rgba(0,150,109,.06);border-left:3px solid #00966D;}
+.aud-rule-bad{background:rgba(250,100,25,.06);border-left:3px solid var(--orange);}
+@media(max-width:820px){.aud-signal-card,.aud-card{padding:16px 18px;}}
+
+/* ── CAMPAIGN NURTURE CARDS ── */
+.cn-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px 24px;box-shadow:var(--shadow);transition:border-color .2s;}
+.cn-card:hover{border-color:var(--blue-primary);}
+.cn-card-top{display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;user-select:none;}
+.cn-card-left{flex:1;min-width:0;}
+.cn-card-title{font-size:14px;font-weight:700;color:var(--blue-dark);margin-bottom:6px;}
+.cn-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cn-badge{font-size:10px;font-weight:600;padding:2px 10px;border-radius:999px;}
+.cn-card-stats{display:flex;align-items:center;gap:24px;flex-shrink:0;}
+.cn-stat{text-align:center;}
+.cn-stat-val{font-size:18px;font-weight:800;color:var(--blue-dark);line-height:1;}
+.cn-stat-label{font-size:9px;color:#a0b4c8;margin-top:3px;letter-spacing:.5px;}
+.cn-flags{margin-top:12px;display:flex;flex-direction:column;gap:6px;}
+.cn-flag{font-size:11px;padding:7px 12px;border-radius:8px;line-height:1.5;}
+.cn-flag-warn{background:rgba(250,100,25,.07);border:1px solid rgba(250,100,25,.2);color:var(--blue-dark);}
+.cn-flag-info{background:rgba(0,63,199,.06);border:1px solid rgba(0,63,199,.15);color:var(--blue-dark);}
+@media(max-width:820px){.cn-card-top{flex-direction:column;align-items:flex-start;}.cn-card-stats{flex-wrap:wrap;}}
 </style>
 </head>
 <body>
@@ -339,281 +484,428 @@ td{padding:10px 12px;}
 
 <!-- NAV TABS -->
 <nav class="nav-bar">
-  <button class="nav-tab active" onclick="showTab('metrics',this)">📊 Metrics</button>
-  <button class="nav-tab" onclick="showTab('content',this)">✉️ Content Intelligence</button>
-  <button class="nav-tab" onclick="showTab('recs',this)">💡 Recommendations</button>
-  <button class="nav-tab" onclick="showTab('composer',this)">✍️ Email Composer</button>
+  <button class="nav-tab active" onclick="showTab('metrics',this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg> Metrics</button>
+  <button class="nav-tab" onclick="showTab('insights',this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg> Insights</button>
+  <button class="nav-tab" onclick="showTab('audience',this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg> Our Audience</button>
+  <button class="nav-tab" onclick="showTab('composer',this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" /></svg> Email Composer</button>
 </nav>
 
 
 <!-- ══════════════ TAB: METRICS ══════════════ -->
 <section class="section active" id="sec-metrics">
 
-  <div class="filter-bar">
-    <span class="filter-label">Type</span>
-    <button class="pill" id="pill-All"        onclick="setType('All')">All</button>
-    <button class="pill" id="pill-Webinar"    onclick="setType('Webinar')">Webinar</button>
-    <button class="pill" id="pill-Newsletter" onclick="setType('Newsletter')">Newsletter</button>
-    <button class="pill" id="pill-Event"      onclick="setType('Event')">Event</button>
-    <div class="fdivider"></div>
-    <span class="filter-label">Month</span>
-    <div id="month-pills" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+  <!-- Sub-navigation -->
+  <div class="sub-nav">
+    <button class="sub-tab active" id="subtab-campaigns" onclick="setSubTab('campaigns',this)">Blasts</button>
+    <button class="sub-tab" id="subtab-nurture" onclick="setSubTab('nurture',this)">Always-On Nurture</button>
+    <button class="sub-tab" id="subtab-campnurture" onclick="setSubTab('campnurture',this)">Campaign Nurtures</button>
   </div>
 
-  <div id="import-panel" style="display:none;" class="import-panel">
-    <h3>Paste your spreadsheet data</h3>
-    <p>Copy all rows (including the header) from your Google Sheet and paste below. Columns: Date, Email, Type, Sent, Delivered, Total Opens, Unique Opens, Open Rate, Unique Clicks, Unique CTR, Unique CTOR, Total Clicks, Total CTR, Total CTOR, Opt-Outs, Opt-Out Rate, Registrations, Subject, Body.</p>
-    <textarea id="paste-area" class="import-textarea" placeholder="Date&#9;Email&#9;Type&#9;Sent&#9;..."></textarea>
-    <div class="import-actions">
-      <button class="btn-import-go" onclick="doImport()">Import &amp; Refresh</button>
-      <span id="import-msg"></span>
-    </div>
-  </div>
+  <!-- ── CAMPAIGNS SUB-VIEW ── -->
+  <div id="subview-campaigns">
 
-  <div class="kpi-grid" id="kpi-grid"></div>
-  <div class="divider"></div>
-
-  <div class="chart-grid-2">
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique Open Rate Over Time</span></div>
-      <div class="chart-wrap" style="height:200px;"><canvas id="c-or"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique CTR Over Time</span></div>
-      <div class="chart-wrap" style="height:200px;"><canvas id="c-ctr"></canvas></div>
-    </div>
-  </div>
-  <div class="chart-grid-3-2">
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Delivered vs Unique Opens vs Unique Clicks</span></div>
-      <div class="chart-wrap" style="height:210px;"><canvas id="c-vol"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique CTOR by Campaign</span></div>
-      <div class="chart-wrap" style="height:220px;"><canvas id="c-ctor"></canvas></div>
-      <div class="chart-legend">
-        <span><span style="color:#003FC7">●</span> Webinar</span>
-        <span><span style="color:#3BBFB5">●</span> Newsletter</span>
-        <span><span style="color:#6531CC">●</span> Event</span>
+    <div class="filter-bar">
+      <span class="filter-label">Type</span>
+      <button class="pill" id="pill-All"        onclick="setType('All')">All</button>
+      <button class="pill" id="pill-Webinar"    onclick="setType('Webinar')">Webinar</button>
+      <button class="pill" id="pill-Newsletter" onclick="setType('Newsletter')">Newsletter</button>
+      <button class="pill" id="pill-Event"      onclick="setType('Event')">Event</button>
+      <div class="fdivider"></div>
+      <span class="filter-label">Month</span>
+      <div class="custom-select" id="month-dropdown">
+        <div class="custom-select-trigger" onclick="toggleMonthDropdown()">
+          <span id="month-selected-label">All Months</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" id="month-chevron"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="custom-select-menu" id="month-menu"></div>
       </div>
     </div>
-  </div>
-  <div class="chart-grid-2">
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Open Rate vs CTR vs CTOR</span></div>
-      <div class="chart-wrap" style="height:200px;"><canvas id="c-tri"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Opt-Outs per Campaign</span></div>
-      <div class="chart-wrap" style="height:200px;"><canvas id="c-oo"></canvas></div>
-      <div class="chart-legend">
-        <span><span style="color:#3EB236">●</span> Lowest rate</span>
-        <span><span style="color:#FA6419">●</span> Highest rate</span>
+
+    <div id="import-panel" style="display:none;" class="import-panel">
+      <h3>Paste your spreadsheet data</h3>
+      <p>Copy all rows (including the header) from your Google Sheet and paste below. Columns: Date, Email, Type, Sent, Delivered, Total Opens, Unique Opens, Open Rate, Unique Clicks, Unique CTR, Unique CTOR, Total Clicks, Total CTR, Total CTOR, Opt-Outs, Opt-Out Rate, Registrations, Subject, Body.</p>
+      <textarea id="paste-area" class="import-textarea" placeholder="Date&#9;Email&#9;Type&#9;Sent&#9;..."></textarea>
+      <div class="import-actions">
+        <button class="btn-import-go" onclick="doImport()">Import &amp; Refresh</button>
+        <span id="import-msg"></span>
       </div>
     </div>
-  </div>
-  <div class="chart-grid-2" style="margin-bottom:28px;">
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Webinar Registrations per Campaign</span></div>
-      <div class="chart-wrap" style="height:210px;"><canvas id="c-regs"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Registration Rate (Regs / Delivered %)</span></div>
-      <div class="chart-wrap" style="height:210px;"><canvas id="c-rr"></canvas></div>
-    </div>
-  </div>
 
-  <div class="table-card">
-    <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Full Campaign Breakdown</span></div>
-    <div id="table-wrap"></div>
-  </div>
+    <div class="kpi-grid" id="kpi-grid"></div>
+    <div class="divider"></div>
+
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique Open Rate Over Time</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-or"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique CTR Over Time</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-ctr"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-grid-3-2">
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Delivered vs Unique Opens vs Unique Clicks</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-vol"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Unique CTOR by Campaign</span></div>
+        <div class="chart-wrap" style="height:220px;"><canvas id="c-ctor"></canvas></div>
+        <div class="chart-legend">
+          <span><span style="color:#003FC7">●</span> Webinar</span>
+          <span><span style="color:#3BBFB5">●</span> Newsletter</span>
+          <span><span style="color:#6531CC">●</span> Event</span>
+        </div>
+      </div>
+    </div>
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Open Rate vs CTR vs CTOR</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-tri"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Opt-Outs per Campaign</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="c-oo"></canvas></div>
+        <div class="chart-legend">
+          <span><span style="color:#3EB236">●</span> Lowest rate</span>
+          <span><span style="color:#FA6419">●</span> Highest rate</span>
+        </div>
+      </div>
+    </div>
+    <div class="chart-grid-2" style="margin-bottom:28px;">
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Webinar Registrations per Campaign</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-regs"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Registration Rate (Regs / Delivered %)</span></div>
+        <div class="chart-wrap" style="height:210px;"><canvas id="c-rr"></canvas></div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="clabel"><div class="clabel-bar"></div><span class="clabel-text">Full Campaign Breakdown</span></div>
+      <div id="table-wrap"></div>
+    </div>
+    <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
+
+  </div><!-- end subview-campaigns -->
+
+<!-- ── NURTURE SUB-VIEW ── -->
+<div id="subview-nurture" style="display:none;">
+  <div class="sec-eyebrow">Always-On Program</div>
+  <div class="sec-title">Nurture Performance</div>
+  <div class="sec-desc">Step-by-step performance across TOFU, MOFU, and BOFU stages. Leads move between stages automatically based on prospect score — under 50 enters TOFU, 50–75 moves to MOFU, above 75 enters BOFU.</div>
+  <div class="nurture-funnel" id="nurture-funnel"></div>
+  <div class="nurture-flow" id="nurture-flow"></div>
+  <div class="nurture-insight-grid" id="nurture-insights"></div>
+  <div id="nurture-stages"></div>
   <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
+</div><!-- end subview-nurture -->
+
+<!-- ── CAMPAIGN NURTURES SUB-VIEW ── -->
+<div id="subview-campnurture" style="display:none;">
+  <div class="sec-eyebrow">Campaign-Specific Programs</div>
+  <div class="sec-title">Campaign Nurtures</div>
+  <div class="sec-desc">Nurture sequences tied to specific campaigns or content offers. Leads enter based on campaign source or content download, then graduate to the Always-On program when the sequence ends.</div>
+  <div id="campnurture-cards" style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;"></div>
+  <div id="campnurture-stages"></div>
+  <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
+</div><!-- end subview-campnurture -->
+
 </section>
 
 
-<!-- ══════════════ TAB: CONTENT INTELLIGENCE ══════════════ -->
-<section class="section" id="sec-content">
-  <div class="sec-eyebrow">Content Analysis</div>
-  <div class="sec-title">What's Actually Working</div>
-  <div class="sec-desc">Subject line patterns, messaging tone, and content format — mapped to real performance so you know exactly what to replicate and what to retire.</div>
+<!-- ══════════════ TAB: INSIGHTS ══════════════ -->
+<section class="section" id="sec-insights">
+  <div class="sec-eyebrow">Performance Intelligence</div>
+  <div class="sec-title">Insights</div>
+  <div class="sec-desc">The three questions that matter — what's working, what needs fixing, and what to do next. Based on 29 campaigns and full body copy analysis.</div>
 
-  <div class="cg-2">
-    <div class="cc">
-      <h3>🏆 Top 5 Subject Lines by Open Rate</h3>
-      <div class="cc-desc">Highest-performing subjects across all campaigns with 500+ sends.</div>
-      <div id="top-or"></div>
+  <!-- THREE HEADLINE CARDS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;">
+
+    <div class="ins-hero-card ins-green">
+      <div class="ins-hero-label">✓ What's Working</div>
+      <div class="ins-hero-items" id="ins-working"></div>
     </div>
-    <div class="cc">
-      <h3>🎯 Top 5 Subject Lines by CTOR</h3>
-      <div class="cc-desc">Best at converting openers into clickers — the real engagement test.</div>
-      <div id="top-ctor"></div>
+
+    <div class="ins-hero-card ins-orange">
+      <div class="ins-hero-label">⚠ What Needs Fixing</div>
+      <div class="ins-hero-items" id="ins-fixing"></div>
     </div>
+
+    <div class="ins-hero-card ins-blue">
+      <div class="ins-hero-label">→ What to Do Next</div>
+      <div class="ins-hero-items" id="ins-next"></div>
+    </div>
+
   </div>
 
-  <div class="cg-2">
-    <div class="cc">
-      <h3>🎭 Tone & Messaging vs. Open Rate</h3>
-      <div class="cc-desc">Average open rate by the dominant tone detected across subject lines and body copy.</div>
-      <div id="tone-chart"></div>
-    </div>
-    <div class="cc">
-      <h3>📝 Subject Line Formula Analysis</h3>
-      <div class="cc-desc">Structural patterns in your top and bottom performers — what formats drive opens vs. what falls flat.</div>
-      <div id="formula-chart"></div>
-    </div>
-  </div>
-
+  <!-- BENCHMARKS ROW -->
   <div class="cc" style="margin-bottom:20px;">
-    <h3>📈 Series Performance — How Engagement Evolves Email by Email</h3>
-    <div class="cc-desc">Open rate trend across your main campaign sequences. Does your audience warm up or fatigue as a series progresses?</div>
-    <div class="chart-wrap" style="height:230px;"><canvas id="c-series"></canvas></div>
-    <div class="chart-legend" style="margin-top:12px;">
-      <span><span style="color:#03002C">●</span> China Website Series</span>
-      <span><span style="color:#003FC7">●</span> Translation Lives Everywhere</span>
-      <span><span style="color:#3BBFB5">●</span> AI in Global Content</span>
-      <span><span style="color:#FA6419">●</span> Office Hours</span>
-      <span><span style="color:#6531CC">●</span> Product Roadmap</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--blue-dark);">How You Stack Up</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">B2B Technology benchmarks 2025–2026 · Orange marker = industry average</div>
+      </div>
     </div>
+    <div id="benchmarks"></div>
   </div>
 
-  <div class="cg-2">
-    <div class="cc">
-      <h3>⭐ Best Overall Emails</h3>
-      <div class="cc-desc">Ranked by composite score of open rate, CTOR, and registrations.</div>
-      <div id="best-emails"></div>
-    </div>
-    <div class="cc">
-      <h3>🗂️ Performance by Content Theme</h3>
-      <div class="cc-desc">Average metrics grouped by the primary topic of each campaign.</div>
-      <div id="theme-table"></div>
-    </div>
-  </div>
-
-  <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
-</section>
-
-
-<!-- ══════════════ TAB: RECOMMENDATIONS ══════════════ -->
-<section class="section" id="sec-recs">
-
-  <div class="rec-hero">
-    <h2>Strategic Recommendations</h2>
-    <p>Based on 28 campaigns, Jan–May 2026 — subject lines, body copy, tone, series patterns, and performance metrics. Here's what the data tells your team to do next.</p>
-  </div>
-
-  <div class="rg-2">
-
-    <div class="rc">
-      <span class="rtag rtag-hot">🔥 High Impact</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-orange">📬</div>
-        <div><div class="rc-title">Direct Questions & Personal Challenges Beat Descriptive Subjects</div><div class="rc-sub">Up to +15pp open rate lift vs. generic formats</div></div>
-      </div>
-      <div class="rc-finding">Your <strong>3 highest-performing subject lines</strong> are all direct questions or personal challenges: "Your AI questions deserve a real answer." (35.5%), "Got questions about AI in localization? Bring them here." (22.9%), and "Your AI questions deserve a real answer." They consistently outperform descriptive "Webinar: Topic Name" subjects by 10–15 percentage points.</div>
-      <div class="rc-action">Use a question or personal challenge framing for at least 50% of webinar invites. "You" or "?" in the subject line signals relevance before the email is opened.</div>
-      <div class="rc-action">Avoid "Webinar:" and "Live Webinar:" prefixes — they're your lowest-performing pattern and audiences read them as promotional rather than useful.</div>
-    </div>
-
-    <div class="rc">
-      <span class="rtag rtag-quick">✅ Quick Win</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-teal">⏰</div>
-        <div><div class="rc-title">Urgency + Specific Time Reference Is Your Most Reliable Lever</div><div class="rc-sub">"Last call" emails average 27–30% open rate every series</div></div>
-      </div>
-      <div class="rc-finding">Every "last call" email in your data outperformed or matched Email 1 in its series. "Last call: China compliance Q&A tomorrow at 12 PM CT" hit <strong>29.2%</strong>. "Last Call: Bring Your AI Questions" hit <strong>26.5%</strong>. The pattern works because it re-engages people who opened but didn't act, and people who skipped earlier emails entirely.</div>
-      <div class="rc-action">Always send a dedicated urgency email 1–2 days before each webinar. Don't just resend Email 1 — write fresh copy around the closing window.</div>
-      <div class="rc-action">Anchor urgency to a specific time: "tomorrow at 12 PM CT" consistently outperforms "this week" or "closing soon."</div>
-    </div>
-
-    <div class="rc">
-      <span class="rtag rtag-hot">🔥 High Impact</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-blue">👤</div>
-        <div><div class="rc-title">First-Person Expert Voice Is Your Highest-Converting Format</div><div class="rc-sub">Apr 28 roadmap email: 33% open rate, 34 registrations — your all-time best</div></div>
-      </div>
-      <div class="rc-finding">The Apr 28 Product Roadmap email, written as <strong>Joe Campbell speaking directly</strong> ("Joe Campbell here. I run product for GlobalLink..."), generated 34 registrations — more than double any other single campaign. Feb 26 AI Reality email (also first-person from a named expert) drove 17 registrations cold. The pattern: real person + specific role + personal observation about the industry.</div>
-      <div class="rc-action">Use first-person, named-expert voice for every webinar invite series. Open with "I" + a genuine observation about the audience's problem — not a product pitch.</div>
-      <div class="rc-action">Include the speaker's name and title in the first sentence. "Joe Campbell here, I run product..." outperforms "Join our SVP of Tech Ops for..."</div>
-    </div>
-
-    <div class="rc">
-      <span class="rtag rtag-strat">🧭 Strategic</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-purple">📰</div>
-        <div><div class="rc-title">Fix Newsletter CTOR — One Email Shows You How</div><div class="rc-sub">Newsletter CTOR avg: 22% · Feb 19 outlier: 64.3%</div></div>
-      </div>
-      <div class="rc-finding">Your newsletter open rates are solid (23–30%) but click-to-open is consistently low — except Feb 19 ("Speed Isn't a Strategy for AI Translation") which hit <strong>64.3% CTOR</strong>, 3x the newsletter average. What made it different: a bold contrarian headline, two time-bound CTAs with specific dates, and benefit-driven bullet points on each event instead of generic "Register Now" links.</div>
-      <div class="rc-action">Model all future newsletters after Feb 19: lead with a POV headline (not a content summary), follow with 1–2 event blocks with specific dates and 3 concrete benefit bullets each.</div>
-      <div class="rc-action">Replace generic "Learn More" CTAs with action-specific language: "Watch the 18-min recording" or "Get the governance framework."</div>
-    </div>
-
-    <div class="rc">
-      <span class="rtag rtag-quick">✅ Quick Win</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-green">📊</div>
-        <div><div class="rc-title">Put a Stat in the Subject Line When You Have One</div><div class="rc-sub">Stat-led subjects pull 28–30% open rate consistently</div></div>
-      </div>
-      <div class="rc-finding">"74% Say AI Is a Priority. Here's What to Do With That" pulled strong opens and the implicit credibility of a data point. "Speed Isn't a Strategy for AI Translation" (implicit stat positioning) drove your newsletter's highest-ever CTOR. Specificity signals authority instantly — enterprise readers make open/skip decisions in under 2 seconds.</div>
-      <div class="rc-action">When you have a stat from a report, survey, or benchmark, front-load it: "74% of..." outperforms "Most leaders say..."</div>
-      <div class="rc-action">Pair the stat with a direct action or implication: "74% say X. Here's what to do about it" — not just the stat alone.</div>
-    </div>
-
-    <div class="rc">
-      <span class="rtag rtag-strat">🧭 Strategic</span>
-      <div class="rc-head">
-        <div class="rc-icon rci-blue">📅</div>
-        <div><div class="rc-title">Email 2 Is Your Registration Engine — Invest More in It</div><div class="rc-sub">Email 2 drives the majority of registrations across every series</div></div>
-      </div>
-      <div class="rc-finding">Across all your webinar series, <strong>Email 2 consistently drives more registrations and CTR than Email 1</strong>. Apr 14 Office Hours Email 2 hit your <strong>3rd highest open rate ever</strong> (35.5%) with a completely different angle from Email 1. Email 1 warms the audience and plants the idea. Email 2 is where they actually decide to register.</div>
-      <div class="rc-action">Don't write Email 2 as a reminder. Write it as a new argument: a different angle, a testimonial, a specific use-case story, or a concrete "what you'll leave with" framing.</div>
-      <div class="rc-action">The Roadmap series Email 2 ("The kind of access most companies don't offer") is a good model — new framing, not just a nudge.</div>
-    </div>
-
-  </div>
-
-  <!-- Do's and Don'ts -->
-  <div class="rc" style="margin-bottom:20px;">
-    <div class="rc-head" style="margin-bottom:0;">
-      <div class="rc-icon rci-blue">📋</div>
-      <div><div class="rc-title">Email Content Do's & Don'ts</div><div class="rc-sub">Distilled from your top and bottom 20% of campaigns</div></div>
-    </div>
+  <!-- DO'S AND DON'TS -->
+  <div class="cc" style="margin-bottom:20px;">
+    <div style="font-size:14px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Email Do's & Don'ts</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:18px;">Distilled from your top and bottom 20% of campaigns</div>
     <div class="dos-donts">
       <div class="do-col">
         <h4>✓ What Works</h4>
-        <div class="di do">Open with a bold industry POV or provocative observation</div>
-        <div class="di do">Use specific times: "tomorrow at 12 PM CT" beats "this week"</div>
-        <div class="di do">Write from a named expert's first-person perspective</div>
-        <div class="di do">Lead subject lines with a stat, direct question, or challenge</div>
-        <div class="di do">List what attendees will specifically leave with (3 bullets max)</div>
-        <div class="di do">Offer the recording in follow-ups — removes the "can't attend" objection</div>
-        <div class="di do">Personalize with {{Recipient.FirstName}} — every email already does this well</div>
-        <div class="di do">End with one single, frictionless CTA button</div>
+        <div class="di do">Open with a bold POV or contrarian observation ("Speed Isn't a Strategy")</div>
+        <div class="di do">Use specific times in urgency emails: "tomorrow at 12 PM CT" beats "this week"</div>
+        <div class="di do">Write from a named expert's first-person perspective for webinar invites</div>
+        <div class="di do">Lead subject lines with a stat, direct question, or personal challenge</div>
+        <div class="di do">Keep body copy 150–250 words — the sweet spot for CTR and CTOR</div>
+        <div class="di do">Offer the recording in every follow-up — removes the "can't attend" objection</div>
+        <div class="di do">End with one single, clear CTA button</div>
       </div>
       <div class="dont-col">
         <h4>✗ What Hurts</h4>
-        <div class="di dn">"Webinar:" or "Live Webinar:" prefix subjects — consistently lowest openers</div>
-        <div class="di dn">Very small list follow-ups (under 200 sends) — negligible ROI, skews metrics</div>
+        <div class="di dn">"Webinar:" or "Live Webinar:" subject prefixes — your lowest-performing pattern</div>
+        <div class="di dn">Very small list follow-ups under 200 sends — negligible ROI, skews metrics</div>
         <div class="di dn">Multiple competing CTAs in one email — dilutes click intent</div>
-        <div class="di dn">Email 3 sent less than 48 hrs before the event — opt-out spikes visible in data</div>
-        <div class="di dn">Body copy that just recaps the previous email without a new angle</div>
+        <div class="di dn">Email 3 sent less than 48hrs before event — opt-out spikes visible in data</div>
+        <div class="di dn">Body copy that recaps the previous email without a new angle or argument</div>
         <div class="di dn">Long product feature lists without a "so what" outcome statement</div>
-        <div class="di dn">Equal visual weight on all newsletter content blocks — needs a clear hierarchy</div>
       </div>
     </div>
   </div>
 
-  <!-- Benchmarks -->
-  <div class="rc">
-    <div class="rc-head" style="margin-bottom:8px;">
-      <div class="rc-icon rci-blue">🏅</div>
-      <div><div class="rc-title">How You Stack Up: Industry Benchmarks</div><div class="rc-sub">B2B Technology / SaaS email averages (2025–2026) · Orange line = industry average</div></div>
+  <!-- DEEP DIVE — expandable -->
+  <div class="ins-deep-toggle" onclick="toggleDeepDive()" id="deep-toggle">
+    <span id="deep-toggle-text">↓ See full analysis — subject lines, body copy patterns, series performance</span>
+    <svg id="deep-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:transform .2s;"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+
+  <div id="deep-dive" style="display:none;">
+
+    <div class="cg-2" style="margin-top:20px;">
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Top 5 Subject Lines by Open Rate</div>
+        <div class="cc-desc">Highest-performing subjects — 500+ sends only.</div>
+        <div id="top-or"></div>
+      </div>
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Top 5 Subject Lines by CTOR</div>
+        <div class="cc-desc">Best at converting openers into clickers.</div>
+        <div id="top-ctor"></div>
+      </div>
     </div>
-    <div id="benchmarks" style="margin-top:20px;"></div>
+
+    <div class="cg-2" style="margin-top:16px;">
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Email Length vs. Performance</div>
+        <div class="cc-desc">Word count impact on open rate, CTR, and CTOR.</div>
+        <div id="body-length"></div>
+      </div>
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Top Body Copy Openers by CTOR</div>
+        <div class="cc-desc">First content lines from your best-performing emails.</div>
+        <div id="body-top-openers"></div>
+      </div>
+    </div>
+
+    <div class="cg-2" style="margin-top:16px;">
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Tone & Messaging vs. Open Rate</div>
+        <div class="cc-desc">Average open rate by dominant tone across subject and body.</div>
+        <div id="tone-chart"></div>
+      </div>
+      <div class="cc">
+        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Performance by Content Theme</div>
+        <div class="cc-desc">Average metrics grouped by campaign topic.</div>
+        <div id="theme-table"></div>
+      </div>
+    </div>
+
+    <div class="cc" style="margin-top:16px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Series Performance — Engagement Across Email 1→2→3</div>
+      <div class="cc-desc">Open rate trend across your main campaign sequences.</div>
+      <div class="chart-wrap" style="height:230px;"><canvas id="c-series"></canvas></div>
+      <div class="chart-legend" style="margin-top:12px;">
+        <span><span style="color:#03002C">●</span> China Website</span>
+        <span><span style="color:#003FC7">●</span> Translation Lives Everywhere</span>
+        <span><span style="color:#3BBFB5">●</span> AI in Global Content</span>
+        <span><span style="color:#FA6419">●</span> Office Hours</span>
+        <span><span style="color:#6531CC">●</span> Product Roadmap</span>
+      </div>
+    </div>
+
   </div>
 
   <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
 </section>
 
+
+<!-- ══════════════ TAB: OUR AUDIENCE ══════════════ -->
+<section class="section" id="sec-audience">
+  <div class="sec-eyebrow">For the whole team</div>
+  <div class="sec-title">What Works With Our Audience</div>
+  <div class="sec-desc">Patterns from our email data translated into content principles — useful for blog, LinkedIn, events, or any channel.</div>
+
+  <!-- CONTENT ANGLES THAT WORK -->
+  <div class="aud-section-title">Content Angles That Drive Action</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px;">
+
+    <div class="aud-signal-card" style="border-top:3px solid var(--blue-dark);">
+      <div class="aud-signal-tag" style="color:var(--blue-dark);background:rgba(3,0,44,.07);">🔥 Highest engagement</div>
+      <div class="aud-signal-title">AI governance — not AI capability</div>
+      <div class="aud-signal-body">Our audience is already using AI translation. Content that helps them control, measure, and govern it drives far more action than content about what AI can do. They know what it can do. They need to know how to manage it.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex">✓ "How enterprises are managing AI translation risk"</div>
+        <div class="aud-ex">✓ "COMET scoring and when human review still matters"</div>
+        <div class="aud-ex aud-ex-no">✗ "AI translation is transforming global content"</div>
+      </div>
+    </div>
+
+    <div class="aud-signal-card" style="border-top:3px solid var(--blue-primary);">
+      <div class="aud-signal-tag" style="color:var(--blue-primary);background:rgba(0,63,199,.07);">🔥 Highest engagement</div>
+      <div class="aud-signal-title">The honest tradeoff</div>
+      <div class="aud-signal-body">Content that names a real tension — without pretending it's solved — consistently outperforms content that only shows the upside. "Speed Isn't a Strategy for AI Translation" was our best-performing newsletter. "AI Translation Is Everywhere. Now What?" our best body copy opener.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex">✓ Name the tradeoff in the headline</div>
+        <div class="aud-ex">✓ Acknowledge the problem before offering a path</div>
+        <div class="aud-ex aud-ex-no">✗ Lead with the solution before earning trust</div>
+      </div>
+    </div>
+
+    <div class="aud-signal-card" style="border-top:3px solid var(--teal);">
+      <div class="aud-signal-tag" style="color:#00966D;background:rgba(0,150,109,.07);">Strong engagement</div>
+      <div class="aud-signal-title">Specific compliance & regulatory risk</div>
+      <div class="aud-signal-body">High-stakes, specific, and hard to find good guidance on. The China website compliance series had our highest open rates — because nobody else was covering it clearly. Regulatory + technical complexity = content they can't get anywhere else.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex">✓ Name the specific regulation or market</div>
+        <div class="aud-ex">✓ Show the consequence of getting it wrong</div>
+        <div class="aud-ex aud-ex-no">✗ Generic "compliance considerations" framing</div>
+      </div>
+    </div>
+
+    <div class="aud-signal-card" style="border-top:3px solid var(--purple);">
+      <div class="aud-signal-tag" style="color:var(--purple);background:rgba(101,49,204,.07);">Strong engagement</div>
+      <div class="aud-signal-title">"How we actually do this" > best practices</div>
+      <div class="aud-signal-body">Operational reality consistently beats theory. "What we're seeing work in enterprise translation governance" outperforms "best practices for enterprise translation." They're practitioners. Write for people solving real problems, not people writing whitepapers.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex">✓ "What we're seeing across our clients right now"</div>
+        <div class="aud-ex">✓ Name the specific problem, tool, or workflow</div>
+        <div class="aud-ex aud-ex-no">✗ "Best practices for AI-powered localization"</div>
+      </div>
+    </div>
+
+    <div class="aud-signal-card" style="border-top:3px solid var(--orange);">
+      <div class="aud-signal-tag" style="color:var(--orange);background:rgba(250,100,25,.07);">Moderate engagement</div>
+      <div class="aud-signal-title">Stats work — when they're specific</div>
+      <div class="aud-signal-body">"74% Say AI Is a Priority. Here's What to Do With That" pulled strong opens. But the stat needs to connect to an action or implication. A number alone isn't enough — it's the "so what" that makes them click.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex">✓ Stat + implication: "74% say X. Here's what that means"</div>
+        <div class="aud-ex">✓ Specific number over vague majority: "74%" beats "most"</div>
+        <div class="aud-ex aud-ex-no">✗ Stat without a "so what" attached</div>
+      </div>
+    </div>
+
+    <div class="aud-signal-card" style="border-top:3px solid #a0b4c8;">
+      <div class="aud-signal-tag" style="color:#6b8cae;background:rgba(160,180,200,.1);">Lower engagement</div>
+      <div class="aud-signal-title">Product-first content</div>
+      <div class="aud-signal-body">When we lead with what the product does, engagement drops. This audience responds to the business problem, not the technology. Product belongs in the proof — not the headline. It's the answer to "how," not the hook.</div>
+      <div class="aud-signal-examples">
+        <div class="aud-ex aud-ex-no">✗ "GlobalLink TMS helps you manage localization at scale"</div>
+        <div class="aud-ex aud-ex-no">✗ "Introducing our new AI quality estimation feature"</div>
+        <div class="aud-ex">✓ Lead with the problem. Bring in product as evidence.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TONE & VOICE -->
+  <div class="aud-section-title">Tone & Voice</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+
+    <div class="aud-card">
+      <div class="aud-card-title">Write like a practitioner, not a vendor</div>
+      <div class="aud-card-body">The clearest signal in our data: first-person voice from a named expert drove our best-ever registration numbers. "Joe Campbell here. I run product for GlobalLink..." outperformed every corporate-voice email by a wide margin. Our audience is senior and skeptical. They respond to peers, not pitches.</div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-no">Vendor</span>
+          <span class="aud-voice-text">"GlobalLink delivers enterprise-grade AI translation solutions"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-yes">Peer</span>
+          <span class="aud-voice-text">"Over the past year, I've watched AI translation move into every platform where content gets created — and most teams aren't ready for it"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-no">Vendor</span>
+          <span class="aud-voice-text">"Join our experts to learn best practices for AI localization"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-yes">Peer</span>
+          <span class="aud-voice-text">"Got questions about AI in localization? Bring them here."</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <div class="aud-card-title">Be specific. Vague loses them instantly.</div>
+      <div class="aud-card-body">This audience reads fast and trusts specifics. A concrete detail signals that the content is worth reading — a vague claim signals it isn't. This applies to every channel: blog headlines, LinkedIn copy, event descriptions, ad creative.</div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-no">Vague</span>
+          <span class="aud-voice-text">"Improve your translation quality"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-yes">Specific</span>
+          <span class="aud-voice-text">"How to catch AI translation errors before they reach production"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-no">Vague</span>
+          <span class="aud-voice-text">"Scale your global content strategy"</span>
+        </div>
+        <div class="aud-voice-row">
+          <span class="aud-voice-label aud-v-yes">Specific</span>
+          <span class="aud-voice-text">"What breaks when you push AI translation past 10 languages"</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTAs -->
+  <div class="aud-section-title">CTAs That Convert</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px;">
+
+    <div class="aud-card">
+      <div class="aud-card-title">One ask, not several</div>
+      <div class="aud-card-body">Every time we put multiple CTAs in front of this audience, click intent drops. Pick the one action that matters most and make it the only option. Everything else is noise.</div>
+      <div class="aud-proof" style="margin-top:12px;">Multiple CTAs = lower CTOR across all campaign types in our data</div>
+    </div>
+
+    <div class="aud-card">
+      <div class="aud-card-title">Action-specific language</div>
+      <div class="aud-card-body">They skip "Learn More" and "Read Now." Specific action language that tells them exactly what they'll get performs significantly better. The more the CTA sounds like a deliverable, the better.</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;padding:5px 9px;background:rgba(250,100,25,.07);border-radius:6px;color:var(--orange);">✗ "Learn More"  ·  "Read Now"  ·  "Click Here"</div>
+        <div style="font-size:11px;padding:5px 9px;background:rgba(0,150,109,.07);border-radius:6px;color:#00966D;">✓ "Get the governance framework"  ·  "Watch the 18-min session"  ·  "Bring your questions"</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <div class="aud-card-title">Urgency needs a reason</div>
+      <div class="aud-card-body">Urgency with a specific anchor converts. Urgency without one feels like pressure. "Registration closes tonight at midnight" works. "Don't miss out" doesn't. A time, a date, a real closing window — that's what creates action.</div>
+      <div class="aud-proof" style="margin-top:12px;">"Tomorrow at 12 PM CT" emails: +7 point open rate lift vs. vague urgency</div>
+    </div>
+
+  </div>
+
+  <div class="footer" style="margin-top:28px;">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
+</section>
 
 <!-- ══════════════ TAB: COMPOSER ══════════════ -->
 <section class="section" id="sec-composer">
@@ -867,12 +1159,21 @@ function renderKPIs(){
   }).join("");
   var totalSent=allData.reduce(function(s,d){return s+d.sent;},0);
   var totalRegs=allData.reduce(function(s,d){return s+(d.regs||0);},0);
-  document.getElementById("header-sub").textContent="Jan – May 2026 · "+allData.length+" campaigns";
+  document.getElementById("header-sub").textContent="Jan – May 2026 · Full email program overview";
+
+  // Global nurture totals
+  var nurtureEnrolled = NURTURE.tofu.started + NURTURE.mofu.started + NURTURE.bofu.started;
+  var campNurtureEnrolled = CAMP_NURTURES.reduce(function(s,n){return s+n.started;},0);
+  var totalContacts = totalSent + nurtureEnrolled + campNurtureEnrolled;
+  var activeNurtures = CAMP_NURTURES.filter(function(n){return n.status==="active"||n.status==="early"||n.status==="watch";}).length;
+  var totalNurturePrograms = 3 + activeNurtures; // TOFU/MOFU/BOFU + campaign nurtures
+
   document.getElementById("header-stats").innerHTML=
-    '<div class="hstat"><div class="hstat-num">'+allData.length+'</div><div class="hstat-label">Campaigns</div></div>'+
-    '<div class="hstat"><div class="hstat-num">'+fmt(totalSent)+'</div><div class="hstat-label">Total Sends</div></div>'+
-    '<div class="hstat"><div class="hstat-num">'+totalRegs+'</div><div class="hstat-label">Registrations</div></div>'+
-    '<div class="hstat"><div class="hstat-num">'+avg(allData,"OR").toFixed(1)+"%"+'</div><div class="hstat-label">Avg Open Rate</div></div>';
+    '<div class="hstat"><div class="hstat-num">'+fmt(totalContacts)+'</div><div class="hstat-label">Total Contacts Touched</div></div>'+
+    '<div class="hstat"><div class="hstat-num">'+allData.length+'</div><div class="hstat-label">Blast Campaigns</div></div>'+
+    '<div class="hstat"><div class="hstat-num">'+avg(allData,"OR").toFixed(1)+"%"+'</div><div class="hstat-label">Avg Blast Open Rate</div></div>'+
+    '<div class="hstat"><div class="hstat-num">'+totalRegs+'</div><div class="hstat-label">Webinar Registrations</div></div>'+
+    '<div class="hstat"><div class="hstat-num">'+totalNurturePrograms+'</div><div class="hstat-label">Active Nurture Programs</div></div>';
 }
 
 // ─────────────────────── TABLE ───────────────────────
@@ -901,17 +1202,30 @@ function renderTable(){
 }
 
 // ─────────────────────── MONTH PILLS ───────────────────────
+function toggleMonthDropdown(){
+  document.getElementById("month-dropdown").classList.toggle("open");
+}
+document.addEventListener("click", function(e){
+  var dd = document.getElementById("month-dropdown");
+  if(dd && !dd.contains(e.target)) dd.classList.remove("open");
+});
+
 function renderMonthPills(){
   var seen={},months=[];
   allData.forEach(function(d){if(!seen[d.month]){seen[d.month]=true;months.push(d.month);}});
-  var el=document.getElementById("month-pills");el.innerHTML="";
+  var menu = document.getElementById("month-menu");
+  menu.innerHTML = "";
   ["All"].concat(months).forEach(function(m){
-    var b=document.createElement("button");
-    b.className="pill"+(activeMon===m?" pM":"");
-    b.textContent=m;
-    b.onclick=function(){setMon(m);};
-    el.appendChild(b);
+    var div = document.createElement("div");
+    div.className = "custom-select-option" + (m===activeMon?" selected":"");
+    div.textContent = m==="All"?"All Months":m;
+    div.onclick = function(){
+      setMon(m);
+      document.getElementById("month-dropdown").classList.remove("open");
+    };
+    menu.appendChild(div);
   });
+  document.getElementById("month-selected-label").textContent = activeMon==="All"?"All Months":activeMon;
   ["All","Webinar","Newsletter","Event"].forEach(function(t){
     var el=document.getElementById("pill-"+t);if(!el)return;
     var cls={All:"pA",Webinar:"pW",Newsletter:"pN",Event:"pE"};
@@ -968,7 +1282,7 @@ function renderContent(){
     {tag:"'Live Webinar:' prefix",cls:"pt-orange",note:"3 of 4 examples scored 22–25% OR — limits open intent by telegraphing format"},
     {tag:"'Webinar:' prefix",cls:"pt-orange",note:"Your lowest-performing pattern — audiences recognize it as promotional, not useful"},
   ];
-  document.getElementById("formula-chart").innerHTML=formulas.map(function(f){
+  var _fc=document.getElementById("formula-chart"); if(_fc)_fc.innerHTML=formulas.map(function(f){
     return '<div style="margin-bottom:13px;"><span class="ptag '+f.cls+'">'+f.tag+'</span>'+
       '<div style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px;">'+f.note+'</div></div>';
   }).join("");
@@ -977,7 +1291,7 @@ function renderContent(){
   var top6=[...bl].sort(function(a,b){
     return ((b.regs||0)*2 + b.CTOR/10 + b.OR/2) - ((a.regs||0)*2 + a.CTOR/10 + a.OR/2);
   }).slice(0,6);
-  document.getElementById("best-emails").innerHTML=top6.map(function(d){
+  var _be=document.getElementById("best-emails"); if(_be)_be.innerHTML=top6.map(function(d){
     var tc=TYPE_C[d.type]||"#6b8cae";
     var oc=d.OR>=30?CI.G:d.OR>=25?CI.B:CI.O;
     return '<div class="ep">'+
@@ -1016,27 +1330,165 @@ function renderContent(){
         '</div>'+
       '</div></div>';
   }).join("");
+
+  // ── BODY COPY ANALYSIS ──────────────────────────────────
+
+  // 1. Word count vs performance
+  var bodyLengthData = [
+    {label:"Short",  desc:"Under 150 words", n:7,  OR:26.7, CTR:7.7,  CTOR:28.7, c:CI.T},
+    {label:"Medium", desc:"150–250 words",   n:7,  OR:28.5, CTR:9.2,  CTOR:32.0, c:CI.B},
+    {label:"Long",   desc:"Over 250 words",  n:10, OR:25.1, CTR:8.2,  CTOR:31.8, c:CI.BD}
+  ];
+  var maxBodyOR = Math.max.apply(null, bodyLengthData.map(function(d){return d.OR;}));
+  document.getElementById("body-length").innerHTML =
+    '<div style="margin-bottom:16px;background:'+rgba(CI.B,.06)+';border-radius:8px;padding:12px 14px;font-size:12px;color:var(--blue-dark);line-height:1.6;">'+
+      '<strong style="color:'+CI.B+';">Sweet spot: 150–250 words.</strong> Medium-length emails lead on CTR (9.2%) and CTOR (32%). Short emails open slightly worse; long emails drag CTR down despite similar CTOR.' +
+    '</div>' +
+    bodyLengthData.map(function(d){
+      return '<div style="margin-bottom:16px;">'+
+        '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">'+
+          '<div><span style="font-size:12px;font-weight:700;color:var(--blue-dark);">'+d.label+'</span> <span style="font-size:10px;color:var(--muted);">'+d.desc+' · '+d.n+' emails</span></div>'+
+          '<div style="display:flex;gap:14px;">'+
+            '<span style="font-size:11px;font-weight:700;color:'+d.c+';">'+d.OR.toFixed(1)+'% OR</span>'+
+            '<span style="font-size:11px;color:var(--muted);">'+d.CTR.toFixed(1)+'% CTR</span>'+
+            '<span style="font-size:11px;color:var(--muted);">'+d.CTOR.toFixed(1)+'% CTOR</span>'+
+          '</div>'+
+        '</div>'+
+        '<div style="height:7px;background:var(--blue-wash);border-radius:4px;overflow:hidden;">'+
+          '<div style="width:'+(d.OR/maxBodyOR*100).toFixed(0)+'%;height:100%;background:'+d.c+';border-radius:4px;"></div>'+
+        '</div>'+
+      '</div>';
+    }).join("");
+
+  // 2. Opening line patterns
+  var openers = [
+    {label:"Question (body header)", OR:29.9, CTR:19.2, CTOR:64.3, n:1, note:"'AI Translation Is Everywhere. Now What?' — your all-time best CTOR", c:CI.BD},
+    {label:"Scene-setting observation", OR:28.4, CTR:9.8, CTOR:33.5, n:4, note:"'Over the past year, I've watched AI…' — strong authority signal", c:CI.B},
+    {label:"Direct address / urgency", OR:27.9, CTR:8.7, CTOR:30.7, n:2, note:"'This is it. Our last office hours is tomorrow…'", c:CI.T},
+    {label:"First-person expert voice", OR:31.4, CTR:5.9, CTOR:18.8, n:2, note:"Opens well but CTOR is lower — body doesn't always deliver on the opener", c:CI.O},
+    {label:"Generic benefit statement", OR:24.8, CTR:7.5, CTOR:29.9, n:13, note:"The most common pattern — and the lowest open rate", c:"#a0b4c8"}
+  ];
+  var maxOpenerOR = Math.max.apply(null, openers.map(function(d){return d.OR;}));
+  var _bo=document.getElementById("body-opener"); if(_bo)_bo.innerHTML =
+    '<div style="margin-bottom:16px;background:'+rgba(CI.BD,.06)+';border-radius:8px;padding:12px 14px;font-size:12px;color:var(--blue-dark);line-height:1.6;">'+
+      '<strong style="color:'+CI.BD+';">Key finding:</strong> First-person voice gets opens but doesn\'t always convert. A bold question or scene-setting observation in the opening line drives both opens and clicks.' +
+    '</div>' +
+    openers.map(function(d){
+      return '<div style="margin-bottom:14px;">'+
+        '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">'+
+          '<span style="font-size:11px;font-weight:700;color:var(--blue-dark);">'+d.label+'</span>'+
+          '<div style="display:flex;gap:10px;">'+
+            '<span style="font-size:11px;font-weight:700;color:'+d.c+';">'+d.OR.toFixed(1)+'% OR</span>'+
+            '<span style="font-size:10px;color:var(--muted);">'+d.CTOR.toFixed(1)+'% CTOR</span>'+
+          '</div>'+
+        '</div>'+
+        '<div style="height:6px;background:var(--blue-wash);border-radius:3px;overflow:hidden;margin-bottom:4px;">'+
+          '<div style="width:'+(d.OR/maxOpenerOR*100).toFixed(0)+'%;height:100%;background:'+d.c+';border-radius:3px;"></div>'+
+        '</div>'+
+        '<div style="font-size:10px;color:var(--muted);font-style:italic;">'+d.note+'</div>'+
+      '</div>';
+    }).join("");
+
+  // 3. Urgency language
+  var _bu=document.getElementById("body-urgency"); if(_bu)_bu.innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">'+
+      '<div style="background:'+rgba(CI.G,.08)+';border:1.5px solid '+rgba(CI.G,.2)+';border-radius:10px;padding:16px;">'+
+        '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#00966D;margin-bottom:8px;">With Urgency Language</div>'+
+        '<div style="font-size:24px;font-weight:800;color:var(--blue-dark);">32.5%</div><div style="font-size:10px;color:var(--muted);">Avg Open Rate</div>'+
+        '<div style="font-size:20px;font-weight:800;color:#00966D;margin-top:10px;">34.8%</div><div style="font-size:10px;color:var(--muted);">Avg CTOR · 4 emails</div>'+
+      '</div>'+
+      '<div style="background:var(--blue-wash);border:1.5px solid var(--border);border-radius:10px;padding:16px;">'+
+        '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Without Urgency Language</div>'+
+        '<div style="font-size:24px;font-weight:800;color:var(--blue-dark);">25.4%</div><div style="font-size:10px;color:var(--muted);">Avg Open Rate</div>'+
+        '<div style="font-size:20px;font-weight:800;color:var(--muted);margin-top:10px;">30.2%</div><div style="font-size:10px;color:var(--muted);">Avg CTOR · 20 emails</div>'+
+      '</div>'+
+    '</div>'+
+    '<div style="font-size:11px;color:var(--blue-dark);line-height:1.7;padding:10px 12px;background:'+rgba(CI.B,.05)+';border-radius:8px;">'+
+      '<strong style="color:'+CI.B+';">+7.1pp open rate lift</strong> from urgency cues in the body. "Tomorrow at 12 PM CT", "seats are filling", and "registration closes tonight" are your most effective phrases. <strong>Urgency works best when it\'s specific</strong> — a time, not just a feeling.' +
+    '</div>';
+
+  // 4. Top openers by CTOR
+  var topOpeners = [
+    {date:"Feb 19", CTOR:64.3, OR:29.9, opener:"AI Translation Is Everywhere. Now What?", note:"Bold POV section header — not a greeting"},
+    {date:"Feb 5",  CTOR:53.0, OR:28.1, opener:"Speed, simplicity, and control", note:"Three-word power trio as the first content line"},
+    {date:"Mar 10", CTOR:48.5, OR:25.7, opener:"AI Translation Is Everywhere", note:"Declarative statement — confident, no hedge"},
+    {date:"Jan 15", CTOR:47.4, OR:38.8, opener:"Over the last two webinars… we covered the two areas that typically create the most risk (and rework)", note:"Recap + stakes — reminds the reader why they care"},
+    {date:"Feb 24", CTOR:46.2, OR:22.4, opener:"Over the past year, I've watched AI-powered translation move from centralized workflows into the platforms where content is created.", note:"First-person industry observation — instant credibility"}
+  ];
+  document.getElementById("body-top-openers").innerHTML = topOpeners.map(function(d,i){
+    var colors=[CI.BD,CI.B,CI.T,CI.O,CI.P];
+    return '<div style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--blue-wash);">'+
+      '<div style="flex-shrink:0;width:28px;height:28px;border-radius:8px;background:'+rgba(colors[i],.1)+';color:'+colors[i]+';font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;">'+(i+1)+'</div>'+
+      '<div>'+
+        '<div style="font-size:12px;font-weight:600;color:var(--blue-dark);margin-bottom:3px;line-height:1.4;">"'+d.opener+'"</div>'+
+        '<div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-style:italic;">'+d.note+'</div>'+
+        '<div style="display:flex;gap:10px;">'+
+          '<span style="font-size:10px;font-weight:700;color:'+colors[i]+';">'+d.CTOR.toFixed(1)+'% CTOR</span>'+
+          '<span style="font-size:10px;color:var(--muted);">'+d.OR.toFixed(1)+'% OR · '+d.date+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
 }
 
 // ─────────────────────── BENCHMARKS ───────────────────────
-function renderBenchmarks(){
+// ─────────────────────── RENDER ───────────────────────
+function toggleDeepDive(){
+  var el=document.getElementById("deep-dive");
+  var chev=document.getElementById("deep-chevron");
+  var txt=document.getElementById("deep-toggle-text");
+  var open=el.style.display!=="none";
+  el.style.display=open?"none":"block";
+  chev.style.transform=open?"rotate(0deg)":"rotate(180deg)";
+  txt.textContent=open?"↓ See full analysis — subject lines, body copy patterns, series performance":"↑ Hide full analysis";
+  if(!open) setTimeout(function(){buildCharts();},80);
+}
+
+function renderInsights(){
+  // Working items
+  document.getElementById("ins-working").innerHTML=[
+    {num:"1", text:"Question & challenge subject lines", stat:"+15pp open rate vs. descriptive subjects · 3 of your top 5 openers use this"},
+    {num:"2", text:"Urgency language in the body copy", stat:"+7.1pp open rate when body includes 'tomorrow', 'last call', or a specific time"},
+    {num:"3", text:"Medium-length emails (150–250 words)", stat:"Highest CTR (9.2%) and CTOR (32%) vs. short or long formats"}
+  ].map(function(i){
+    return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
+  }).join("");
+
+  // Fixing items
+  document.getElementById("ins-fixing").innerHTML=[
+    {num:"1", text:"Newsletter CTOR is stuck at 22% average", stat:"Feb 19 proved 64.3% is possible — but it's the only one structured that way"},
+    {num:"2", text:"TOFU Email 2 has 0% CTR", stat:"Opens fine (23.7%) but nobody clicks — body or CTA needs a full rewrite"},
+    {num:"3", text:"'Webinar:' prefix subjects underperform every time", stat:"Still appearing in campaigns despite being your lowest open rate pattern"}
+  ].map(function(i){
+    return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
+  }).join("");
+
+  // Next actions
+  document.getElementById("ins-next").innerHTML=[
+    {num:"1", text:"Rewrite TOFU Email 2 with a new angle and a clear CTA", stat:"Quick win — fix the 0% CTR problem in your always-on program"},
+    {num:"2", text:"Model next newsletter after Feb 19: POV headline + dated CTAs", stat:"Proven format — 3x the average CTOR when structured this way"},
+    {num:"3", text:"Use first-person expert voice for the next webinar series Email 1", stat:"Apr 28 pattern: named expert + personal observation = 34 registrations"}
+  ].map(function(i){
+    return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
+  }).join("");
+
+  // Benchmarks
   var bl=allData.filter(function(d){return d.sent>500;});
   var myOR=avg(bl,"OR"),myCTR=avg(bl,"CTR"),myCTOR=avg(bl,"CTOR");
   var totalOO=bl.reduce(function(s,d){return s+d.optOuts;},0);
   var totalS=bl.reduce(function(s,d){return s+d.sent;},0);
   var myOOR=(totalOO/totalS)*100;
   var bms=[
-    {l:"Open Rate",         y:myOR,  ind:21.5,good:true, c:CI.BD},
-    {l:"Unique CTR",        y:myCTR, ind:2.9, good:true, c:CI.B},
-    {l:"Unique CTOR",       y:myCTOR,ind:10.5,good:true, c:CI.T},
-    {l:"Opt-Out Rate",      y:myOOR, ind:0.2, good:false,c:CI.O}
+    {l:"Open Rate",    y:myOR,  ind:21.5,good:true, c:CI.BD},
+    {l:"Unique CTR",   y:myCTR, ind:2.9, good:true, c:CI.B},
+    {l:"Unique CTOR",  y:myCTOR,ind:10.5,good:true, c:CI.T},
+    {l:"Opt-Out Rate", y:myOOR, ind:0.2, good:false,c:CI.O}
   ];
   document.getElementById("benchmarks").innerHTML=bms.map(function(b){
     var isGood=b.good?(b.y>=b.ind):(b.y<=b.ind);
     var maxV=Math.max(b.y,b.ind)*1.25;
     var yPct=(b.y/maxV*100).toFixed(1);
     var iPct=(b.ind/maxV*100).toFixed(1);
-    var statusTxt=isGood?'▲ Above benchmark':'▼ Below benchmark';
     var statusC=isGood?CI.G:CI.O;
     return '<div class="bm-row">'+
       '<div class="bm-labels">'+
@@ -1044,7 +1496,7 @@ function renderBenchmarks(){
         '<div class="bm-vals">'+
           '<span class="bm-ind">Industry avg: <strong>'+b.ind.toFixed(1)+'%</strong></span>'+
           '<span class="bm-yours" style="color:'+b.c+';">Yours: '+b.y.toFixed(2)+'%</span>'+
-          '<span class="bm-status" style="color:'+statusC+';">'+statusTxt+'</span>'+
+          '<span class="bm-status" style="color:'+statusC+';">'+(isGood?'▲ Above':'▼ Below')+'</span>'+
         '</div>'+
       '</div>'+
       '<div class="bm-track">'+
@@ -1052,18 +1504,28 @@ function renderBenchmarks(){
         '<div class="bm-marker" style="left:'+iPct+'%;"></div>'+
       '</div></div>';
   }).join("")+
-  '<p style="font-size:10px;color:var(--muted);margin-top:12px;font-style:italic;">B2B Technology benchmarks: Mailchimp / HubSpot / Campaign Monitor averages 2025–2026. Orange line = industry average.</p>';
+  '<p style="font-size:10px;color:var(--muted);margin-top:12px;font-style:italic;">B2B Technology benchmarks: Mailchimp / HubSpot / Campaign Monitor averages 2025–2026.</p>';
+
+  // Deep dive sections (subject lines, body, theme, series — populated when expanded)
+  renderContent();
 }
 
-// ─────────────────────── RENDER ───────────────────────
 function render(){
   renderMonthPills();
   renderKPIs();
   var bl=bigList();
   if(bl.length) buildCharts(); else killCharts();
   renderTable();
-  renderContent();
-  renderBenchmarks();
+  renderInsights();
+}
+
+function setSubTab(id, btn){
+  document.getElementById("subview-campaigns").style.display    = id==="campaigns"    ? "" : "none";
+  document.getElementById("subview-nurture").style.display      = id==="nurture"      ? "" : "none";
+  document.getElementById("subview-campnurture").style.display  = id==="campnurture"  ? "" : "none";
+  document.querySelectorAll(".sub-tab").forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+  if(id==="campnurture") renderCampNurture();
 }
 
 function setType(t){activeType=t;render();}
@@ -1075,7 +1537,6 @@ function showTab(id,btn){
   document.getElementById("sec-"+id).classList.add("active");
   btn.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
-  // Rebuild charts after tab becomes visible so canvas has correct dimensions
   setTimeout(function(){
     var bl=bigList();
     if(bl.length) buildCharts();
@@ -1127,9 +1588,344 @@ function resetAll(){
   activeType="All";activeMon="All";render();
 }
 
-render();
+// ── NURTURE DATA ──────────────────────────────────────────
+var NURTURE = {
+  tofu: {
+    label:"TOFU", fullLabel:"Top of Funnel",
+    score:"Score < 50",
+    color:"#6531CC", bg:"#EBE0FF",
+    started:163, completed:61, completedPct:37.42,
+    steps:[
+      {name:"Email 1",sent:126,delivered:113,opens:24,OR:21.24,clicks:5,CTR:4.42,CTOR:20.83,optOuts:1,bounces:13},
+      {name:"Email 2",sent:108,delivered:97, opens:23,OR:23.71,clicks:0,CTR:0.00,CTOR:0.00, optOuts:1,bounces:11},
+      {name:"Email 3",sent:95, delivered:91, opens:20,OR:21.98,clicks:5,CTR:5.49,CTOR:25.00,optOuts:0,bounces:4},
+      {name:"Email 4",sent:75, delivered:71, opens:10,OR:14.08,clicks:1,CTR:1.41,CTOR:10.00,optOuts:0,bounces:4},
+      {name:"Email 5",sent:66, delivered:64, opens:9, OR:14.06,clicks:1,CTR:1.56,CTOR:11.11,optOuts:0,bounces:2},
+      {name:"Email 6",sent:60, delivered:58, opens:13,OR:22.41,clicks:4,CTR:6.90,CTOR:30.77,optOuts:0,bounces:2}
+    ]
+  },
+  mofu: {
+    label:"MOFU", fullLabel:"Middle of Funnel",
+    score:"Score 50–75",
+    color:"#003FC7", bg:"#D2E6FA",
+    started:47, completed:13, completedPct:27.66,
+    steps:[
+      {name:"Email 1",sent:39,delivered:37,opens:13,OR:35.14,clicks:5,CTR:13.51,CTOR:38.46,optOuts:0,bounces:2},
+      {name:"Email 2",sent:30,delivered:29,opens:8, OR:27.59,clicks:4,CTR:13.79,CTOR:50.00,optOuts:0,bounces:1},
+      {name:"Email 3",sent:24,delivered:24,opens:7, OR:29.17,clicks:1,CTR:4.17, CTOR:14.29,optOuts:0,bounces:0},
+      {name:"Email 4",sent:21,delivered:21,opens:4, OR:19.05,clicks:2,CTR:9.52, CTOR:50.00,optOuts:0,bounces:0},
+      {name:"Email 5",sent:20,delivered:16,opens:5, OR:31.25,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
+      {name:"Email 6",sent:14,delivered:14,opens:8, OR:57.14,clicks:4,CTR:28.57,CTOR:50.00,optOuts:0,bounces:0}
+    ]
+  },
+  bofu: {
+    label:"BOFU", fullLabel:"Bottom of Funnel",
+    score:"Score > 75",
+    color:"#00966D", bg:"#D0F5EE",
+    started:30, completed:2, completedPct:6.67,
+    steps:[
+      {name:"Email 1",sent:25,delivered:25,opens:9,OR:36.00,clicks:8,CTR:32.00,CTOR:88.89,optOuts:0,bounces:0},
+      {name:"Email 2",sent:14,delivered:14,opens:4,OR:28.57,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 3",sent:9, delivered:9, opens:2,OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 4",sent:3, delivered:2, opens:1,OR:50.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 5",sent:2, delivered:2, opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+    ]
+  }
+};
 
-// ── COMPOSER ──────────────────────────────────────────
+function renderNurture(){
+  var stages=[NURTURE.tofu,NURTURE.mofu,NURTURE.bofu];
+
+  // Funnel cards
+  document.getElementById("nurture-funnel").innerHTML=stages.map(function(s){
+    var avgOR=(s.steps.reduce(function(a,b){return a+b.OR;},0)/s.steps.length).toFixed(1);
+    var avgCTR=(s.steps.reduce(function(a,b){return a+b.CTR;},0)/s.steps.length).toFixed(1);
+    return '<div class="nf-card nf-'+s.label.toLowerCase()+'">' +
+      '<div class="nf-stage-label">'+s.label+' · '+s.fullLabel+'</div>' +
+      '<div class="nf-score">'+s.score+'</div>' +
+      '<div class="nf-stat-row">' +
+        '<div class="nf-stat"><div class="nf-stat-val">'+s.started+'</div><div class="nf-stat-label">Leads enrolled</div></div>' +
+        '<div class="nf-stat"><div class="nf-stat-val">'+s.completed+'</div><div class="nf-stat-label">Completed</div></div>' +
+        '<div class="nf-stat"><div class="nf-stat-val">'+avgOR+'%</div><div class="nf-stat-label">Avg open rate</div></div>' +
+        '<div class="nf-stat"><div class="nf-stat-val">'+avgCTR+'%</div><div class="nf-stat-label">Avg CTR</div></div>' +
+      '</div>' +
+      '<div class="nf-completion-track"><div class="nf-completion-fill" style="width:'+s.completedPct+'%"></div></div>' +
+      '<div class="nf-completion-label">'+s.completedPct+'% completion · '+s.steps.length+' emails</div>' +
+    '</div>';
+  }).join("");
+
+  // Flow
+  document.getElementById("nurture-flow").innerHTML=
+    '<div class="nflow-stage"><div class="nflow-num" style="color:'+NURTURE.tofu.color+'">'+NURTURE.tofu.started+'</div><div class="nflow-label" style="color:'+NURTURE.tofu.color+'">TOFU</div><div class="nflow-sub">Score &lt; 50</div></div>'+
+    '<div class="nflow-arrow"><svg width="28" height="14" viewBox="0 0 28 14" fill="none"><path d="M0 7h24M18 1l6 6-6 6" stroke="#D0E8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="nflow-pct" style="color:'+NURTURE.mofu.color+'">Score 50+</div></div>'+
+    '<div class="nflow-stage"><div class="nflow-num" style="color:'+NURTURE.mofu.color+'">'+NURTURE.mofu.started+'</div><div class="nflow-label" style="color:'+NURTURE.mofu.color+'">MOFU</div><div class="nflow-sub">Score 50–75</div></div>'+
+    '<div class="nflow-arrow"><svg width="28" height="14" viewBox="0 0 28 14" fill="none"><path d="M0 7h24M18 1l6 6-6 6" stroke="#D0E8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="nflow-pct" style="color:'+NURTURE.bofu.color+'">Score 75+</div></div>'+
+    '<div class="nflow-stage"><div class="nflow-num" style="color:'+NURTURE.bofu.color+'">'+NURTURE.bofu.started+'</div><div class="nflow-label" style="color:'+NURTURE.bofu.color+'">BOFU</div><div class="nflow-sub">Score &gt; 75</div></div>';
+
+  // Insights
+  document.getElementById("nurture-insights").innerHTML=
+    '<div class="ni-card"><div class="ni-label">🔍 TOFU Drop-off</div>'+
+    '<div class="ni-finding">Open rate drops from <strong>23.7%</strong> at Email 2 to <strong>14%</strong> at Emails 4–5 before recovering at Email 6. Classic mid-sequence fatigue.</div>'+
+    '<div class="ni-alert">Email 2 has 0% CTR — opened but nobody clicks. Review the CTA and body copy urgently.</div></div>'+
+    '<div class="ni-card"><div class="ni-label">⭐ MOFU Standout</div>'+
+    '<div class="ni-finding">MOFU Email 6 hits a <strong>57% open rate</strong> and <strong>50% CTOR</strong> — best nurture email across all stages. Dig into what makes it different and replicate the pattern earlier in the sequence.</div>'+
+    '<div class="ni-good">MOFU has the highest avg open rate (31.9%) and CTR (11.4%) — these leads are highly engaged and responding well.</div></div>'+
+    '<div class="ni-card"><div class="ni-label">🎯 BOFU Signal</div>'+
+    '<div class="ni-finding">BOFU Email 1 has an <strong>88.9% CTOR</strong> — the highest of any email across the entire program. Only 2 of 30 complete the full sequence.</div>'+
+    '<div class="ni-good">Low BOFU completion is a positive sign — most leads are likely converting to MQL/sales before they finish, which is exactly what you want.</div></div>';
+
+  // Stage tables
+  document.getElementById("nurture-stages").innerHTML=stages.map(function(s){
+    var maxOR=Math.max.apply(null,s.steps.map(function(e){return e.OR;}));
+    var maxCTR=Math.max.apply(null,s.steps.map(function(e){return e.CTR;}));
+    var firstSent=s.steps[0].sent;
+    var rows=s.steps.map(function(step,i){
+      var dropoff=i===0?null:(((s.steps[i-1].sent-step.sent)/s.steps[i-1].sent)*100).toFixed(0);
+      var orColor=step.OR>=maxOR*.8?s.color:step.OR<=maxOR*.5?CI.O:CI.B;
+      var ctrColor=step.CTR>=maxCTR*.8?s.color:step.CTR===0?CI.O:CI.B;
+      var dropColor=dropoff&&dropoff>20?CI.O:dropoff&&dropoff>10?"#a0b4c8":"#00966D";
+      return '<div class="ns-row">'+
+        '<div><div class="ns-step-name">'+step.name+'</div><div class="ns-step-sub">'+step.sent+' sent</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+step.delivered+'</div><div class="ns-metric-label">Delivered</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(step.delivered/firstSent*100).toFixed(0)+'%;background:'+s.color+';opacity:.3;"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:'+orColor+';">'+step.OR.toFixed(1)+'%</div><div class="ns-metric-label">Open Rate</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(step.OR/maxOR*100).toFixed(0)+'%;background:'+orColor+';"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:'+ctrColor+';">'+step.CTR.toFixed(1)+'%</div><div class="ns-metric-label">CTR</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(maxCTR>0?(step.CTR/maxCTR*100).toFixed(0):0)+'%;background:'+ctrColor+';"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+(step.CTOR!==null?step.CTOR.toFixed(1)+'%':'—')+'</div><div class="ns-metric-label">CTOR</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+step.optOuts+'</div><div class="ns-metric-label">Opt-outs</div></div>'+
+        '<div class="ns-dropoff">'+(dropoff?'<div class="ns-dropoff-val" style="color:'+dropColor+';">-'+dropoff+'%</div><div class="ns-dropoff-label">drop-off</div>':'<div class="ns-dropoff-val" style="color:#a0b4c8;">—</div><div class="ns-dropoff-label">entry</div>')+'</div>'+
+      '</div>';
+    }).join("");
+    return '<div class="nurture-stage-section">'+
+      '<div class="nurture-stage-header">'+
+        '<div class="nsh-dot" style="background:'+s.color+';"></div>'+
+        '<div class="nsh-title">'+s.label+' — '+s.fullLabel+'</div>'+
+        '<div class="nsh-desc">'+s.steps.length+' emails · '+s.started+' enrolled · '+s.completedPct+'% completion</div>'+
+      '</div>'+
+      '<div class="nurture-steps-grid">'+
+        '<div class="ns-row ns-row-header">'+
+          '<div style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Step</div>'+
+          '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Delivered</div>'+
+          '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Open Rate</div>'+
+          '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">CTR</div>'+
+          '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">CTOR</div>'+
+          '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Opt-outs</div>'+
+          '<div class="ns-dropoff" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Drop-off</div>'+
+        '</div>'+rows+
+      '</div></div>';
+  }).join("");
+}
+
+// ── CAMPAIGN NURTURES DATA ──────────────────────────────
+var CAMP_NURTURES = [
+  {
+    id:"bor", label:"2026 Business Outlook Report",
+    desc:"Content download nurture — leads who downloaded the 2026 Business Outlook Report.",
+    type:"Content Download", source:"Organic / LinkedIn",
+    color:"#003FC7", started:63, completed:6, completedPct:9.52,
+    status:"active", // active | early | new | watch
+    flags:[],
+    steps:[
+      {name:"Email 1",sent:56, delivered:54, opens:11,OR:20.37,clicks:3,  CTR:5.56, CTOR:27.27,optOuts:0,bounces:2},
+      {name:"Email 2",sent:47, delivered:47, opens:8, OR:17.02,clicks:1,  CTR:2.13, CTOR:12.50,optOuts:0,bounces:0},
+      {name:"Email 3",sent:9,  delivered:9,  opens:3, OR:33.33,clicks:0,  CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 4",sent:9,  delivered:7,  opens:2, OR:28.57,clicks:0,  CTR:0.00, CTOR:0.00, optOuts:0,bounces:2}
+    ]
+  },
+  {
+    id:"bor-unengaged", label:"2026 Business Outlook Report — Re-engagement",
+    desc:"Cold re-engagement program — unengaged contacts from the Business Outlook Report database.",
+    type:"Re-engagement", source:"Database",
+    color:"#FA6419", started:71064, completed:57878, completedPct:81.44,
+    status:"active",
+    flags:["Cold list benchmark: 8–12% open rate is healthy here — do not compare to warm nurtures."],
+    steps:[
+      {name:"Email 1",sent:70945,delivered:62448,opens:6321,OR:10.12,clicks:2026,CTR:3.24,CTOR:32.05,optOuts:78, bounces:8497},
+      {name:"Email 2",sent:63362,delivered:62149,opens:3694,OR:5.94, clicks:1451,CTR:2.33,CTOR:39.28,optOuts:35, bounces:1213},
+      {name:"Email 3",sent:62993,delivered:61372,opens:4965,OR:8.09, clicks:1737,CTR:2.83,CTOR:34.98,optOuts:37, bounces:1621},
+      {name:"Email 4",sent:62120,delivered:60663,opens:6545,OR:10.79,clicks:1296,CTR:2.14,CTOR:19.80,optOuts:35, bounces:1457},
+      {name:"Email 5",sent:59394,delivered:58372,opens:4720,OR:8.09, clicks:1257,CTR:2.15,CTOR:26.63,optOuts:36, bounces:1022}
+    ]
+  },
+  {
+    id:"japan", label:"Website Localization Playbook for Marketers — Japan",
+    desc:"Cold list + LinkedIn Ads. Anyone who downloads the Japan localization guide enrolls automatically.",
+    type:"LinkedIn Campaign", source:"LinkedIn Ads + Cold List",
+    color:"#00966D", started:777, completed:0, completedPct:0,
+    status:"watch",
+    flags:["21.9% bounce rate on Email 1 — review list quality and Japan deliverability settings.","Emails 3–4 have 0 sends — sequence still in early stages."],
+    steps:[
+      {name:"Email 1",sent:773,delivered:604,opens:138,OR:22.85,clicks:10,CTR:1.66,CTOR:7.25,optOuts:6,bounces:169},
+      {name:"Email 2",sent:8,  delivered:7,  opens:2,  OR:28.57,clicks:0, CTR:0.00,CTOR:0.00,optOuts:0,bounces:1},
+      {name:"Email 3",sent:0,  delivered:0,  opens:0,  OR:0,    clicks:0, CTR:0,   CTOR:null, optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,  delivered:0,  opens:0,  OR:0,    clicks:0, CTR:0,   CTOR:null, optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"ecommerce", label:"Website Localization for Ecommerce",
+    desc:"LinkedIn Ads campaign nurture for ecommerce localization leads. Just launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Ads",
+    color:"#6531CC", started:1, completed:0, completedPct:0,
+    status:"new",
+    flags:["Only 1 lead enrolled — campaign is still ramping. Check back as more leads come in."],
+    steps:[
+      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"taaf", label:"Translation as a Feature (TaaF)",
+    desc:"LinkedIn Ads campaign nurture for TAAF leads. Campaign did not scale.",
+    type:"LinkedIn Campaign", source:"LinkedIn Ads",
+    color:"#a0b4c8", started:1, completed:1, completedPct:100,
+    status:"new",
+    flags:["Only 1 lead enrolled — LinkedIn campaign did not generate meaningful volume. Consider pausing or relaunching."],
+    steps:[
+      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  }
+];
+
+var STATUS_CONFIG = {
+  active: {label:"Active",       dot:"#00966D", bg:"rgba(0,150,109,.1)",  text:"#00966D"},
+  early:  {label:"Early Stage",  dot:"#003FC7", bg:"rgba(0,63,199,.1)",   text:"#003FC7"},
+  watch:  {label:"Needs Review", dot:"#FA6419", bg:"rgba(250,100,25,.1)", text:"#FA6419"},
+  new:    {label:"Just Launched",dot:"#a0b4c8", bg:"rgba(160,180,200,.1)","text":"#6b8cae"}
+};
+
+var expandedCard = null;
+
+function toggleCard(id){
+  var el = document.getElementById("cn-detail-"+id);
+  var chevron = document.getElementById("cn-chevron-"+id);
+  if(expandedCard && expandedCard !== id){
+    var prev = document.getElementById("cn-detail-"+expandedCard);
+    var prevChev = document.getElementById("cn-chevron-"+expandedCard);
+    if(prev) prev.style.display="none";
+    if(prevChev) prevChev.style.transform="rotate(0deg)";
+  }
+  var isOpen = el.style.display !== "none";
+  el.style.display = isOpen ? "none" : "block";
+  chevron.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+  expandedCard = isOpen ? null : id;
+}
+
+function sparkBars(steps, color){
+  var activeSteps = steps.filter(function(s){return s.sent>0;});
+  if(!activeSteps.length) return '<span style="font-size:10px;color:#a0b4c8;">No data yet</span>';
+  var maxOR = Math.max.apply(null, activeSteps.map(function(s){return s.OR;})) || 1;
+  return activeSteps.map(function(s,i){
+    var h = Math.max(4, Math.round((s.OR/maxOR)*28));
+    var c = s.OR >= maxOR*.8 ? color : s.OR <= maxOR*.4 ? CI.O : rgba(color,.5);
+    return '<div title="'+s.name+': '+s.OR.toFixed(1)+'% OR" style="width:10px;height:'+h+'px;background:'+c+';border-radius:2px;align-self:flex-end;"></div>';
+  }).join("");
+}
+
+function renderCampNurture(){
+  var html = CAMP_NURTURES.map(function(n){
+    var sc = STATUS_CONFIG[n.status];
+    var activeSteps = n.steps.filter(function(s){return s.sent>0;});
+    var hasData = n.started >= 10 && activeSteps.length > 0;
+    var avgOR = hasData ? (activeSteps.reduce(function(a,b){return a+b.OR;},0)/activeSteps.length).toFixed(1) : null;
+    var totalClicks = n.steps.reduce(function(a,b){return a+b.clicks;},0);
+    var typeColors = {"Content Download":CI.B,"Re-engagement":CI.O,"LinkedIn Campaign":CI.P};
+    var typeColor = typeColors[n.type] || CI.B;
+
+    // Step detail table
+    var maxOR2  = Math.max.apply(null, n.steps.map(function(e){return e.OR;})) || 1;
+    var maxCTR2 = Math.max.apply(null, n.steps.map(function(e){return e.CTR;})) || 1;
+    var firstSent2 = n.steps[0].sent || 1;
+    var detailRows = n.steps.map(function(step,i){
+      if(step.sent===0) return '<div class="ns-row" style="opacity:.35;">'+
+        '<div><div class="ns-step-name">'+step.name+'</div><div class="ns-step-sub">Not sent yet</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:#a0b4c8;">—</div><div class="ns-metric-label">Delivered</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:#a0b4c8;">—</div><div class="ns-metric-label">Open Rate</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:#a0b4c8;">—</div><div class="ns-metric-label">CTR</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:#a0b4c8;">—</div><div class="ns-metric-label">CTOR</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:#a0b4c8;">—</div><div class="ns-metric-label">Opt-outs</div></div>'+
+        '<div class="ns-dropoff"><div class="ns-dropoff-val" style="color:#a0b4c8;">—</div><div class="ns-dropoff-label">pending</div></div>'+
+      '</div>';
+      var dropoff = i===0?null:(n.steps[i-1].sent>0?(((n.steps[i-1].sent-step.sent)/n.steps[i-1].sent)*100).toFixed(0):null);
+      var orC  = step.OR>=maxOR2*.8?n.color:step.OR<=maxOR2*.4?CI.O:CI.B;
+      var ctrC = step.CTR>=maxCTR2*.8?n.color:step.CTR===0&&step.sent>0?CI.O:CI.B;
+      var dropC= dropoff&&dropoff>20?CI.O:dropoff&&dropoff>10?"#a0b4c8":"#00966D";
+      return '<div class="ns-row">'+
+        '<div><div class="ns-step-name">'+step.name+'</div><div class="ns-step-sub">'+fmt(step.sent)+' sent</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+fmt(step.delivered)+'</div><div class="ns-metric-label">Delivered</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(step.delivered/firstSent2*100).toFixed(0)+'%;background:'+n.color+';opacity:.3;"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:'+orC+';">'+step.OR.toFixed(1)+'%</div><div class="ns-metric-label">Open Rate</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(step.OR/maxOR2*100).toFixed(0)+'%;background:'+orC+';"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val" style="color:'+ctrC+';">'+step.CTR.toFixed(1)+'%</div><div class="ns-metric-label">CTR</div>'+
+          '<div class="ns-bar-wrap"><div class="ns-bar" style="width:'+(step.CTR/maxCTR2*100).toFixed(0)+'%;background:'+ctrC+';"></div></div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+(step.CTOR!==null?step.CTOR.toFixed(1)+'%':'—')+'</div><div class="ns-metric-label">CTOR</div></div>'+
+        '<div class="ns-metric"><div class="ns-metric-val">'+step.optOuts+'</div><div class="ns-metric-label">Opt-outs</div></div>'+
+        '<div class="ns-dropoff">'+(dropoff?'<div class="ns-dropoff-val" style="color:'+dropC+';">-'+dropoff+'%</div><div class="ns-dropoff-label">drop-off</div>':'<div class="ns-dropoff-val" style="color:#a0b4c8;">—</div><div class="ns-dropoff-label">entry</div>')+'</div>'+
+      '</div>';
+    }).join("");
+
+    return '<div class="cn-card" id="cn-card-'+n.id+'" style="border-left:3px solid '+n.color+';">'+
+      // Card header — always visible
+      '<div class="cn-card-top" onclick="toggleCard(\''+n.id+'\')">'+
+        '<div class="cn-card-left">'+
+          '<div class="cn-card-title">'+n.label+'</div>'+
+          '<div class="cn-card-meta">'+
+            '<span class="cn-badge" style="background:'+rgba(typeColor,.1)+';color:'+typeColor+';">'+n.type+'</span>'+
+            '<span class="cn-badge" style="background:'+sc.bg+';color:'+sc.text+';">'+
+              '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+sc.dot+';margin-right:4px;vertical-align:middle;"></span>'+
+              sc.label+'</span>'+
+            '<span style="font-size:10px;color:var(--muted);">'+n.source+'</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="cn-card-stats">'+
+          (hasData ?
+            '<div class="cn-stat"><div class="cn-stat-val">'+fmt(n.started)+'</div><div class="cn-stat-label">Enrolled</div></div>'+
+            '<div class="cn-stat"><div class="cn-stat-val" style="color:'+n.color+';">'+avgOR+'%</div><div class="cn-stat-label">Avg OR</div></div>'+
+            '<div class="cn-stat"><div class="cn-stat-val">'+fmt(totalClicks)+'</div><div class="cn-stat-label">Clicks</div></div>'+
+            '<div class="cn-stat cn-spark"><div style="display:flex;align-items:flex-end;gap:3px;height:28px;">'+sparkBars(n.steps,n.color)+'</div><div class="cn-stat-label">Open rate trend</div></div>'
+          :
+            '<div class="cn-stat"><div class="cn-stat-val" style="color:#a0b4c8;">'+fmt(n.started)+'</div><div class="cn-stat-label">Enrolled</div></div>'+
+            '<div style="font-size:11px;color:#a0b4c8;align-self:center;font-style:italic;">Insufficient data</div>'
+          )+
+          '<svg id="cn-chevron-'+n.id+'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a0b4c8" stroke-width="2" style="flex-shrink:0;transition:transform .2s;align-self:center;"><path d="M6 9l6 6 6-6"/></svg>'+
+        '</div>'+
+      '</div>'+
+      // Expandable detail (includes flags)
+      '<div id="cn-detail-'+n.id+'" style="display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">'+
+        (n.flags.length ? '<div class="cn-flags" style="margin-bottom:16px;">'+n.flags.map(function(f){
+          var cls = (f.startsWith('Cold')||f.startsWith('Only')||f.startsWith('Consider')||f.startsWith('ℹ')) ? 'cn-flag-info' : 'cn-flag-warn';
+          return '<div class="cn-flag '+cls+'">'+f+'</div>';
+        }).join("")+'</div>' : '')+
+        '<div class="nurture-steps-grid">'+
+          '<div class="ns-row ns-row-header">'+
+            '<div style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Step</div>'+
+            '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Delivered</div>'+
+            '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Open Rate</div>'+
+            '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">CTR</div>'+
+            '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">CTOR</div>'+
+            '<div class="ns-metric" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Opt-outs</div>'+
+            '<div class="ns-dropoff" style="font-size:9px;font-weight:700;color:#a0b4c8;letter-spacing:1px;text-transform:uppercase;">Drop-off</div>'+
+          '</div>'+detailRows+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+
+  document.getElementById("campnurture-cards").innerHTML = html;
+  document.getElementById("campnurture-stages").innerHTML = "";
+}
+
+// All data declared — safe to render now
+render();
+renderNurture();
+
 var compType = "Webinar Invite";
 var compSeq  = "Email 1 — first invite";
 
@@ -1147,40 +1943,78 @@ function setCompSeq(s, btn) {
 function buildSystemPrompt() {
   var bl = allData.filter(function(d){ return d.sent > 500; });
   var topOR   = [...bl].sort(function(a,b){ return b.OR   - a.OR;   }).slice(0,5);
-  var topCTOR = [...bl].sort(function(a,b){ return b.CTOR - a.CTOR; }).slice(0,3);
+  var topCTOR = [...bl].sort(function(a,b){ return b.CTOR - a.CTOR; }).slice(0,5);
   var avgOR   = (bl.reduce(function(s,d){ return s+d.OR;   },0)/bl.length).toFixed(1);
   var avgCTOR = (bl.reduce(function(s,d){ return s+d.CTOR; },0)/bl.length).toFixed(1);
   var totalSent = allData.reduce(function(s,d){ return s+d.sent; },0).toLocaleString();
-  var topSubjOR   = topOR  .map(function(d){ return '- "'+d.subj+'" ('+d.OR  .toFixed(1)+'% OR, '+d.CTOR.toFixed(1)+'% CTOR)'; }).join("\n");
-  var topSubjCTOR = topCTOR.map(function(d){ return '- "'+d.subj+'" ('+d.CTOR.toFixed(1)+'% CTOR)'; }).join("\n");
+  var topSubjOR   = topOR  .map(function(d){ return '- "'+d.subj+'" ('+d.OR.toFixed(1)+'% OR, '+d.CTOR.toFixed(1)+'% CTOR)'; }).join("\n");
+  var topSubjCTOR = topCTOR.map(function(d){ return '- "'+d.subj+'" ('+d.CTOR.toFixed(1)+'% CTOR, '+d.OR.toFixed(1)+'% OR)'; }).join("\n");
 
   return "You are an expert email copywriter for GlobalLink by TransPerfect — a B2B enterprise technology company specialising in AI-powered translation and localisation.\n\n" +
-"You write marketing emails for enterprise localisation leaders, content ops, marketing, and IT decision-makers.\n\n" +
-"PERFORMANCE DATA FROM OUR REAL CAMPAIGNS ("+bl.length+" campaigns, "+totalSent+" total sends):\n" +
-"- Our average open rate: "+avgOR+"%  (industry avg: 21.5%)\n" +
-"- Our average CTOR: "+avgCTOR+"%  (industry avg: 10.5%)\n\n" +
-"TOP 5 SUBJECT LINES BY OPEN RATE — study these patterns:\n"+topSubjOR+"\n\n" +
-"TOP 3 BY CTOR:\n"+topSubjCTOR+"\n\n" +
-"WHAT WORKS FOR OUR AUDIENCE:\n" +
-"1. Direct questions and personal challenges outperform descriptive subjects by 10-15pp\n" +
-"2. First-person voice from a named expert drives the highest registrations\n" +
-"3. Specific time refs ('tomorrow at 12 PM CT') beat vague ones ('this week')\n" +
-"4. Bold contrarian POV hooks drive high CTOR ('Speed Isn't a Strategy' → 64.3% CTOR)\n" +
-"5. Stat-led subjects work: '74% Say...' > 'Most leaders say...'\n" +
-"6. Email 2 in a series needs a completely different angle — not a reminder\n" +
-"7. Last call emails consistently outperform Email 1 — always send them\n\n" +
-"WHAT DOES NOT WORK:\n" +
-"- 'Webinar:' or 'Live Webinar:' subject prefixes — our lowest performers\n" +
-"- Multiple competing CTAs in one email\n" +
-"- Body copy that just recaps the previous email\n" +
-"- Vague CTAs like 'Learn More' — use specific action language\n\n" +
-"GLOBALLINK VOICE:\n" +
-"- Practitioner to practitioner — peer-level, not vendor-level\n" +
-"- Confident and direct, never salesy\n" +
-"- Short sentences, 2-3 line paragraphs max\n" +
-"- Uses {{Recipient.FirstName}} for personalisation\n\n" +
+
+"AUDIENCE: Enterprise localization leaders, VP/Director of Digital Transformation, Global Operations, Product, and AI initiatives. Always senior (Director+). They are practitioners, skeptical of vendor speak, and read fast. They respond to peers, not pitches.\n\n" +
+
+"CAMPAIGN PERFORMANCE DATA ("+bl.length+" campaigns, "+totalSent+" total sends):\n" +
+"- Our avg open rate: "+avgOR+"% (industry avg: 21.5%)\n" +
+"- Our avg CTOR: "+avgCTOR+"% (industry avg: 10.5%)\n\n" +
+
+"TOP 5 SUBJECT LINES BY OPEN RATE — learn these patterns, do not copy them literally:\n"+topSubjOR+"\n\n" +
+
+"TOP 5 BY CTOR — these convert openers into clickers:\n"+topSubjCTOR+"\n\n" +
+
+"SUBJECT LINE RULES (from real performance data):\n" +
+"- Direct question or personal challenge: +10-15 point open rate lift vs. descriptive subjects\n" +
+"- Stat-led subjects ('74% say X. Here's what to do about it') pull 28-30% consistently\n" +
+"- Bold contrarian POV ('Speed Isn't a Strategy for AI Translation') drove 64.3% CTOR — highest ever\n" +
+"- NEVER use 'Webinar:' or 'Live Webinar:' prefixes — our single lowest-performing pattern\n" +
+"- Sentence case only, not title case\n\n" +
+
+"BODY COPY RULES (proven by data across 24 emails):\n\n" +
+
+"LENGTH: 150-250 words is the sweet spot. Highest CTR (9.2%) and CTOR (32%). Long emails (250+) drag CTR down.\n\n" +
+
+"OPENING LINE — this is the most important sentence after the subject. Top 5 body openers by CTOR:\n" +
+"1. 'AI Translation Is Everywhere. Now What?' — 64.3% CTOR. Bold POV as a section header, not a greeting.\n" +
+"2. 'Speed, simplicity, and control' — 53% CTOR. Three-word power trio as the first content line.\n" +
+"3. 'AI Translation Is Everywhere' — 48.5% CTOR. Declarative, confident, no hedge.\n" +
+"4. 'Over the last two webinars... we covered the two areas that typically create the most risk (and rework)' — 47.4% CTOR. Recap + stakes.\n" +
+"5. 'Over the past year, I've watched AI-powered translation move from centralized workflows into the platforms where content is created.' — 46.2% CTOR. First-person industry observation.\n\n" +
+"KEY INSIGHT: First-person expert voice drives opens but the body must match the hook. A bold observation or question opener drives the highest CTORs.\n\n" +
+
+"URGENCY: Emails with specific urgency language in the body get +7 point open rate lift.\n" +
+"- USE: 'tomorrow at 12 PM CT', 'registration closes tonight', 'seats are filling'\n" +
+"- AVOID: 'this week', 'closing soon', 'don't miss out' — too vague\n\n" +
+
+"CONTENT ANGLES THAT DRIVE ACTION (ranked by audience engagement):\n" +
+"1. AI governance and quality control — they're already using AI, now they need to control it. HIGHEST engagement.\n" +
+"2. The honest tradeoff — name the tension before selling the solution. 'Speed isn't a strategy' style.\n" +
+"3. Specific compliance/regulatory risk — high-stakes, hard to find elsewhere. China compliance = 38.8% open rate.\n" +
+"4. 'How enterprises actually do this' — operational reality beats theory. 'What we're seeing work' > 'best practices'.\n" +
+"5. Stat + implication — '74% say X. Here's what that means' — specific numbers with a so-what.\n" +
+"6. Product-first content — LOWEST engagement. Lead with the problem. Bring product in as proof, not the hook.\n\n" +
+
+"VOICE AND TONE:\n" +
+"- Write peer-to-peer, not vendor-to-buyer. You are a practitioner talking to another practitioner.\n" +
+"- VENDOR (wrong): 'GlobalLink delivers enterprise-grade AI translation solutions'\n" +
+"- PEER (right): 'Over the past year, I've watched AI translation move into every platform where content gets created — and most teams aren't ready for it'\n" +
+"- VENDOR (wrong): 'Join our experts to learn best practices for AI localization'\n" +
+"- PEER (right): 'Got questions about AI in localization? Bring them here.'\n" +
+"- Short sentences. 2-3 line paragraphs max. No filler. Every sentence earns its place.\n" +
+"- Uses {{Recipient.FirstName}} for personalisation in the opening line\n\n" +
+
+"CTA RULES:\n" +
+"- ONE CTA only. Multiple CTAs lower CTOR every time.\n" +
+"- Specific action language, not generic: 'Watch the 18-min session', 'Bring your questions', 'Get the governance framework'\n" +
+"- AVOID: 'Learn More', 'Read Now', 'Click Here'\n" +
+"- For urgency emails, anchor the CTA to a specific time or closing window\n\n" +
+
+"EMAIL SERIES RULES:\n" +
+"- Email 2 must take a completely different angle from Email 1 — not a reminder, a new argument\n" +
+"- Last call emails consistently outperform Email 1 — write them with fresh copy, not a resend\n" +
+"- Apr 28 roadmap email (first-person from Joe Campbell) = 33% open rate, 34 registrations — all-time best\n\n" +
+
 "Respond with valid JSON only — no markdown fences, no explanation outside the JSON:\n" +
-'{"subject":"primary subject line","subjectAlts":["alt 1","alt 2"],"body":"full email body (use \\n for line breaks)","notes":["why the subject works","one key copy decision","one suggested A/B test"]}';
+"{\"subject\":\"primary subject line\",\"previewText\":\"preview/preheader text (40-90 chars, extends the subject, creates curiosity — do not repeat the subject)\",\"subjectAlts\":[\"alt 1\",\"alt 2\"],\"body\":\"full email body (use \\n for line breaks)\",\"notes\":[\"why the subject line works\",\"one key body copy decision\",\"one suggested A/B test\"]}";
 }
 
 async function generateEmail() {
@@ -1252,6 +2086,7 @@ function renderEmailOutput(r) {
       '<div class="comp-result-subject">' +
         '<div class="comp-result-subject-label">Recommended Subject Line</div>' +
         '<div class="comp-result-subject-line">'+escHtml(r.subject||"")+'</div>' +
+        (r.previewText ? '<div class="comp-result-preview-label">Preview Text</div><div class="comp-result-preview">'+escHtml(r.previewText)+'</div>' : '') +
         (alts ? '<div class="comp-result-alt-label">Alternatives</div>'+alts : '') +
       '</div>' +
       '<div class="comp-result-body-label">Email Body</div>' +
@@ -1261,10 +2096,14 @@ function renderEmailOutput(r) {
 }
 
 function copyEmail() {
-  var subj = document.querySelector(".comp-result-subject-line");
-  var body = document.querySelector(".comp-result-body");
+  var subj    = document.querySelector(".comp-result-subject-line");
+  var preview = document.querySelector(".comp-result-preview");
+  var body    = document.querySelector(".comp-result-body");
   if (!subj || !body) return;
-  navigator.clipboard.writeText("SUBJECT: "+subj.textContent+"\n\n"+body.textContent).then(function(){
+  var text = "SUBJECT: " + subj.textContent +
+    (preview ? "\nPREVIEW TEXT: " + preview.textContent : "") +
+    "\n\n" + body.textContent;
+  navigator.clipboard.writeText(text).then(function(){
     var btn = document.getElementById("comp-copy-btn");
     var orig = btn.textContent;
     btn.textContent = "✓ Copied!";
