@@ -738,6 +738,7 @@ td{padding:10px 12px;}
         <span><span style="color:#3BBFB5">●</span> AI in Global Content</span>
         <span><span style="color:#FA6419">●</span> Office Hours</span>
         <span><span style="color:#6531CC">●</span> Product Roadmap</span>
+        <span><span style="color:#ec388a">●</span> AI Quality Governance</span>
       </div>
     </div>
 
@@ -911,71 +912,71 @@ td{padding:10px 12px;}
 <section class="section" id="sec-composer">
   <div class="sec-eyebrow">AI-Powered</div>
   <div class="sec-title">Email Composer</div>
-  <div class="sec-desc">Describe the email you need and the composer writes it using your real campaign data, top-performing subject patterns, and recommendations — all in GlobalLink's voice.</div>
+  <div class="sec-desc">Generate ready-to-send emails using your real campaign data and performance patterns.</div>
 
-  <div class="composer-layout">
-    <div class="composer-left">
-      <div class="comp-card">
-        <div class="comp-card-label">Email Type</div>
-        <div class="comp-type-pills">
-          <button class="comp-type-pill active" onclick="setCompType('Webinar Invite',this)">Webinar Invite</button>
-          <button class="comp-type-pill" onclick="setCompType('Webinar Follow-up',this)">Follow-up</button>
-          <button class="comp-type-pill" onclick="setCompType('Newsletter',this)">Newsletter</button>
-          <button class="comp-type-pill" onclick="setCompType('Last Call / Urgency',this)">Last Call</button>
-          <button class="comp-type-pill" onclick="setCompType('Event Save the Date',this)">Event</button>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-card-label">Position in Series</div>
-        <div class="comp-type-pills">
-          <button class="comp-seq-pill active" onclick="setCompSeq('Email 1 — first invite',this)">Email 1</button>
-          <button class="comp-seq-pill" onclick="setCompSeq('Email 2 — new angle, not a reminder',this)">Email 2</button>
-          <button class="comp-seq-pill" onclick="setCompSeq('Email 3 — last call with urgency',this)">Email 3 / Last Call</button>
-          <button class="comp-seq-pill" onclick="setCompSeq('Follow-up with recording link',this)">Follow-up</button>
-          <button class="comp-seq-pill" onclick="setCompSeq('Standalone — not part of a series',this)">Standalone</button>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-card-label">Describe this email</div>
-        <textarea id="comp-prompt" class="comp-textarea" placeholder="e.g. Webinar on June 15 about AI quality governance — how enterprise teams measure and improve AI translation output. Speaker is Imran Sadiq, VP Technology Solutions. Key topics: COMET scoring, closed quality loops, when human review still matters."></textarea>
-      </div>
-      <div class="comp-card">
-        <div class="comp-card-label">Optional details</div>
-        <div class="comp-extras-grid">
-          <div><div class="comp-field-label">Speaker name &amp; title</div><input id="comp-speaker" class="comp-input" placeholder="e.g. Imran Sadiq, VP Tech Solutions"/></div>
-          <div><div class="comp-field-label">Date &amp; time</div><input id="comp-date" class="comp-input" placeholder="e.g. June 15 at 11:00 AM CT"/></div>
-          <div><div class="comp-field-label">CTA button label</div><input id="comp-cta" class="comp-input" placeholder="e.g. Register Now"/></div>
-          <div><div class="comp-field-label">Tone</div>
-            <select id="comp-tone" class="comp-input">
-              <option value="first-person expert (recommended)">First-person expert</option>
-              <option value="professional and concise">Professional &amp; concise</option>
-              <option value="bold and provocative">Bold &amp; provocative</option>
-              <option value="warm and conversational">Warm &amp; conversational</option>
-            </select>
+    <div class="composer-layout">
+      <div class="composer-left">
+        <div class="comp-card">
+          <div class="comp-card-label">Email Type</div>
+          <div class="comp-type-pills">
+            <button class="comp-type-pill active" onclick="setCompType('Webinar Invite',this)">Webinar Invite</button>
+            <button class="comp-type-pill" onclick="setCompType('Webinar Follow-up',this)">Follow-up</button>
+            <button class="comp-type-pill" onclick="setCompType('Last Call / Urgency',this)">Last Call</button>
+            <button class="comp-type-pill" onclick="setCompType('Event Save the Date',this)">Event</button>
           </div>
         </div>
-      </div>
-      <button class="comp-generate-btn" id="comp-btn" onclick="generateEmail()"><span id="comp-btn-text">✦ Generate Email</span></button>
-      <div id="comp-error" class="comp-error" style="display:none;"></div>
-    </div>
-
-    <div class="composer-right">
-      <div class="comp-output-header">
-        <div class="comp-output-title">Generated Email</div>
-        <div style="display:flex;gap:8px;">
-          <button class="comp-action-btn" id="comp-copy-btn" onclick="copyEmail()" style="display:none;">Copy</button>
-          <button class="comp-action-btn comp-action-btn-ghost" id="comp-regen-btn" onclick="generateEmail()" style="display:none;">↺ Regenerate</button>
+        <div class="comp-card">
+          <div class="comp-card-label">Position in Series</div>
+          <div class="comp-type-pills">
+            <button class="comp-seq-pill active" onclick="setCompSeq('Email 1 — first invite',this)">Email 1</button>
+            <button class="comp-seq-pill" onclick="setCompSeq('Email 2 — new angle, not a reminder',this)">Email 2</button>
+            <button class="comp-seq-pill" onclick="setCompSeq('Email 3 — last call with urgency',this)">Email 3 / Last Call</button>
+            <button class="comp-seq-pill" onclick="setCompSeq('Follow-up with recording link',this)">Follow-up</button>
+            <button class="comp-seq-pill" onclick="setCompSeq('Standalone — not part of a series',this)">Standalone</button>
+          </div>
         </div>
+        <div class="comp-card">
+          <div class="comp-card-label">Describe this email</div>
+          <textarea id="comp-prompt" class="comp-textarea" placeholder="e.g. Webinar on June 15 about AI quality governance — how enterprise teams measure and improve AI translation output. Speaker is Imran Sadiq, VP Technology Solutions. Key topics: COMET scoring, closed quality loops, when human review still matters."></textarea>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-label">Optional details</div>
+          <div class="comp-extras-grid">
+            <div><div class="comp-field-label">Speaker name &amp; title</div><input id="comp-speaker" class="comp-input" placeholder="e.g. Imran Sadiq, VP Tech Solutions"/></div>
+            <div><div class="comp-field-label">Date &amp; time</div><input id="comp-date" class="comp-input" placeholder="e.g. June 15 at 11:00 AM CT"/></div>
+            <div><div class="comp-field-label">CTA button label</div><input id="comp-cta" class="comp-input" placeholder="e.g. Register Now"/></div>
+            <div><div class="comp-field-label">Tone</div>
+              <select id="comp-tone" class="comp-input">
+                <option value="first-person expert (recommended)">First-person expert</option>
+                <option value="professional and concise">Professional &amp; concise</option>
+                <option value="bold and provocative">Bold &amp; provocative</option>
+                <option value="warm and conversational">Warm &amp; conversational</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button class="comp-generate-btn" id="comp-btn" onclick="generateEmail()"><span id="comp-btn-text">✦ Generate Email</span></button>
+        <div id="comp-error" class="comp-error" style="display:none;"></div>
       </div>
-      <div id="comp-output-wrap">
-        <div class="comp-empty-state">
-          <div class="comp-empty-icon">✦</div>
-          <div class="comp-empty-title">Your email will appear here</div>
-          <div class="comp-empty-sub">Fill in the brief on the left and hit Generate. The composer uses your real campaign data and what's worked for your audience.</div>
+      <div class="composer-right">
+        <div class="comp-output-header">
+          <div class="comp-output-title">Generated Email</div>
+          <div style="display:flex;gap:8px;">
+            <button class="comp-action-btn" id="comp-copy-btn" onclick="copyEmail()" style="display:none;">Copy</button>
+            <button class="comp-action-btn comp-action-btn-ghost" id="comp-regen-btn" onclick="generateEmail()" style="display:none;">↺ Regenerate</button>
+          </div>
+        </div>
+        <div id="comp-output-wrap">
+          <div class="comp-empty-state">
+            <div class="comp-empty-icon">✦</div>
+            <div class="comp-empty-title">Your email will appear here</div>
+            <div class="comp-empty-sub">Fill in the brief on the left and hit Generate.</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="footer">GlobalLink by TransPerfect · Email Marketing Dashboard · Be Relevant. Be Everywhere.</div>
 </section>
 
@@ -1010,7 +1011,12 @@ var RAW = [
   {date:"Apr 28",month:"April",    type:"Webinar",   sent:23830,delivered:23515,uOpens:7781,OR:33.09,uClicks:1506,CTR:6.40, CTOR:19.35,optOuts:44,oor:0.19,regs:34, subj:"Seats are filling: GlobalLink Roadmap (May 21)",series:"RM",seqN:1},
   {date:"May 5", month:"May",      type:"Webinar",   sent:23245,delivered:23149,uOpens:6879,OR:29.72,uClicks:1251,CTR:5.40, CTOR:18.19,optOuts:34,oor:0.15,regs:22, subj:"The kind of access most companies don't offer. Register Now.",series:"RM",seqN:2},
   {date:"May 7", month:"May",      type:"Newsletter",sent:24674,delivered:24623,uOpens:5885,OR:23.90,uClicks:1245,CTR:5.06, CTOR:21.16,optOuts:35,oor:0.14,regs:13, subj:"Seats are going fast. Two sessions you don't want to miss.",series:"NL",seqN:8},
-  {date:"May 12",month:"May",      type:"Webinar",   sent:23876,delivered:23820,uOpens:6604,OR:27.72,uClicks:1135,CTR:4.76, CTOR:17.19,optOuts:37,oor:0.16,regs:12, subj:"Most teams still don't know how to govern AI translation quality",series:"RM",seqN:3}
+  {date:"May 12",month:"May",      type:"Webinar",   sent:23876,delivered:23820,uOpens:6604,OR:27.72,uClicks:1135,CTR:4.76, CTOR:17.19,optOuts:37,oor:0.16,regs:12, subj:"Most teams still don't know how to govern AI translation quality",series:"RM",seqN:3},
+  {date:"May 19",month:"May",      type:"Webinar",   sent:35640,delivered:35469,uOpens:7942,OR:22.39,uClicks:1934,CTR:5.45, CTOR:24.35,optOuts:48,oor:0.14,regs:4,  subj:"Last chance: See What's Next for Global Content",series:"RM",seqN:4},
+  {date:"May 21",month:"May",      type:"Newsletter",sent:33337,delivered:33279,uOpens:4719,OR:14.18,uClicks:476, CTR:1.43, CTOR:10.09,optOuts:20,oor:0.06,regs:16, subj:"Can your AI translation pass a quality audit?",series:"NL",seqN:9},
+  {date:"May 21",month:"May",      type:"Newsletter",sent:77849,delivered:74204,uOpens:2719,OR:3.66, uClicks:859, CTR:1.16, CTOR:31.59,optOuts:36,oor:0.05,regs:2,  subj:"Can your AI translation pass a quality audit?",series:"NL",seqN:9,unengaged:true},
+  {date:"May 22",month:"May",      type:"Webinar",   sent:124,  delivered:123,  uOpens:44,  OR:35.77,uClicks:18,  CTR:14.63,CTOR:40.91,optOuts:0, oor:0.00,regs:null,subj:"The recording's ready (plus what's coming June 1)",series:"RM",seqN:5},
+  {date:"May 26",month:"May",      type:"Webinar",   sent:37071,delivered:36991,uOpens:8710,OR:23.55,uClicks:2335,CTR:6.31, CTOR:26.81,optOuts:45,oor:0.12,regs:17, subj:"Register now: Prove your AI output is working",series:"AIQ",seqN:1}
 ];
 
 var allData = RAW.map(function(d){return Object.assign({},d);});
@@ -1043,9 +1049,16 @@ function mColor(v,arr,inv){
 function filtered(){
   return allData
     .filter(function(d){return activeType==="All"||d.type===activeType;})
-    .filter(function(d){return activeMon==="All"||d.month===activeMon;});
+    .filter(function(d){return activeMon==="All"||d.month===activeMon;})
+    .filter(function(d){return !d.unengaged;});
 }
 function bigList(){return filtered().filter(function(d){return d.sent>500;});}
+// Full list including unengaged — used only for the table display
+function filteredAll(){
+  return allData
+    .filter(function(d){return activeType==="All"||d.type===activeType;})
+    .filter(function(d){return activeMon==="All"||d.month===activeMon;});
+}
 
 // ─────────────────────── CHARTS ───────────────────────
 Chart.defaults.font.family="'Inter',sans-serif";
@@ -1114,8 +1127,8 @@ function buildCharts(){
   }
 
   // Series chart
-  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P};
-  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap"};
+  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P,AIQ:"#ec388a"};
+  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap","AIQ":"AI Quality Governance"};
   var groups={};
   Object.keys(serMap).forEach(function(k){groups[k]=[];});
   allData.filter(function(d){return d.sent>500;}).forEach(function(d){
@@ -1178,24 +1191,29 @@ function renderKPIs(){
 
 // ─────────────────────── TABLE ───────────────────────
 function renderTable(){
-  var f=filtered();
-  var ors=f.map(function(d){return d.OR;}),ctrs=f.map(function(d){return d.CTR;}),ctors=f.map(function(d){return d.CTOR;}),oors=f.map(function(d){return d.oor;});
-  var regArr=f.filter(function(d){return d.regs!==null;}).map(function(d){return d.regs;});
+  var f=filteredAll();
+  var ors=filtered().map(function(d){return d.OR;}),ctrs=filtered().map(function(d){return d.CTR;}),ctors=filtered().map(function(d){return d.CTOR;}),oors=filtered().map(function(d){return d.oor;});
+  var regArr=filtered().filter(function(d){return d.regs!==null;}).map(function(d){return d.regs;});
   var rows=f.map(function(r){
     var tc=TYPE_C[r.type]||"#6b8cae";
+    var orC=r.unengaged?"#a0b4c8":mColor(r.OR,ors,false);
+    var cC=r.unengaged?"#a0b4c8":mColor(r.CTR,ctrs,false);
+    var coC=r.unengaged?"#a0b4c8":mColor(r.CTOR,ctors,false);
+    var ooC=r.unengaged?"#a0b4c8":mColor(r.oor,oors,true);
     var rCell=r.regs===null?'<td style="color:#d0dde9;font-size:11px;text-align:center;">—</td>':
       '<td style="font-weight:700;color:'+mColor(r.regs,regArr,false)+';font-size:12px;text-align:center;">'+r.regs+'</td>';
-    return "<tr>"+
-      '<td style="color:#a0b4c8;font-size:11px;white-space:nowrap;">'+r.date+"</td>"+
-      '<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;" title="'+r.subj+'">'+r.subj+"</td>"+
-      '<td><span class="badge" style="background:'+rgba(tc,.1)+';color:'+tc+';">'+r.type+"</span></td>"+
-      '<td style="font-size:11px;font-weight:500;">'+fmt(r.sent)+"</td>"+
-      '<td style="font-size:11px;font-weight:500;">'+fmt(r.delivered)+"</td>"+
-      '<td style="font-weight:600;color:'+mColor(r.OR,ors,false)+';font-size:11px;">'+pct(r.OR)+"</td>"+
-      '<td style="font-weight:600;color:'+mColor(r.CTR,ctrs,false)+';font-size:11px;">'+pct(r.CTR)+"</td>"+
-      '<td style="font-weight:600;color:'+mColor(r.CTOR,ctors,false)+';font-size:11px;">'+pct(r.CTOR)+"</td>"+
-      '<td style="font-size:11px;"><span style="font-weight:600;color:'+mColor(r.oor,oors,true)+';">'+r.optOuts+'</span><span style="color:#a0b4c8;font-size:10px;margin-left:3px;">('+r.oor.toFixed(2)+"%)</span></td>"+
-      rCell+"</tr>";
+    var badge=r.unengaged?'<span style="font-size:9px;font-weight:700;background:rgba(160,180,200,.15);color:#a0b4c8;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;">re-engagement</span>':'';
+    return '<tr style="'+(r.unengaged?"opacity:0.6;":"")+'">'+
+      '<td style="color:#a0b4c8;font-size:11px;white-space:nowrap;">'+r.date+'</td>'+
+      '<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;" title="'+r.subj+'">'+r.subj+badge+'</td>'+
+      '<td><span class="badge" style="background:'+rgba(tc,.1)+';color:'+tc+';">'+r.type+'</span></td>'+
+      '<td style="font-size:11px;font-weight:500;">'+fmt(r.sent)+'</td>'+
+      '<td style="font-size:11px;font-weight:500;">'+fmt(r.delivered)+'</td>'+
+      '<td style="font-weight:600;color:'+orC+';font-size:11px;">'+pct(r.OR)+'</td>'+
+      '<td style="font-weight:600;color:'+cC+';font-size:11px;">'+pct(r.CTR)+'</td>'+
+      '<td style="font-weight:600;color:'+coC+';font-size:11px;">'+pct(r.CTOR)+'</td>'+
+      '<td style="font-size:11px;"><span style="font-weight:600;color:'+ooC+';">'+r.optOuts+'</span><span style="color:#a0b4c8;font-size:10px;margin-left:3px;">('+r.oor.toFixed(2)+'%)</span></td>'+
+      rCell+'</tr>';
   }).join("");
   document.getElementById("table-wrap").innerHTML=
     '<table><thead><tr><th>Date</th><th>Subject Line</th><th>Type</th><th>Sent</th><th>Delivered</th><th>Open Rate</th><th>Unique CTR</th><th>Unique CTOR</th><th>Opt-Outs</th><th>Regs</th></tr></thead><tbody>'+rows+"</tbody></table>";
@@ -1306,7 +1324,7 @@ function renderContent(){
 
   // Theme table
   var themes=[
-    {name:"AI Governance & Office Hours", series:["AIR","OH"],   c:CI.BD},
+    {name:"AI Governance & Office Hours", series:["AIR","OH","AIQ"], c:CI.BD},
     {name:"China Website Compliance",     series:["China"],       c:CI.T},
     {name:"Translation Lives Everywhere", series:["Trans"],       c:CI.B},
     {name:"Product Roadmap",              series:["RM"],          c:CI.P},
@@ -1594,41 +1612,41 @@ var NURTURE = {
     label:"TOFU", fullLabel:"Top of Funnel",
     score:"Score < 50",
     color:"#6531CC", bg:"#EBE0FF",
-    started:163, completed:61, completedPct:37.42,
+    started:184, completed:63, completedPct:34.24,
     steps:[
-      {name:"Email 1",sent:126,delivered:113,opens:24,OR:21.24,clicks:5,CTR:4.42,CTOR:20.83,optOuts:1,bounces:13},
-      {name:"Email 2",sent:108,delivered:97, opens:23,OR:23.71,clicks:0,CTR:0.00,CTOR:0.00, optOuts:1,bounces:11},
-      {name:"Email 3",sent:95, delivered:91, opens:20,OR:21.98,clicks:5,CTR:5.49,CTOR:25.00,optOuts:0,bounces:4},
-      {name:"Email 4",sent:75, delivered:71, opens:10,OR:14.08,clicks:1,CTR:1.41,CTOR:10.00,optOuts:0,bounces:4},
-      {name:"Email 5",sent:66, delivered:64, opens:9, OR:14.06,clicks:1,CTR:1.56,CTOR:11.11,optOuts:0,bounces:2},
-      {name:"Email 6",sent:60, delivered:58, opens:13,OR:22.41,clicks:4,CTR:6.90,CTOR:30.77,optOuts:0,bounces:2}
+      {name:"Email 1",sent:136,delivered:122,opens:25,OR:20.49,clicks:5,CTR:4.10,CTOR:20.00,optOuts:1,bounces:14},
+      {name:"Email 2",sent:114,delivered:103,opens:24,OR:23.30,clicks:0,CTR:0.00,CTOR:0.00, optOuts:1,bounces:11},
+      {name:"Email 3",sent:97, delivered:86, opens:20,OR:23.26,clicks:5,CTR:5.81,CTOR:25.00,optOuts:0,bounces:11},
+      {name:"Email 4",sent:83, delivered:79, opens:10,OR:12.66,clicks:1,CTR:1.27,CTOR:10.00,optOuts:0,bounces:4},
+      {name:"Email 5",sent:68, delivered:66, opens:9, OR:13.64,clicks:1,CTR:1.52,CTOR:11.11,optOuts:0,bounces:2},
+      {name:"Email 6",sent:63, delivered:61, opens:13,OR:21.31,clicks:4,CTR:6.56,CTOR:30.77,optOuts:0,bounces:2}
     ]
   },
   mofu: {
     label:"MOFU", fullLabel:"Middle of Funnel",
     score:"Score 50–75",
     color:"#003FC7", bg:"#D2E6FA",
-    started:47, completed:13, completedPct:27.66,
+    started:61, completed:14, completedPct:22.95,
     steps:[
-      {name:"Email 1",sent:39,delivered:37,opens:13,OR:35.14,clicks:5,CTR:13.51,CTOR:38.46,optOuts:0,bounces:2},
-      {name:"Email 2",sent:30,delivered:29,opens:8, OR:27.59,clicks:4,CTR:13.79,CTOR:50.00,optOuts:0,bounces:1},
-      {name:"Email 3",sent:24,delivered:24,opens:7, OR:29.17,clicks:1,CTR:4.17, CTOR:14.29,optOuts:0,bounces:0},
-      {name:"Email 4",sent:21,delivered:21,opens:4, OR:19.05,clicks:2,CTR:9.52, CTOR:50.00,optOuts:0,bounces:0},
-      {name:"Email 5",sent:20,delivered:16,opens:5, OR:31.25,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
-      {name:"Email 6",sent:14,delivered:14,opens:8, OR:57.14,clicks:4,CTR:28.57,CTOR:50.00,optOuts:0,bounces:0}
+      {name:"Email 1",sent:48,delivered:46,opens:13,OR:28.26,clicks:5,CTR:10.87,CTOR:38.46,optOuts:0,bounces:2},
+      {name:"Email 2",sent:39,delivered:38,opens:8, OR:21.05,clicks:4,CTR:10.53,CTOR:50.00,optOuts:0,bounces:1},
+      {name:"Email 3",sent:27,delivered:26,opens:7, OR:26.92,clicks:1,CTR:3.85, CTOR:14.29,optOuts:0,bounces:1},
+      {name:"Email 4",sent:22,delivered:22,opens:4, OR:18.18,clicks:2,CTR:9.09, CTOR:50.00,optOuts:0,bounces:0},
+      {name:"Email 5",sent:21,delivered:17,opens:5, OR:29.41,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
+      {name:"Email 6",sent:16,delivered:16,opens:8, OR:50.00,clicks:4,CTR:25.00,CTOR:50.00,optOuts:0,bounces:0}
     ]
   },
   bofu: {
     label:"BOFU", fullLabel:"Bottom of Funnel",
     score:"Score > 75",
     color:"#00966D", bg:"#D0F5EE",
-    started:30, completed:2, completedPct:6.67,
+    started:32, completed:2, completedPct:6.25,
     steps:[
-      {name:"Email 1",sent:25,delivered:25,opens:9,OR:36.00,clicks:8,CTR:32.00,CTOR:88.89,optOuts:0,bounces:0},
-      {name:"Email 2",sent:14,delivered:14,opens:4,OR:28.57,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 3",sent:9, delivered:9, opens:2,OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 4",sent:3, delivered:2, opens:1,OR:50.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 5",sent:2, delivered:2, opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:27,delivered:27,opens:10,OR:37.04,clicks:8,CTR:29.63,CTOR:80.00,optOuts:0,bounces:0},
+      {name:"Email 2",sent:14,delivered:14,opens:4, OR:28.57,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 3",sent:13,delivered:13,opens:2, OR:15.38,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 4",sent:7,  delivered:6, opens:2, OR:33.33,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 5",sent:2,  delivered:2, opens:0, OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
     ]
   }
 };
@@ -1665,14 +1683,14 @@ function renderNurture(){
   // Insights
   document.getElementById("nurture-insights").innerHTML=
     '<div class="ni-card"><div class="ni-label">🔍 TOFU Drop-off</div>'+
-    '<div class="ni-finding">Open rate drops from <strong>23.7%</strong> at Email 2 to <strong>14%</strong> at Emails 4–5 before recovering at Email 6. Classic mid-sequence fatigue.</div>'+
-    '<div class="ni-alert">Email 2 has 0% CTR — opened but nobody clicks. Review the CTA and body copy urgently.</div></div>'+
+    '<div class="ni-finding">Open rate holds around 20–23% at Emails 1–3, then drops to <strong>12–13%</strong> at Emails 4–5 before recovering at Email 6 (21%). Classic mid-sequence fatigue.</div>'+
+    '<div class="ni-alert">Email 2 still has 0% CTR — opened by 24 people but nobody clicks. Body copy or CTA needs a full rewrite.</div></div>'+
     '<div class="ni-card"><div class="ni-label">⭐ MOFU Standout</div>'+
-    '<div class="ni-finding">MOFU Email 6 hits a <strong>57% open rate</strong> and <strong>50% CTOR</strong> — best nurture email across all stages. Dig into what makes it different and replicate the pattern earlier in the sequence.</div>'+
-    '<div class="ni-good">MOFU has the highest avg open rate (31.9%) and CTR (11.4%) — these leads are highly engaged and responding well.</div></div>'+
+    '<div class="ni-finding">MOFU Email 6 hits a <strong>50% open rate</strong> and <strong>50% CTOR</strong> — best nurture email across all stages. Dig into what makes it different and replicate the pattern earlier in the sequence.</div>'+
+    '<div class="ni-good">MOFU has consistently strong engagement across all 6 emails — these leads are highly qualified and responding well.</div></div>'+
     '<div class="ni-card"><div class="ni-label">🎯 BOFU Signal</div>'+
-    '<div class="ni-finding">BOFU Email 1 has an <strong>88.9% CTOR</strong> — the highest of any email across the entire program. Only 2 of 30 complete the full sequence.</div>'+
-    '<div class="ni-good">Low BOFU completion is a positive sign — most leads are likely converting to MQL/sales before they finish, which is exactly what you want.</div></div>';
+    '<div class="ni-finding">BOFU Email 1 has an <strong>80% CTOR</strong> — the highest click-to-open rate of any email across the entire program. Only 2 of 32 complete the full sequence.</div>'+
+    '<div class="ni-good">Low BOFU completion is a positive sign — most leads are likely converting to MQL or sales before they finish the sequence, which is exactly what you want.</div></div>';
 
   // Stage tables
   document.getElementById("nurture-stages").innerHTML=stages.map(function(s){
@@ -1719,86 +1737,238 @@ function renderNurture(){
 
 // ── CAMPAIGN NURTURES DATA ──────────────────────────────
 var CAMP_NURTURES = [
+  // ── ACTIVE PROGRAMS ──────────────────────────────────────
   {
     id:"bor", label:"2026 Business Outlook Report",
     desc:"Content download nurture — leads who downloaded the 2026 Business Outlook Report.",
-    type:"Content Download", source:"Organic / LinkedIn",
-    color:"#003FC7", started:63, completed:6, completedPct:9.52,
-    status:"active", // active | early | new | watch
-    flags:[],
+    type:"Website Download", source:"Website Download",
+    color:"#003FC7", started:74, completed:43, completedPct:58.11,
+    status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:56, delivered:54, opens:11,OR:20.37,clicks:3,  CTR:5.56, CTOR:27.27,optOuts:0,bounces:2},
-      {name:"Email 2",sent:47, delivered:47, opens:8, OR:17.02,clicks:1,  CTR:2.13, CTOR:12.50,optOuts:0,bounces:0},
-      {name:"Email 3",sent:9,  delivered:9,  opens:3, OR:33.33,clicks:0,  CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 4",sent:9,  delivered:7,  opens:2, OR:28.57,clicks:0,  CTR:0.00, CTOR:0.00, optOuts:0,bounces:2}
+      {name:"Email 1",sent:66,delivered:64,opens:13,OR:20.31,clicks:4,CTR:6.25, CTOR:30.77,optOuts:0,bounces:2},
+      {name:"Email 2",sent:55,delivered:55,opens:12,OR:21.82,clicks:3,CTR:5.45, CTOR:25.00,optOuts:0,bounces:0},
+      {name:"Email 3",sent:52,delivered:52,opens:15,OR:28.85,clicks:3,CTR:5.77, CTOR:20.00,optOuts:0,bounces:0},
+      {name:"Email 4",sent:47,delivered:45,opens:9, OR:20.00,clicks:3,CTR:6.67, CTOR:33.33,optOuts:0,bounces:2}
     ]
   },
   {
     id:"bor-unengaged", label:"2026 Business Outlook Report — Re-engagement",
     desc:"Cold re-engagement program — unengaged contacts from the Business Outlook Report database.",
-    type:"Re-engagement", source:"Database",
-    color:"#FA6419", started:71064, completed:57878, completedPct:81.44,
-    status:"active",
+    type:"Current Database", source:"Current Database",
+    color:"#FA6419", started:71064, completed:61297, completedPct:86.26,
+    status:"ended", note:null,
     flags:["Cold list benchmark: 8–12% open rate is healthy here — do not compare to warm nurtures."],
     steps:[
-      {name:"Email 1",sent:70945,delivered:62448,opens:6321,OR:10.12,clicks:2026,CTR:3.24,CTOR:32.05,optOuts:78, bounces:8497},
-      {name:"Email 2",sent:63362,delivered:62149,opens:3694,OR:5.94, clicks:1451,CTR:2.33,CTOR:39.28,optOuts:35, bounces:1213},
-      {name:"Email 3",sent:62993,delivered:61372,opens:4965,OR:8.09, clicks:1737,CTR:2.83,CTOR:34.98,optOuts:37, bounces:1621},
-      {name:"Email 4",sent:62120,delivered:60663,opens:6545,OR:10.79,clicks:1296,CTR:2.14,CTOR:19.80,optOuts:35, bounces:1457},
-      {name:"Email 5",sent:59394,delivered:58372,opens:4720,OR:8.09, clicks:1257,CTR:2.15,CTOR:26.63,optOuts:36, bounces:1022}
+      {name:"Email 1",sent:70945,delivered:62448,opens:6332,OR:10.14,clicks:2028,CTR:3.25,CTOR:32.03,optOuts:78, bounces:8497},
+      {name:"Email 2",sent:63363,delivered:62150,opens:3698,OR:5.95, clicks:1452,CTR:2.34,CTOR:39.26,optOuts:35, bounces:1213},
+      {name:"Email 3",sent:62995,delivered:61374,opens:4980,OR:8.11, clicks:1738,CTR:2.83,CTOR:34.90,optOuts:38, bounces:1621},
+      {name:"Email 4",sent:62225,delivered:60768,opens:6583,OR:10.83,clicks:1300,CTR:2.14,CTOR:19.75,optOuts:35, bounces:1457},
+      {name:"Email 5",sent:61478,delivered:60452,opens:4877,OR:8.07, clicks:1285,CTR:2.13,CTOR:26.35,optOuts:37, bounces:1026}
+    ]
+  },
+  {
+    id:"partnerlink", label:"PartnerLink TMS Campaign",
+    desc:"Campaign nurture for PartnerLink TMS leads.",
+    type:"Apollo", source:"Apollo",
+    color:"#3BBFB5", started:25377, completed:23987, completedPct:94.52,
+    status:"ended", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:25288,delivered:24731,opens:4801,OR:19.41,clicks:2746,CTR:11.10,CTOR:57.20,optOuts:78,bounces:557},
+      {name:"Email 2",sent:24213,delivered:24096,opens:3393,OR:14.08,clicks:1126,CTR:4.67, CTOR:33.19,optOuts:41,bounces:117},
+      {name:"Email 3",sent:24091,delivered:23973,opens:3353,OR:13.99,clicks:664, CTR:2.77, CTOR:19.80,optOuts:33,bounces:118}
     ]
   },
   {
     id:"japan", label:"Website Localization Playbook for Marketers — Japan",
     desc:"Cold list + LinkedIn Ads. Anyone who downloads the Japan localization guide enrolls automatically.",
-    type:"LinkedIn Campaign", source:"LinkedIn Ads + Cold List",
-    color:"#00966D", started:777, completed:0, completedPct:0,
-    status:"watch",
-    flags:["21.9% bounce rate on Email 1 — review list quality and Japan deliverability settings.","Emails 3–4 have 0 sends — sequence still in early stages."],
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + Apollo",
+    color:"#00966D", started:777, completed:524, completedPct:67.44,
+    status:"live", note:null,
+    flags:["22.2% bounce rate on Email 1 — review list quality and Japan deliverability settings."],
     steps:[
-      {name:"Email 1",sent:773,delivered:604,opens:138,OR:22.85,clicks:10,CTR:1.66,CTOR:7.25,optOuts:6,bounces:169},
-      {name:"Email 2",sent:8,  delivered:7,  opens:2,  OR:28.57,clicks:0, CTR:0.00,CTOR:0.00,optOuts:0,bounces:1},
-      {name:"Email 3",sent:0,  delivered:0,  opens:0,  OR:0,    clicks:0, CTR:0,   CTOR:null, optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,  delivered:0,  opens:0,  OR:0,    clicks:0, CTR:0,   CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:773,delivered:601,opens:138,OR:22.96,clicks:10,CTR:1.66,CTOR:7.25, optOuts:6,bounces:172},
+      {name:"Email 2",sent:590,delivered:577,opens:79, OR:13.69,clicks:9, CTR:1.56,CTOR:11.39,optOuts:2,bounces:13},
+      {name:"Email 3",sent:577,delivered:545,opens:126,OR:23.12,clicks:4, CTR:0.73,CTOR:3.17, optOuts:1,bounces:32},
+      {name:"Email 4",sent:543,delivered:537,opens:81, OR:15.08,clicks:2, CTR:0.37,CTOR:2.47, optOuts:2,bounces:6}
+    ]
+  },
+  // ── EARLY STAGE ──────────────────────────────────────────
+  {
+    id:"taaf", label:"Translation as a Feature (TaaF)",
+    desc:"LinkedIn Ads campaign nurture for TaaF leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#a0b4c8", started:2, completed:1, completedPct:50,
+    status:"ended", note:null,
+    flags:["Campaign did not scale — only 2 leads enrolled. Program has ended."],
+    steps:[
+      {name:"Email 1",sent:2,delivered:2,opens:1,OR:50.00,clicks:1,CTR:50.00,CTOR:100.00,optOuts:0,bounces:0},
+      {name:"Email 2",sent:2,delivered:2,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0}
     ]
   },
   {
     id:"ecommerce", label:"Website Localization for Ecommerce",
-    desc:"LinkedIn Ads campaign nurture for ecommerce localization leads. Just launched.",
-    type:"LinkedIn Campaign", source:"LinkedIn Ads",
+    desc:"LinkedIn Ads campaign nurture for ecommerce localization leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
     color:"#6531CC", started:1, completed:0, completedPct:0,
-    status:"new",
-    flags:["Only 1 lead enrolled — campaign is still ramping. Check back as more leads come in."],
-    steps:[
-      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"taaf", label:"Translation as a Feature (TaaF)",
-    desc:"LinkedIn Ads campaign nurture for TAAF leads. Campaign did not scale.",
-    type:"LinkedIn Campaign", source:"LinkedIn Ads",
-    color:"#a0b4c8", started:1, completed:1, completedPct:100,
-    status:"new",
-    flags:["Only 1 lead enrolled — LinkedIn campaign did not generate meaningful volume. Consider pausing or relaunching."],
+    status:"live", note:"Just Launched",
+    flags:["Only 1 lead enrolled — campaign is still ramping."],
     steps:[
       {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
       {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
       {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
       {name:"Email 4",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"ecommerce-shopify", label:"Website Localization for Ecommerce — Shopify",
+    desc:"Shopify-specific ecommerce localization nurture. Just launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#6531CC", started:1, completed:0, completedPct:0,
+    status:"live", note:"Just Launched",
+    flags:["Only 1 lead enrolled — just launched."],
+    steps:[
+      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  // ── QUEBEC BILL 96 COHORTS ────────────────────────────────
+  {
+    id:"qb96-marketing", label:"Quebec Bill 96 — Marketing",
+    desc:"Industry cohort nurture for Marketing leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:128, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:123,delivered:119,opens:21,OR:17.65,clicks:15,CTR:12.61,CTOR:71.43,optOuts:0,bounces:4},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-manufacturing", label:"Quebec Bill 96 — Manufacturing",
+    desc:"Industry cohort nurture for Manufacturing leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:97, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:97,delivered:94,opens:11,OR:11.70,clicks:2,CTR:2.13,CTOR:18.18,optOuts:0,bounces:3},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-tech", label:"Quebec Bill 96 — Tech",
+    desc:"Industry cohort nurture for Tech leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:35, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:34,delivered:32,opens:7,OR:21.88,clicks:4,CTR:12.50,CTOR:57.14,optOuts:0,bounces:2},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-consulting", label:"Quebec Bill 96 — Consulting",
+    desc:"Industry cohort nurture for Consulting leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:31, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:31,delivered:31,opens:3,OR:9.68,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-finance", label:"Quebec Bill 96 — Finance",
+    desc:"Industry cohort nurture for Finance leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:23, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:22,delivered:20,opens:1,OR:5.00,clicks:1,CTR:5.00,CTOR:100.00,optOuts:0,bounces:2},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-retail", label:"Quebec Bill 96 — Retail",
+    desc:"Industry cohort nurture for Retail leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:9, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:8,delivered:7,opens:4,OR:57.14,clicks:3,CTR:42.86,CTOR:75.00,optOuts:0,bounces:1},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  // ── NOT YET STARTED ──────────────────────────────────────
+  {
+    id:"bor-retail", label:"2026 Business Outlook Report — Retail",
+    desc:"Vertical-specific BOR nurture for Retail leads. Set up, not yet launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#003FC7", started:0, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
+    steps:[
+      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"bor-travel", label:"2026 Business Outlook Report — Travel",
+    desc:"Vertical-specific BOR nurture for Travel leads. Set up, not yet launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#003FC7", started:0, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
+    steps:[
+      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"black-friday", label:"Black Friday Retail",
+    desc:"Seasonal campaign nurture for Black Friday retail localization leads. Set up, not yet launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#03002C", started:0, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
+    steps:[
+      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   }
 ];
 
 var STATUS_CONFIG = {
-  active: {label:"Active",       dot:"#00966D", bg:"rgba(0,150,109,.1)",  text:"#00966D"},
-  early:  {label:"Early Stage",  dot:"#003FC7", bg:"rgba(0,63,199,.1)",   text:"#003FC7"},
-  watch:  {label:"Needs Review", dot:"#FA6419", bg:"rgba(250,100,25,.1)", text:"#FA6419"},
-  new:    {label:"Just Launched",dot:"#a0b4c8", bg:"rgba(160,180,200,.1)","text":"#6b8cae"}
+  live:   {label:"Live",   dot:"#00966D", bg:"rgba(0,150,109,.1)",   text:"#00966D"},
+  ended:  {label:"Ended",  dot:"#E53D2E", bg:"rgba(229,61,46,.1)",   text:"#E53D2E"}
 };
 
 var expandedCard = null;
@@ -1830,10 +2000,15 @@ function sparkBars(steps, color){
 }
 
 function renderCampNurture(){
-  var html = CAMP_NURTURES.map(function(n){
+  var sorted = CAMP_NURTURES.slice().sort(function(a,b){
+    if(a.status==="ended" && b.status!=="ended") return 1;
+    if(a.status!=="ended" && b.status==="ended") return -1;
+    return 0;
+  });
+  var html = sorted.map(function(n){
     var sc = STATUS_CONFIG[n.status];
     var activeSteps = n.steps.filter(function(s){return s.sent>0;});
-    var hasData = n.started >= 10 && activeSteps.length > 0;
+    var hasData = n.started >= 1 && activeSteps.length > 0 && activeSteps.some(function(s){return s.OR > 0;});
     var avgOR = hasData ? (activeSteps.reduce(function(a,b){return a+b.OR;},0)/activeSteps.length).toFixed(1) : null;
     var totalClicks = n.steps.reduce(function(a,b){return a+b.clicks;},0);
     var typeColors = {"Content Download":CI.B,"Re-engagement":CI.O,"LinkedIn Campaign":CI.P};
@@ -1877,11 +2052,11 @@ function renderCampNurture(){
         '<div class="cn-card-left">'+
           '<div class="cn-card-title">'+n.label+'</div>'+
           '<div class="cn-card-meta">'+
-            '<span class="cn-badge" style="background:'+rgba(typeColor,.1)+';color:'+typeColor+';">'+n.type+'</span>'+
+            '<span class="cn-badge" style="background:rgba(0,63,199,.08);color:var(--blue-primary);">'+escHtml(n.source)+'</span>'+
             '<span class="cn-badge" style="background:'+sc.bg+';color:'+sc.text+';">'+
               '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+sc.dot+';margin-right:4px;vertical-align:middle;"></span>'+
               sc.label+'</span>'+
-            '<span style="font-size:10px;color:var(--muted);">'+n.source+'</span>'+
+            (n.note?'<span style="font-size:10px;color:var(--muted);">'+escHtml(n.note)+'</span>':'')+
           '</div>'+
         '</div>'+
         '<div class="cn-card-stats">'+
