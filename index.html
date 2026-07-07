@@ -117,6 +117,7 @@ body{font-family:'Inter',sans-serif;background:var(--blue-wash);color:var(--text
 .pill.pW{background:var(--blue-primary);color:#fff;border-color:var(--blue-primary);}
 .pill.pN{background:var(--teal);color:#fff;border-color:var(--teal);}
 .pill.pE{background:var(--purple);color:#fff;border-color:var(--purple);}
+.pill.pO{background:var(--orange);color:#fff;border-color:var(--orange);}
 .custom-select{position:relative;user-select:none;}
 .custom-select-trigger{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:500;color:var(--muted);background:var(--white);cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;white-space:nowrap;}
 .custom-select-trigger:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
@@ -510,6 +511,7 @@ td{padding:10px 12px;}
       <button class="pill" id="pill-Webinar"    onclick="setType('Webinar')">Webinar</button>
       <button class="pill" id="pill-Newsletter" onclick="setType('Newsletter')">Newsletter</button>
       <button class="pill" id="pill-Event"      onclick="setType('Event')">Event</button>
+      <button class="pill" id="pill-Product"    onclick="setType('Product')">Product</button>
       <div class="fdivider"></div>
       <span class="filter-label">Month</span>
       <div class="custom-select" id="month-dropdown">
@@ -738,7 +740,8 @@ td{padding:10px 12px;}
         <span><span style="color:#3BBFB5">●</span> AI in Global Content</span>
         <span><span style="color:#FA6419">●</span> Office Hours</span>
         <span><span style="color:#6531CC">●</span> Product Roadmap</span>
-        <span><span style="color:#ec388a">●</span> AI Quality Governance</span>
+        <span><span style="color:#ec388a">●</span> AI Quality / AI Solutions</span>
+        <span><span style="color:#FA6419">●</span> GlobalLink Events</span>
       </div>
     </div>
 
@@ -1016,7 +1019,16 @@ var RAW = [
   {date:"May 21",month:"May",      type:"Newsletter",sent:33337,delivered:33279,uOpens:4719,OR:14.18,uClicks:476, CTR:1.43, CTOR:10.09,optOuts:20,oor:0.06,regs:16, subj:"Can your AI translation pass a quality audit?",series:"NL",seqN:9},
   {date:"May 21",month:"May",      type:"Newsletter",sent:77849,delivered:74204,uOpens:2719,OR:3.66, uClicks:859, CTR:1.16, CTOR:31.59,optOuts:36,oor:0.05,regs:2,  subj:"Can your AI translation pass a quality audit?",series:"NL",seqN:9,unengaged:true},
   {date:"May 22",month:"May",      type:"Webinar",   sent:124,  delivered:123,  uOpens:44,  OR:35.77,uClicks:18,  CTR:14.63,CTOR:40.91,optOuts:0, oor:0.00,regs:null,subj:"The recording's ready (plus what's coming June 1)",series:"RM",seqN:5},
-  {date:"May 26",month:"May",      type:"Webinar",   sent:37071,delivered:36991,uOpens:8710,OR:23.55,uClicks:2335,CTR:6.31, CTOR:26.81,optOuts:45,oor:0.12,regs:17, subj:"Register now: Prove your AI output is working",series:"AIQ",seqN:1}
+  {date:"May 26",month:"May",      type:"Webinar",   sent:37071,delivered:36991,uOpens:8710,OR:23.55,uClicks:2335,CTR:6.31, CTOR:26.81,optOuts:45,oor:0.12,regs:17, subj:"Register now: Prove your AI output is working",series:"AIQ",seqN:1},
+  {date:"Jun 2", month:"June",     type:"Webinar",   sent:37081,delivered:36892,uOpens:9188,OR:24.91,uClicks:1742,CTR:4.72, CTOR:18.96,optOuts:43,oor:0.12,regs:32, subj:"The AI roadmap behind the world's global brands. Register Now.",series:"AIQ2",seqN:1},
+  {date:"Jun 2", month:"June",     type:"Webinar",   sent:71,   delivered:70,   uOpens:28,  OR:40.00,uClicks:9,  CTR:12.86,CTOR:32.14,optOuts:0, oor:0.00,regs:2,  subj:"The recording is live. The roadmap is next.",series:"AIQ",seqN:2},
+  {date:"Jun 4", month:"June",     type:"Newsletter",sent:35366,delivered:35307,uOpens:5993,OR:16.97,uClicks:685,CTR:1.94, CTOR:11.43,optOuts:25,oor:0.07,regs:4,  subj:"Most AI roadmaps are slides. This one is live.",series:"NL",seqN:10},
+  {date:"Jun 9", month:"June",     type:"Webinar",   sent:36674,delivered:36626,uOpens:10962,OR:29.93,uClicks:1636,CTR:4.47,CTOR:14.92,optOuts:46,oor:0.13,regs:14, subj:"What could your team do with more time? Register to find out.",series:"AIQ2",seqN:2},
+  {date:"Jun 16",month:"June",     type:"Webinar",   sent:36026,delivered:35970,uOpens:7433,OR:20.66,uClicks:1921,CTR:5.34, CTOR:25.84,optOuts:31,oor:0.09,regs:12, subj:"Last chance: See what AI can unlock for your global content",series:"AIQ2",seqN:3},
+  {date:"Jun 16",month:"June",     type:"Product",   sent:3499, delivered:3308, uOpens:484, OR:14.63,uClicks:82, CTR:2.48, CTOR:16.94,optOuts:16,oor:0.48,regs:null,subj:"You're First: Meet GlobalLink Events",series:"GLEvent",seqN:1},
+  {date:"Jun 19",month:"June",     type:"Webinar",   sent:202,  delivered:201,  uOpens:68,  OR:33.83,uClicks:27, CTR:13.43,CTOR:39.71,optOuts:0, oor:0.00,regs:null,subj:"Your questions from yesterday's AI roadmap session",series:"AIQ2",seqN:4},
+  {date:"Jun 23",month:"June",     type:"Newsletter",sent:35762,delivered:35674,uOpens:7362,OR:20.64,uClicks:1624,CTR:4.55, CTOR:22.06,optOuts:28,oor:0.08,regs:null,subj:"GlobalLink One is here",series:"NL",seqN:11},
+  {date:"Jun 23",month:"June",     type:"Product",   sent:3297, delivered:3281, uOpens:853, OR:26.00,uClicks:67, CTR:2.04, CTOR:7.85, optOuts:11,oor:0.34,regs:null,subj:"A few spots left: founding pricing for GlobalLink Events",series:"GLEvent",seqN:2}
 ];
 
 var allData = RAW.map(function(d){return Object.assign({},d);});
@@ -1031,7 +1043,7 @@ var CI={
   G:  "#3EB236",  // green
   GR: "#D2E6FA",  // grid/border
 };
-var TYPE_C={Webinar:CI.B,Newsletter:CI.T,Event:CI.P};
+var TYPE_C={Webinar:CI.B,Newsletter:CI.T,Event:CI.P,Product:CI.O};
 var CHARTS={};
 
 // ─────────────────────── HELPERS ───────────────────────
@@ -1127,8 +1139,8 @@ function buildCharts(){
   }
 
   // Series chart
-  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P,AIQ:"#ec388a"};
-  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap","AIQ":"AI Quality Governance"};
+  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P,AIQ:"#ec388a",AIQ2:"#ec388a",GLEvent:"#FA6419"};
+  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap","AIQ":"AI Quality Governance","AIQ2":"AI Solutions Roadmap","GLEvent":"GlobalLink Events"};
   var groups={};
   Object.keys(serMap).forEach(function(k){groups[k]=[];});
   allData.filter(function(d){return d.sent>500;}).forEach(function(d){
@@ -1244,9 +1256,9 @@ function renderMonthPills(){
     menu.appendChild(div);
   });
   document.getElementById("month-selected-label").textContent = activeMon==="All"?"All Months":activeMon;
-  ["All","Webinar","Newsletter","Event"].forEach(function(t){
+  ["All","Webinar","Newsletter","Event","Product"].forEach(function(t){
     var el=document.getElementById("pill-"+t);if(!el)return;
-    var cls={All:"pA",Webinar:"pW",Newsletter:"pN",Event:"pE"};
+    var cls={All:"pA",Webinar:"pW",Newsletter:"pN",Event:"pE",Product:"pO"};
     el.className="pill"+(t===activeType?" "+cls[t]:"");
   });
 }
@@ -1324,7 +1336,7 @@ function renderContent(){
 
   // Theme table
   var themes=[
-    {name:"AI Governance & Office Hours", series:["AIR","OH","AIQ"], c:CI.BD},
+    {name:"AI Governance & Quality", series:["AIR","OH","AIQ","AIQ2"], c:CI.BD},
     {name:"China Website Compliance",     series:["China"],       c:CI.T},
     {name:"Translation Lives Everywhere", series:["Trans"],       c:CI.B},
     {name:"Product Roadmap",              series:["RM"],          c:CI.P},
