@@ -1794,7 +1794,7 @@ var CAMP_NURTURES = [
     desc:"Cold list + LinkedIn Ads. Anyone who downloads the Japan localization guide enrolls automatically.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + Apollo",
     color:"#00966D", started:777, completed:524, completedPct:67.44,
-    status:"live", note:null,
+    status:"ended", note:null,
     flags:["22.2% bounce rate on Email 1 — review list quality and Japan deliverability settings."],
     steps:[
       {name:"Email 1",sent:773,delivered:601,opens:138,OR:22.96,clicks:10,CTR:1.66,CTOR:7.25, optOuts:6,bounces:172},
@@ -1906,7 +1906,7 @@ var CAMP_NURTURES = [
     desc:"Shopify-specific ecommerce localization nurture.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign",
     color:"#6531CC", started:12, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
+    status:"paused", note:null, flags:[],
     steps:[
       {name:"Email 1",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
       {name:"Email 2",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
@@ -2002,6 +2002,7 @@ var CAMP_NURTURES = [
 
 var STATUS_CONFIG = {
   live:   {label:"Live",   dot:"#00966D", bg:"rgba(0,150,109,.1)",   text:"#00966D"},
+  paused: {label:"Paused", dot:"#F5A623", bg:"rgba(245,166,35,.1)",  text:"#C17D00"},
   ended:  {label:"Ended",  dot:"#E53D2E", bg:"rgba(229,61,46,.1)",   text:"#E53D2E"}
 };
 
@@ -2035,9 +2036,10 @@ function sparkBars(steps, color){
 
 function renderCampNurture(){
   var sorted = CAMP_NURTURES.slice().sort(function(a,b){
-    if(a.status==="ended" && b.status!=="ended") return 1;
-    if(a.status!=="ended" && b.status==="ended") return -1;
-    return 0;
+    var order = {live:0, paused:1, ended:2};
+    var ao = order[a.status] !== undefined ? order[a.status] : 1;
+    var bo = order[b.status] !== undefined ? order[b.status] : 1;
+    return ao - bo;
   });
   var html = sorted.map(function(n){
     var sc = STATUS_CONFIG[n.status];
