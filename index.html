@@ -1477,27 +1477,27 @@ function toggleDeepDive(){
 function renderInsights(){
   // Working items
   document.getElementById("ins-working").innerHTML=[
-    {num:"1", text:"Question & challenge subject lines", stat:"+15pp open rate vs. descriptive subjects · 3 of your top 5 openers use this"},
-    {num:"2", text:"Urgency language in the body copy", stat:"+7.1pp open rate when body includes 'tomorrow', 'last call', or a specific time"},
-    {num:"3", text:"Medium-length emails (150–250 words)", stat:"Highest CTR (9.2%) and CTOR (32%) vs. short or long formats"}
+    {num:"1", text:"Question & challenge subject lines", stat:"+15 point open rate vs. descriptive subjects · Jun 9 'What could your team do with more time?' hit 29.9% — question format still leading"},
+    {num:"2", text:"Urgency language in the body copy", stat:"+7.1 point open rate when body includes 'tomorrow', 'last call', or a specific time"},
+    {num:"3", text:"Medium-length emails (150–250 words)", stat:"Highest CTR (9.2%) and CTOR (32%) vs. short or long formats across all campaigns"}
   ].map(function(i){
     return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
   }).join("");
 
   // Fixing items
   document.getElementById("ins-fixing").innerHTML=[
-    {num:"1", text:"Newsletter CTOR is stuck at 22% average", stat:"Feb 19 proved 64.3% is possible — but it's the only one structured that way"},
-    {num:"2", text:"TOFU Email 2 has 0% CTR", stat:"Opens fine (23.7%) but nobody clicks — body or CTA needs a full rewrite"},
-    {num:"3", text:"'Webinar:' prefix subjects underperform every time", stat:"Still appearing in campaigns despite being your lowest open rate pattern"}
+    {num:"1", text:"Newsletter OR has been dropping — Jun 4 hit 17%, Jun 23 hit 20.6%", stat:"Both went to 35k+ list. May be a list composition issue, but the content angle may also be too abstract vs. Feb 19's bold POV hook"},
+    {num:"2", text:"TOFU Email 2 CTR is still near zero (0.7%)", stat:"Opens at 21.7% — people read it but don't click. Body copy or CTA needs a fresh angle before more leads progress through"},
+    {num:"3", text:"BOFU Emails 2–5 have 0% CTR despite strong opens", stat:"Email 2 now opens at 42% — highest in BOFU — but still no clicks. Mid-sequence CTAs need stronger intent signals"}
   ].map(function(i){
     return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
   }).join("");
 
   // Next actions
   document.getElementById("ins-next").innerHTML=[
-    {num:"1", text:"Rewrite TOFU Email 2 with a new angle and a clear CTA", stat:"Quick win — fix the 0% CTR problem in your always-on program"},
-    {num:"2", text:"Model next newsletter after Feb 19: POV headline + dated CTAs", stat:"Proven format — 3x the average CTOR when structured this way"},
-    {num:"3", text:"Use first-person expert voice for the next webinar series Email 1", stat:"Apr 28 pattern: named expert + personal observation = 34 registrations"}
+    {num:"1", text:"Rewrite TOFU Email 2 — new angle, new CTA", stat:"222 leads in TOFU, all hitting this wall. Highest-impact fix in the always-on program right now"},
+    {num:"2", text:"Review newsletter list composition for sends over 30k", stat:"Jun 4 and Jun 23 both underperformed at 35k+ — same content logic, larger colder list. Segment or warm up before next send"},
+    {num:"3", text:"Monitor AI Governance nurtures closely as emails begin firing", stat:"85k unengaged + LinkedIn cohort just launched — first open rates will set the benchmark for the new AIQ program"}
   ].map(function(i){
     return '<div class="ins-item"><div class="ins-item-num">'+i.num+'</div><div><div>'+i.text+'</div><div class="ins-item-stat">'+i.stat+'</div></div></div>';
   }).join("");
@@ -1624,41 +1624,41 @@ var NURTURE = {
     label:"TOFU", fullLabel:"Top of Funnel",
     score:"Score < 50",
     color:"#6531CC", bg:"#EBE0FF",
-    started:184, completed:63, completedPct:34.24,
+    started:222, completed:77, completedPct:34.68,
     steps:[
-      {name:"Email 1",sent:136,delivered:122,opens:25,OR:20.49,clicks:5,CTR:4.10,CTOR:20.00,optOuts:1,bounces:14},
-      {name:"Email 2",sent:114,delivered:103,opens:24,OR:23.30,clicks:0,CTR:0.00,CTOR:0.00, optOuts:1,bounces:11},
-      {name:"Email 3",sent:97, delivered:86, opens:20,OR:23.26,clicks:5,CTR:5.81,CTOR:25.00,optOuts:0,bounces:11},
-      {name:"Email 4",sent:83, delivered:79, opens:10,OR:12.66,clicks:1,CTR:1.27,CTOR:10.00,optOuts:0,bounces:4},
-      {name:"Email 5",sent:68, delivered:66, opens:9, OR:13.64,clicks:1,CTR:1.52,CTOR:11.11,optOuts:0,bounces:2},
-      {name:"Email 6",sent:63, delivered:61, opens:13,OR:21.31,clicks:4,CTR:6.56,CTOR:30.77,optOuts:0,bounces:2}
+      {name:"Email 1",sent:177,delivered:163,opens:30,OR:18.40,clicks:5,CTR:3.07,CTOR:16.67,optOuts:1,bounces:14},
+      {name:"Email 2",sent:154,delivered:143,opens:31,OR:21.68,clicks:1,CTR:0.70,CTOR:3.23, optOuts:1,bounces:11},
+      {name:"Email 3",sent:122,delivered:111,opens:27,OR:24.32,clicks:6,CTR:5.41,CTOR:22.22,optOuts:0,bounces:11},
+      {name:"Email 4",sent:102,delivered:97, opens:14,OR:14.43,clicks:1,CTR:1.03,CTOR:7.14, optOuts:0,bounces:5},
+      {name:"Email 5",sent:86, delivered:84, opens:10,OR:11.90,clicks:1,CTR:1.19,CTOR:10.00,optOuts:0,bounces:2},
+      {name:"Email 6",sent:74, delivered:72, opens:13,OR:18.06,clicks:4,CTR:5.56,CTOR:30.77,optOuts:0,bounces:2}
     ]
   },
   mofu: {
     label:"MOFU", fullLabel:"Middle of Funnel",
     score:"Score 50–75",
     color:"#003FC7", bg:"#D2E6FA",
-    started:61, completed:14, completedPct:22.95,
+    started:74, completed:22, completedPct:29.73,
     steps:[
-      {name:"Email 1",sent:48,delivered:46,opens:13,OR:28.26,clicks:5,CTR:10.87,CTOR:38.46,optOuts:0,bounces:2},
-      {name:"Email 2",sent:39,delivered:38,opens:8, OR:21.05,clicks:4,CTR:10.53,CTOR:50.00,optOuts:0,bounces:1},
-      {name:"Email 3",sent:27,delivered:26,opens:7, OR:26.92,clicks:1,CTR:3.85, CTOR:14.29,optOuts:0,bounces:1},
-      {name:"Email 4",sent:22,delivered:22,opens:4, OR:18.18,clicks:2,CTR:9.09, CTOR:50.00,optOuts:0,bounces:0},
-      {name:"Email 5",sent:21,delivered:17,opens:5, OR:29.41,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
-      {name:"Email 6",sent:16,delivered:16,opens:8, OR:50.00,clicks:4,CTR:25.00,CTOR:50.00,optOuts:0,bounces:0}
+      {name:"Email 1",sent:66,delivered:63,opens:17,OR:26.98,clicks:5,CTR:7.94, CTOR:29.41,optOuts:0,bounces:3},
+      {name:"Email 2",sent:57,delivered:56,opens:11,OR:19.64,clicks:4,CTR:7.14, CTOR:36.36,optOuts:0,bounces:1},
+      {name:"Email 3",sent:47,delivered:46,opens:12,OR:26.09,clicks:1,CTR:2.17, CTOR:8.33, optOuts:0,bounces:1},
+      {name:"Email 4",sent:41,delivered:41,opens:8, OR:19.51,clicks:2,CTR:4.88, CTOR:25.00,optOuts:0,bounces:0},
+      {name:"Email 5",sent:37,delivered:33,opens:6, OR:18.18,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
+      {name:"Email 6",sent:25,delivered:25,opens:8, OR:32.00,clicks:4,CTR:16.00,CTOR:50.00,optOuts:0,bounces:0}
     ]
   },
   bofu: {
     label:"BOFU", fullLabel:"Bottom of Funnel",
     score:"Score > 75",
     color:"#00966D", bg:"#D0F5EE",
-    started:32, completed:2, completedPct:6.25,
+    started:38, completed:4, completedPct:10.53,
     steps:[
-      {name:"Email 1",sent:27,delivered:27,opens:10,OR:37.04,clicks:8,CTR:29.63,CTOR:80.00,optOuts:0,bounces:0},
-      {name:"Email 2",sent:14,delivered:14,opens:4, OR:28.57,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 3",sent:13,delivered:13,opens:2, OR:15.38,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 4",sent:7,  delivered:6, opens:2, OR:33.33,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 5",sent:2,  delivered:2, opens:0, OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:32,delivered:32,opens:11,OR:34.38,clicks:9,CTR:28.13,CTOR:81.82,optOuts:0,bounces:0},
+      {name:"Email 2",sent:19,delivered:19,opens:8, OR:42.11,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 3",sent:18,delivered:18,opens:4, OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 4",sent:11,delivered:10,opens:4, OR:40.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 5",sent:8,  delivered:8, opens:0, OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
     ]
   }
 };
@@ -1695,14 +1695,14 @@ function renderNurture(){
   // Insights
   document.getElementById("nurture-insights").innerHTML=
     '<div class="ni-card"><div class="ni-label">🔍 TOFU Drop-off</div>'+
-    '<div class="ni-finding">Open rate holds around 20–23% at Emails 1–3, then drops to <strong>12–13%</strong> at Emails 4–5 before recovering at Email 6 (21%). Classic mid-sequence fatigue.</div>'+
-    '<div class="ni-alert">Email 2 still has 0% CTR — opened by 24 people but nobody clicks. Body copy or CTA needs a full rewrite.</div></div>'+
+    '<div class="ni-finding">Open rate starts at 18.4% and holds around 21–24% at Emails 2–3, then drops to <strong>12–18%</strong> at Emails 4–6. Email 2 CTR improved to 0.7% but still the weakest click step — body copy needs a fresh angle.</div>'+
+    '<div class="ni-alert">Email 2 CTR remains very low (0.7%) despite decent opens. Still the priority rewrite in TOFU.</div></div>'+
     '<div class="ni-card"><div class="ni-label">⭐ MOFU Standout</div>'+
-    '<div class="ni-finding">MOFU Email 6 hits a <strong>50% open rate</strong> and <strong>50% CTOR</strong> — best nurture email across all stages. Dig into what makes it different and replicate the pattern earlier in the sequence.</div>'+
-    '<div class="ni-good">MOFU has consistently strong engagement across all 6 emails — these leads are highly qualified and responding well.</div></div>'+
+    '<div class="ni-finding">MOFU Email 6 holds at <strong>32% open rate</strong> and <strong>50% CTOR</strong> — consistently the best nurture email across all stages. MOFU is growing (74 enrolled, up from 61) and completion is healthy at 29.7%.</div>'+
+    '<div class="ni-good">MOFU Email 5 still has 0% CTR — the same pattern as TOFU Email 2. Review the CTA and body copy in this step.</div></div>'+
     '<div class="ni-card"><div class="ni-label">🎯 BOFU Signal</div>'+
-    '<div class="ni-finding">BOFU Email 1 has an <strong>80% CTOR</strong> — the highest click-to-open rate of any email across the entire program. Only 2 of 32 complete the full sequence.</div>'+
-    '<div class="ni-good">Low BOFU completion is a positive sign — most leads are likely converting to MQL or sales before they finish the sequence, which is exactly what you want.</div></div>';
+    '<div class="ni-finding">BOFU Email 2 now has a <strong>42.1% open rate</strong> — up significantly from 28.6%. Email 1 CTOR is 81.8%. Program has grown to 38 enrolled with 4 completions (10.5%).</div>'+
+    '<div class="ni-good">BOFU Emails 2–5 still have 0% CTR — high opens but no clicks after Email 1. The sequence may need stronger mid-funnel CTAs to keep converting.</div></div>';
 
   // Stage tables
   document.getElementById("nurture-stages").innerHTML=stages.map(function(s){
@@ -1749,13 +1749,12 @@ function renderNurture(){
 
 // ── CAMPAIGN NURTURES DATA ──────────────────────────────
 var CAMP_NURTURES = [
-  // ── ACTIVE PROGRAMS ──────────────────────────────────────
   {
     id:"bor", label:"2026 Business Outlook Report",
     desc:"Content download nurture — leads who downloaded the 2026 Business Outlook Report.",
     type:"Website Download", source:"Website Download",
-    color:"#003FC7", started:74, completed:43, completedPct:58.11,
-    status:"live", note:null, flags:[],
+    color:"#003FC7", started:83, completed:43, completedPct:58.11,
+    status:"ended", note:null, flags:[],
     steps:[
       {name:"Email 1",sent:66,delivered:64,opens:13,OR:20.31,clicks:4,CTR:6.25, CTOR:30.77,optOuts:0,bounces:2},
       {name:"Email 2",sent:55,delivered:55,opens:12,OR:21.82,clicks:3,CTR:5.45, CTOR:25.00,optOuts:0,bounces:0},
@@ -1804,7 +1803,186 @@ var CAMP_NURTURES = [
       {name:"Email 4",sent:543,delivered:537,opens:81, OR:15.08,clicks:2, CTR:0.37,CTOR:2.47, optOuts:2,bounces:6}
     ]
   },
-  // ── EARLY STAGE ──────────────────────────────────────────
+  {
+    id:"qb96-marketing", label:"Quebec Bill 96 — Marketing",
+    desc:"Industry cohort nurture for Marketing leads. Email 1 was sent to an engaged Pardot segment with Marketing job titles — enrolled during summer to keep warm audience active.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI + Current Database",
+    color:"#ec388a", started:17894, completed:0, completedPct:0,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:17753,delivered:17665,opens:4387,OR:24.83,clicks:1035,CTR:5.86,CTOR:23.59,optOuts:23,bounces:88},
+      {name:"Email 2",sent:123, delivered:117,  opens:35,  OR:29.91,clicks:24,  CTR:20.51,CTOR:68.57,optOuts:0, bounces:6},
+      {name:"Email 3",sent:116, delivered:115,  opens:31,  OR:26.96,clicks:16,  CTR:13.91,CTOR:51.61,optOuts:1, bounces:1},
+      {name:"Email 4",sent:111, delivered:111,  opens:17,  OR:15.32,clicks:9,   CTR:8.11, CTOR:52.94,optOuts:1, bounces:0},
+      {name:"Email 5",sent:105, delivered:105,  opens:26,  OR:24.76,clicks:11,  CTR:10.48,CTOR:42.31,optOuts:0, bounces:0}
+    ]
+  },
+  {
+    id:"qb96-manufacturing", label:"Quebec Bill 96 — Manufacturing",
+    desc:"Industry cohort nurture for Manufacturing leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:110, completed:0, completedPct:0,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:100,delivered:97, opens:11,OR:11.34,clicks:2,CTR:2.06,CTOR:18.18,optOuts:0,bounces:3},
+      {name:"Email 2",sent:95, delivered:84, opens:17,OR:20.24,clicks:8,CTR:9.52,CTOR:47.06,optOuts:0,bounces:11},
+      {name:"Email 3",sent:83, delivered:82, opens:22,OR:26.83,clicks:7,CTR:8.54,CTOR:31.82,optOuts:1,bounces:1},
+      {name:"Email 4",sent:82, delivered:80, opens:20,OR:25.00,clicks:8,CTR:10.00,CTOR:40.00,optOuts:0,bounces:2},
+      {name:"Email 5",sent:80, delivered:78, opens:6, OR:7.69, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:2}
+    ]
+  },
+  {
+    id:"qb96-tech", label:"Quebec Bill 96 — Tech",
+    desc:"Industry cohort nurture for Tech leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:46, completed:0, completedPct:0,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:36,delivered:34,opens:7, OR:20.59,clicks:4,CTR:11.76,CTOR:57.14,optOuts:0,bounces:2},
+      {name:"Email 2",sent:34,delivered:34,opens:13,OR:38.24,clicks:1,CTR:2.94, CTOR:7.69, optOuts:0,bounces:0},
+      {name:"Email 3",sent:33,delivered:32,opens:12,OR:37.50,clicks:4,CTR:12.50,CTOR:33.33,optOuts:0,bounces:1},
+      {name:"Email 4",sent:32,delivered:32,opens:9, OR:28.13,clicks:3,CTR:9.38, CTOR:33.33,optOuts:0,bounces:0},
+      {name:"Email 5",sent:32,delivered:32,opens:9, OR:28.13,clicks:4,CTR:12.50,CTOR:44.44,optOuts:1,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-consulting", label:"Quebec Bill 96 — Consulting",
+    desc:"Industry cohort nurture for Consulting leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:45, completed:29, completedPct:64.44,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:36,delivered:36,opens:3,OR:8.33, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 2",sent:34,delivered:33,opens:2,OR:6.06, clicks:1,CTR:3.03,CTOR:50.00,optOuts:0,bounces:1},
+      {name:"Email 3",sent:33,delivered:32,opens:3,OR:9.38, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 4",sent:30,delivered:30,opens:4,OR:13.33,clicks:2,CTR:6.67,CTOR:50.00,optOuts:0,bounces:0},
+      {name:"Email 5",sent:29,delivered:29,opens:2,OR:6.90, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-finance", label:"Quebec Bill 96 — Finance",
+    desc:"Industry cohort nurture for Finance leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:33, completed:0, completedPct:0,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:23,delivered:21,opens:1,OR:4.76, clicks:1,CTR:4.76,CTOR:100.00,optOuts:0,bounces:2},
+      {name:"Email 2",sent:20,delivered:20,opens:5,OR:25.00,clicks:0,CTR:0.00,CTOR:0.00,  optOuts:0,bounces:0},
+      {name:"Email 3",sent:20,delivered:20,opens:7,OR:35.00,clicks:1,CTR:5.00,CTOR:14.29, optOuts:0,bounces:0},
+      {name:"Email 4",sent:20,delivered:20,opens:3,OR:15.00,clicks:1,CTR:5.00,CTOR:33.33, optOuts:0,bounces:0},
+      {name:"Email 5",sent:20,delivered:20,opens:3,OR:15.00,clicks:1,CTR:5.00,CTOR:33.33, optOuts:1,bounces:0}
+    ]
+  },
+  {
+    id:"qb96-retail", label:"Quebec Bill 96 — Retail",
+    desc:"Industry cohort nurture for Retail leads around Quebec Bill 96 compliance.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
+    color:"#ec388a", started:21, completed:0, completedPct:0,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:11,delivered:10,opens:5,OR:50.00,clicks:3,CTR:30.00,CTOR:60.00,optOuts:0,bounces:1},
+      {name:"Email 2",sent:8, delivered:4, opens:3,OR:75.00,clicks:2,CTR:50.00,CTOR:66.67,optOuts:0,bounces:4},
+      {name:"Email 3",sent:4, delivered:4, opens:2,OR:50.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 4",sent:3, delivered:3, opens:1,OR:33.33,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 5",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"ecommerce", label:"Website Localization for Ecommerce",
+    desc:"LinkedIn Ads campaign nurture for ecommerce localization leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#6531CC", started:11, completed:1, completedPct:9.09,
+    status:"ended", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"ecommerce-shopify", label:"Website Localization for Ecommerce — Shopify",
+    desc:"Shopify-specific ecommerce localization nurture.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#6531CC", started:12, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"black-friday", label:"Black Friday Retail",
+    desc:"Seasonal campaign nurture for Black Friday retail localization leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#03002C", started:14, completed:3, completedPct:21.43,
+    status:"live", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:14,delivered:14,opens:2,OR:14.29,clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 2",sent:11,delivered:11,opens:1,OR:9.09, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
+      {name:"Email 3",sent:4, delivered:4, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0},
+      {name:"Email 4",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0},
+      {name:"Email 5",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"bor-retail", label:"2026 Business Outlook Report — Retail",
+    desc:"Vertical-specific BOR nurture for Retail leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#003FC7", started:12, completed:0, completedPct:0,
+    status:"ended", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:3,delivered:3,opens:1,OR:33.33,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 2",sent:2,delivered:2,opens:1,OR:50.00,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 3",sent:1,delivered:1,opens:1,OR:100.0,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,    clicks:0,CTR:0,   CTOR:null, optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"bor-travel", label:"2026 Business Outlook Report — Travel",
+    desc:"Vertical-specific BOR nurture for Travel leads.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#003FC7", started:15, completed:0, completedPct:0,
+    status:"ended", note:null, flags:[],
+    steps:[
+      {name:"Email 1",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  // ── AI GOVERNANCE NURTURES (NEW) ─────────────────────────
+  {
+    id:"aig-linkedin", label:"AI Governance — LinkedIn",
+    desc:"LinkedIn Campaign nurture for AI governance leads. Just launched.",
+    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
+    color:"#ec388a", started:0, completed:0, completedPct:0,
+    status:"live", note:"Just Launched", flags:[],
+    steps:[
+      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  {
+    id:"aig-unengaged", label:"AI Governance — Unengaged Audiences",
+    desc:"Re-engagement nurture targeting unengaged contacts around AI governance. Just launched.",
+    type:"Current Database", source:"Current Database",
+    color:"#FA6419", started:85696, completed:0, completedPct:0,
+    status:"live", note:"Just Launched",
+    flags:["Cold list — benchmark open rate is 8–12%. Do not compare to warm nurtures."],
+    steps:[
+      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+    ]
+  },
+  // ── ENDED ────────────────────────────────────────────────
   {
     id:"taaf", label:"Translation as a Feature (TaaF)",
     desc:"LinkedIn Ads campaign nurture for TaaF leads.",
@@ -1818,162 +1996,6 @@ var CAMP_NURTURES = [
       {name:"Email 3",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
       {name:"Email 4",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
       {name:"Email 5",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"ecommerce", label:"Website Localization for Ecommerce",
-    desc:"LinkedIn Ads campaign nurture for ecommerce localization leads.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#6531CC", started:1, completed:0, completedPct:0,
-    status:"live", note:"Just Launched",
-    flags:["Only 1 lead enrolled — campaign is still ramping."],
-    steps:[
-      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"ecommerce-shopify", label:"Website Localization for Ecommerce — Shopify",
-    desc:"Shopify-specific ecommerce localization nurture. Just launched.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#6531CC", started:1, completed:0, completedPct:0,
-    status:"live", note:"Just Launched",
-    flags:["Only 1 lead enrolled — just launched."],
-    steps:[
-      {name:"Email 1",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  // ── QUEBEC BILL 96 COHORTS ────────────────────────────────
-  {
-    id:"qb96-marketing", label:"Quebec Bill 96 — Marketing",
-    desc:"Industry cohort nurture for Marketing leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:128, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:123,delivered:119,opens:21,OR:17.65,clicks:15,CTR:12.61,CTOR:71.43,optOuts:0,bounces:4},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"qb96-manufacturing", label:"Quebec Bill 96 — Manufacturing",
-    desc:"Industry cohort nurture for Manufacturing leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:97, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:97,delivered:94,opens:11,OR:11.70,clicks:2,CTR:2.13,CTOR:18.18,optOuts:0,bounces:3},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"qb96-tech", label:"Quebec Bill 96 — Tech",
-    desc:"Industry cohort nurture for Tech leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:35, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:34,delivered:32,opens:7,OR:21.88,clicks:4,CTR:12.50,CTOR:57.14,optOuts:0,bounces:2},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"qb96-consulting", label:"Quebec Bill 96 — Consulting",
-    desc:"Industry cohort nurture for Consulting leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:31, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:31,delivered:31,opens:3,OR:9.68,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"qb96-finance", label:"Quebec Bill 96 — Finance",
-    desc:"Industry cohort nurture for Finance leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:23, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:22,delivered:20,opens:1,OR:5.00,clicks:1,CTR:5.00,CTOR:100.00,optOuts:0,bounces:2},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"qb96-retail", label:"Quebec Bill 96 — Retail",
-    desc:"Industry cohort nurture for Retail leads around Quebec Bill 96 compliance.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:9, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:[],
-    steps:[
-      {name:"Email 1",sent:8,delivered:7,opens:4,OR:57.14,clicks:3,CTR:42.86,CTOR:75.00,optOuts:0,bounces:1},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  // ── NOT YET STARTED ──────────────────────────────────────
-  {
-    id:"bor-retail", label:"2026 Business Outlook Report — Retail",
-    desc:"Vertical-specific BOR nurture for Retail leads. Set up, not yet launched.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#003FC7", started:0, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
-    steps:[
-      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"bor-travel", label:"2026 Business Outlook Report — Travel",
-    desc:"Vertical-specific BOR nurture for Travel leads. Set up, not yet launched.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#003FC7", started:0, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
-    steps:[
-      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
-    ]
-  },
-  {
-    id:"black-friday", label:"Black Friday Retail",
-    desc:"Seasonal campaign nurture for Black Friday retail localization leads. Set up, not yet launched.",
-    type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#03002C", started:0, completed:0, completedPct:0,
-    status:"live", note:"Just Launched", flags:["No leads enrolled yet — program is set up but not launched."],
-    steps:[
-      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   }
 ];
