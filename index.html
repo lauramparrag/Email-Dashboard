@@ -1028,7 +1028,43 @@ var RAW = [
   {date:"Jun 16",month:"June",     type:"Product",   sent:3499, delivered:3308, uOpens:484, OR:14.63,uClicks:82, CTR:2.48, CTOR:16.94,optOuts:16,oor:0.48,regs:null,subj:"You're First: Meet GlobalLink Events",series:"GLEvent",seqN:1},
   {date:"Jun 19",month:"June",     type:"Webinar",   sent:202,  delivered:201,  uOpens:68,  OR:33.83,uClicks:27, CTR:13.43,CTOR:39.71,optOuts:0, oor:0.00,regs:null,subj:"Your questions from yesterday's AI roadmap session",series:"AIQ2",seqN:4},
   {date:"Jun 23",month:"June",     type:"Newsletter",sent:35762,delivered:35674,uOpens:7362,OR:20.64,uClicks:1624,CTR:4.55, CTOR:22.06,optOuts:28,oor:0.08,regs:null,subj:"GlobalLink One is here",series:"NL",seqN:11},
-  {date:"Jun 23",month:"June",     type:"Product",   sent:3297, delivered:3281, uOpens:853, OR:26.00,uClicks:67, CTR:2.04, CTOR:7.85, optOuts:11,oor:0.34,regs:null,subj:"A few spots left: founding pricing for GlobalLink Events",series:"GLEvent",seqN:2}
+  {date:"Jun 23",month:"June",     type:"Product",   sent:3297, delivered:3281, uOpens:853, OR:26.00,uClicks:67,  CTR:2.04, CTOR:7.85, optOuts:11,oor:0.34,regs:null,subj:"A few spots left: founding pricing for GlobalLink Events",series:"GLEvent",seqN:2},
+
+  // ── JULY ───────────────────────────────────────────────────
+  // Newsletter A/B test — A variant (test cell)
+  {date:"Jul 9", month:"July",     type:"Newsletter",sent:4836, delivered:2478, uOpens:630, OR:25.42,uClicks:239, CTR:9.64, CTOR:37.94,optOuts:4, oor:0.08,regs:null,subj:"AI is everywhere. Here's the part nobody has figured out yet.",series:"NL",seqN:12,abTest:"A"},
+  // Newsletter B variant (test cell)
+  {date:"Jul 9", month:"July",     type:"Newsletter",sent:4835, delivered:2432, uOpens:641, OR:26.36,uClicks:215, CTR:8.84, CTOR:33.54,optOuts:3, oor:0.06,regs:null,subj:"How to prevent the 2 AM compliance panic attack",series:"NL",seqN:12,abTest:"B"},
+  // Newsletter winner send
+  {date:"Jul 9", month:"July",     type:"Newsletter",sent:29733,delivered:15271,uOpens:3896,OR:25.51,uClicks:1186,CTR:7.77, CTOR:30.44,optOuts:16,oor:0.05,regs:null,subj:"AI is everywhere. Here's the part nobody has figured out yet.",series:"NL",seqN:12},
+  // Newsletter unengaged
+  {date:"Jul 9", month:"July",     type:"Newsletter",sent:84649,delivered:63304,uOpens:1205,OR:1.90, uClicks:341, CTR:0.54, CTOR:28.30,optOuts:26,oor:0.03,regs:null,subj:"How to prevent the 2 AM compliance panic attack",series:"NL",seqN:12,unengaged:true},
+
+  // GL NEXT + TPT NEXT events — Jul 16
+  {date:"Jul 16",month:"July",     type:"Event",     sent:593,  delivered:341,  uOpens:41,  OR:12.02,uClicks:6,   CTR:1.76, CTOR:14.63,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — Games",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:15751,delivered:8672, uOpens:734, OR:8.46, uClicks:76,  CTR:0.88, CTOR:10.35,optOuts:15,oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Finance",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:1010, delivered:612,  uOpens:127, OR:20.75,uClicks:11,  CTR:1.80, CTOR:8.66, optOuts:1, oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Experience",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:4347, delivered:2386, uOpens:245, OR:10.27,uClicks:43,  CTR:1.80, CTOR:17.55,optOuts:3, oor:0.07,regs:null,subj:"TransPerfect NEXT EMEA — Digital",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:73,   delivered:47,   uOpens:7,   OR:14.89,uClicks:1,   CTR:2.13, CTOR:14.29,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce Research",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:12615,delivered:6886, uOpens:862, OR:12.52,uClicks:100, CTR:1.45, CTOR:11.60,optOuts:13,oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Life Sciences",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:712,  delivered:452,  uOpens:56,  OR:12.39,uClicks:3,   CTR:0.66, CTOR:5.36, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce AI/ML",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:688,  delivered:429,  uOpens:64,  OR:14.92,uClicks:8,   CTR:1.86, CTOR:12.50,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — eLearning",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:3030, delivered:1889, uOpens:349, OR:18.48,uClicks:68,  CTR:3.60, CTOR:19.48,optOuts:4, oor:0.13,regs:null,subj:"GlobalLink NEXT EMEA — Media",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:1048, delivered:605,  uOpens:140, OR:23.14,uClicks:7,   CTR:1.16, CTOR:5.00, optOuts:2, oor:0.19,regs:null,subj:"GlobalLink NEXT EMEA — GlobalLink",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:85877,delivered:61528,uOpens:4089,OR:6.65, uClicks:890, CTR:1.45, CTOR:21.77,optOuts:48,oor:0.06,regs:null,subj:"GlobalLink NEXT USA — GlobalLink",series:"NEXT",seqN:1},
+
+  // GL NEXT + TPT NEXT events — Jul 23
+  {date:"Jul 23",month:"July",     type:"Event",     sent:12139,delivered:11625,uOpens:1124,OR:9.67, uClicks:234, CTR:2.01, CTOR:20.82,optOuts:29,oor:0.24,regs:null,subj:"TransPerfect NEXT EMEA — Finance E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:611,  delivered:606,  uOpens:214, OR:35.31,uClicks:9,   CTR:1.49, CTOR:4.21, optOuts:3, oor:0.49,regs:null,subj:"GlobalLink NEXT EMEA — GlobalLink E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:2995, delivered:2950, uOpens:571, OR:19.36,uClicks:54,  CTR:1.83, CTOR:9.46, optOuts:14,oor:0.47,regs:null,subj:"TransPerfect NEXT EMEA — Media E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:997,  delivered:985,  uOpens:186, OR:18.88,uClicks:17,  CTR:1.73, CTOR:9.14, optOuts:3, oor:0.30,regs:null,subj:"TransPerfect NEXT EMEA — Experience E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:65,   delivered:65,   uOpens:10,  OR:15.38,uClicks:0,   CTR:0.00, CTOR:0.00, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce Research E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:716,  delivered:708,  uOpens:119, OR:16.81,uClicks:10,  CTR:1.41, CTOR:8.40, optOuts:3, oor:0.42,regs:null,subj:"TransPerfect NEXT EMEA — DataForce AI/ML E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:650,  delivered:628,  uOpens:91,  OR:14.49,uClicks:9,   CTR:1.43, CTOR:9.89, optOuts:3, oor:0.46,regs:null,subj:"TransPerfect NEXT EMEA — eLearning E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:11938,delivered:11765,uOpens:1714,OR:14.57,uClicks:137, CTR:1.16, CTOR:7.99, optOuts:32,oor:0.27,regs:null,subj:"TransPerfect NEXT EMEA — Life Sciences E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:482,  delivered:459,  uOpens:57,  OR:12.42,uClicks:3,   CTR:0.65, CTOR:5.26, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — Games E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:78471,delivered:77252,uOpens:6117,OR:7.92, uClicks:1268,CTR:1.64, CTOR:20.73,optOuts:89,oor:0.11,regs:null,subj:"GlobalLink NEXT USA — GlobalLink E2",series:"NEXT",seqN:2},
+  {date:"Jul 30",month:"July",     type:"Newsletter",sent:42387,delivered:42235,uOpens:7241,OR:17.14,uClicks:1188,CTR:2.81, CTOR:16.41,optOuts:48,oor:0.11,regs:null,subj:"The AI questions nobody is answering yet",series:"NL",seqN:13}
 ];
 
 var allData = RAW.map(function(d){return Object.assign({},d);});
@@ -1062,7 +1098,7 @@ function filtered(){
   return allData
     .filter(function(d){return activeType==="All"||d.type===activeType;})
     .filter(function(d){return activeMon==="All"||d.month===activeMon;})
-    .filter(function(d){return !d.unengaged;});
+    .filter(function(d){return !d.unengaged && !d.abTest;});
 }
 function bigList(){return filtered().filter(function(d){return d.sent>500;});}
 // Full list including unengaged — used only for the table display
@@ -1139,8 +1175,8 @@ function buildCharts(){
   }
 
   // Series chart
-  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P,AIQ:"#ec388a",AIQ2:"#ec388a",GLEvent:"#FA6419"};
-  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap","AIQ":"AI Quality Governance","AIQ2":"AI Solutions Roadmap","GLEvent":"GlobalLink Events"};
+  var serMap={China:CI.BD,Trans:CI.B,AIR:CI.T,OH:CI.O,RM:CI.P,AIQ:"#ec388a",AIQ2:"#ec388a",GLEvent:CI.O,NEXT:CI.P};
+  var serLabels={"China":"China Website","Trans":"Translation Lives Everywhere","AIR":"AI in Global Content","OH":"Office Hours","RM":"Product Roadmap","AIQ":"AI Quality Governance","AIQ2":"AI Solutions Roadmap","GLEvent":"GlobalLink Events","NEXT":"GL NEXT / TPT NEXT"};
   var groups={};
   Object.keys(serMap).forEach(function(k){groups[k]=[];});
   allData.filter(function(d){return d.sent>500;}).forEach(function(d){
@@ -1214,8 +1250,8 @@ function renderTable(){
     var ooC=r.unengaged?"#a0b4c8":mColor(r.oor,oors,true);
     var rCell=r.regs===null?'<td style="color:#d0dde9;font-size:11px;text-align:center;">—</td>':
       '<td style="font-weight:700;color:'+mColor(r.regs,regArr,false)+';font-size:12px;text-align:center;">'+r.regs+'</td>';
-    var badge=r.unengaged?'<span style="font-size:9px;font-weight:700;background:rgba(160,180,200,.15);color:#a0b4c8;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;">re-engagement</span>':'';
-    return '<tr style="'+(r.unengaged?"opacity:0.6;":"")+'">'+
+    var badge=r.unengaged?'<span style="font-size:9px;font-weight:700;background:rgba(160,180,200,.15);color:#a0b4c8;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;">re-engagement</span>':r.abTest?'<span style="font-size:9px;font-weight:700;background:rgba(101,49,204,.12);color:#6531CC;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;">A/B '+r.abTest+'</span>':'';
+    return '<tr style="'+(r.unengaged||r.abTest?"opacity:0.6;":"")+'">'+
       '<td style="color:#a0b4c8;font-size:11px;white-space:nowrap;">'+r.date+'</td>'+
       '<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;" title="'+r.subj+'">'+r.subj+badge+'</td>'+
       '<td><span class="badge" style="background:'+rgba(tc,.1)+';color:'+tc+';">'+r.type+'</span></td>'+
@@ -1624,41 +1660,41 @@ var NURTURE = {
     label:"TOFU", fullLabel:"Top of Funnel",
     score:"Score < 50",
     color:"#6531CC", bg:"#EBE0FF",
-    started:222, completed:77, completedPct:34.68,
+    started:251, completed:91, completedPct:36.25,
     steps:[
-      {name:"Email 1",sent:177,delivered:163,opens:30,OR:18.40,clicks:5,CTR:3.07,CTOR:16.67,optOuts:1,bounces:14},
-      {name:"Email 2",sent:154,delivered:143,opens:31,OR:21.68,clicks:1,CTR:0.70,CTOR:3.23, optOuts:1,bounces:11},
-      {name:"Email 3",sent:122,delivered:111,opens:27,OR:24.32,clicks:6,CTR:5.41,CTOR:22.22,optOuts:0,bounces:11},
-      {name:"Email 4",sent:102,delivered:97, opens:14,OR:14.43,clicks:1,CTR:1.03,CTOR:7.14, optOuts:0,bounces:5},
-      {name:"Email 5",sent:86, delivered:84, opens:10,OR:11.90,clicks:1,CTR:1.19,CTOR:10.00,optOuts:0,bounces:2},
-      {name:"Email 6",sent:74, delivered:72, opens:13,OR:18.06,clicks:4,CTR:5.56,CTOR:30.77,optOuts:0,bounces:2}
+      {name:"Email 1",sent:199,delivered:184,opens:31,OR:16.85,clicks:5,CTR:2.72,CTOR:16.13,optOuts:1,bounces:15},
+      {name:"Email 2",sent:172,delivered:157,opens:35,OR:22.29,clicks:2,CTR:1.27,CTOR:5.71, optOuts:1,bounces:15},
+      {name:"Email 3",sent:148,delivered:134,opens:28,OR:20.90,clicks:6,CTR:4.48,CTOR:21.43,optOuts:0,bounces:14},
+      {name:"Email 4",sent:129,delivered:124,opens:18,OR:14.52,clicks:1,CTR:0.81,CTOR:5.56, optOuts:0,bounces:5},
+      {name:"Email 5",sent:96, delivered:92, opens:11,OR:11.96,clicks:1,CTR:1.09,CTOR:9.09, optOuts:0,bounces:4},
+      {name:"Email 6",sent:87, delivered:83, opens:14,OR:16.87,clicks:4,CTR:4.82,CTOR:28.57,optOuts:0,bounces:4}
     ]
   },
   mofu: {
     label:"MOFU", fullLabel:"Middle of Funnel",
     score:"Score 50–75",
     color:"#003FC7", bg:"#D2E6FA",
-    started:74, completed:22, completedPct:29.73,
+    started:99, completed:28, completedPct:28.28,
     steps:[
-      {name:"Email 1",sent:66,delivered:63,opens:17,OR:26.98,clicks:5,CTR:7.94, CTOR:29.41,optOuts:0,bounces:3},
-      {name:"Email 2",sent:57,delivered:56,opens:11,OR:19.64,clicks:4,CTR:7.14, CTOR:36.36,optOuts:0,bounces:1},
-      {name:"Email 3",sent:47,delivered:46,opens:12,OR:26.09,clicks:1,CTR:2.17, CTOR:8.33, optOuts:0,bounces:1},
-      {name:"Email 4",sent:41,delivered:41,opens:8, OR:19.51,clicks:2,CTR:4.88, CTOR:25.00,optOuts:0,bounces:0},
-      {name:"Email 5",sent:37,delivered:33,opens:6, OR:18.18,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:4},
-      {name:"Email 6",sent:25,delivered:25,opens:8, OR:32.00,clicks:4,CTR:16.00,CTOR:50.00,optOuts:0,bounces:0}
+      {name:"Email 1",sent:88,delivered:85,opens:24,OR:28.24,clicks:6,CTR:7.06, CTOR:25.00,optOuts:0,bounces:3},
+      {name:"Email 2",sent:65,delivered:61,opens:12,OR:19.67,clicks:5,CTR:8.20, CTOR:41.67,optOuts:0,bounces:4},
+      {name:"Email 3",sent:56,delivered:50,opens:13,OR:26.00,clicks:1,CTR:2.00, CTOR:7.69, optOuts:0,bounces:6},
+      {name:"Email 4",sent:51,delivered:49,opens:10,OR:20.41,clicks:2,CTR:4.08, CTOR:20.00,optOuts:0,bounces:2},
+      {name:"Email 5",sent:43,delivered:36,opens:6, OR:16.67,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:7},
+      {name:"Email 6",sent:31,delivered:27,opens:9, OR:33.33,clicks:4,CTR:14.81,CTOR:44.44,optOuts:0,bounces:4}
     ]
   },
   bofu: {
     label:"BOFU", fullLabel:"Bottom of Funnel",
     score:"Score > 75",
     color:"#00966D", bg:"#D0F5EE",
-    started:38, completed:4, completedPct:10.53,
+    started:41, completed:7, completedPct:17.07,
     steps:[
-      {name:"Email 1",sent:32,delivered:32,opens:11,OR:34.38,clicks:9,CTR:28.13,CTOR:81.82,optOuts:0,bounces:0},
-      {name:"Email 2",sent:19,delivered:19,opens:8, OR:42.11,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 3",sent:18,delivered:18,opens:4, OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 4",sent:11,delivered:10,opens:4, OR:40.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 5",sent:8,  delivered:8, opens:0, OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:38,delivered:36,opens:12,OR:33.33,clicks:9,CTR:25.00,CTOR:75.00,optOuts:0,bounces:2},
+      {name:"Email 2",sent:23,delivered:22,opens:9, OR:40.91,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 3",sent:19,delivered:18,opens:4, OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 4",sent:13,delivered:11,opens:4, OR:36.36,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:2},
+      {name:"Email 5",sent:9,  delivered:7, opens:1, OR:14.29,clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:2}
     ]
   }
 };
@@ -1807,84 +1843,84 @@ var CAMP_NURTURES = [
     id:"qb96-marketing", label:"Quebec Bill 96 — Marketing",
     desc:"Industry cohort nurture for Marketing leads. Email 1 was sent to an engaged Pardot segment with Marketing job titles — enrolled during summer to keep warm audience active.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI + Current Database",
-    color:"#ec388a", started:17894, completed:0, completedPct:0,
+    color:"#ec388a", started:20772, completed:114, completedPct:0.55,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:17753,delivered:17665,opens:4387,OR:24.83,clicks:1035,CTR:5.86,CTOR:23.59,optOuts:23,bounces:88},
-      {name:"Email 2",sent:123, delivered:117,  opens:35,  OR:29.91,clicks:24,  CTR:20.51,CTOR:68.57,optOuts:0, bounces:6},
-      {name:"Email 3",sent:116, delivered:115,  opens:31,  OR:26.96,clicks:16,  CTR:13.91,CTOR:51.61,optOuts:1, bounces:1},
-      {name:"Email 4",sent:111, delivered:111,  opens:17,  OR:15.32,clicks:9,   CTR:8.11, CTOR:52.94,optOuts:1, bounces:0},
-      {name:"Email 5",sent:105, delivered:105,  opens:26,  OR:24.76,clicks:11,  CTR:10.48,CTOR:42.31,optOuts:0, bounces:0}
+      {name:"Email 1",sent:20605,delivered:20369,opens:5214,OR:25.6,clicks:1186,CTR:5.82,CTOR:22.75,optOuts:30,bounces:236},
+      {name:"Email 2",sent:19864,delivered:10710,opens:3216,OR:30.03,clicks:1215,CTR:11.34,CTOR:37.78,optOuts:16,bounces:9154},
+      {name:"Email 3",sent:16632,delivered:9329,opens:2553,OR:27.37,clicks:945,CTR:10.13,CTOR:37.02,optOuts:14,bounces:7303},
+      {name:"Email 4",sent:15274,delivered:15231,opens:4073,OR:26.74,clicks:1114,CTR:7.31,CTOR:27.35,optOuts:16,bounces:43},
+      {name:"Email 5",sent:13019,delivered:12985,opens:2876,OR:22.15,clicks:947,CTR:7.29,CTOR:32.93,optOuts:19,bounces:34}
     ]
   },
   {
     id:"qb96-manufacturing", label:"Quebec Bill 96 — Manufacturing",
     desc:"Industry cohort nurture for Manufacturing leads around Quebec Bill 96 compliance.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:110, completed:0, completedPct:0,
+    color:"#ec388a", started:111, completed:80, completedPct:72.07,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:100,delivered:97, opens:11,OR:11.34,clicks:2,CTR:2.06,CTOR:18.18,optOuts:0,bounces:3},
-      {name:"Email 2",sent:95, delivered:84, opens:17,OR:20.24,clicks:8,CTR:9.52,CTOR:47.06,optOuts:0,bounces:11},
-      {name:"Email 3",sent:83, delivered:82, opens:22,OR:26.83,clicks:7,CTR:8.54,CTOR:31.82,optOuts:1,bounces:1},
-      {name:"Email 4",sent:82, delivered:80, opens:20,OR:25.00,clicks:8,CTR:10.00,CTOR:40.00,optOuts:0,bounces:2},
-      {name:"Email 5",sent:80, delivered:78, opens:6, OR:7.69, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:2}
+      {name:"Email 1",sent:101,delivered:96,opens:12,OR:12.5,clicks:2,CTR:2.08,CTOR:16.67,optOuts:0,bounces:5},
+      {name:"Email 2",sent:98,delivered:85,opens:18,OR:21.18,clicks:8,CTR:9.41,CTOR:44.44,optOuts:0,bounces:13},
+      {name:"Email 3",sent:86,delivered:85,opens:23,OR:27.06,clicks:7,CTR:8.24,CTOR:30.43,optOuts:1,bounces:1},
+      {name:"Email 4",sent:85,delivered:83,opens:21,OR:25.3,clicks:8,CTR:9.64,CTOR:38.1,optOuts:0,bounces:2},
+      {name:"Email 5",sent:82,delivered:80,opens:7,OR:8.75,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2}
     ]
   },
   {
     id:"qb96-tech", label:"Quebec Bill 96 — Tech",
     desc:"Industry cohort nurture for Tech leads around Quebec Bill 96 compliance.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:46, completed:0, completedPct:0,
+    color:"#ec388a", started:48, completed:31, completedPct:64.58,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:36,delivered:34,opens:7, OR:20.59,clicks:4,CTR:11.76,CTOR:57.14,optOuts:0,bounces:2},
-      {name:"Email 2",sent:34,delivered:34,opens:13,OR:38.24,clicks:1,CTR:2.94, CTOR:7.69, optOuts:0,bounces:0},
-      {name:"Email 3",sent:33,delivered:32,opens:12,OR:37.50,clicks:4,CTR:12.50,CTOR:33.33,optOuts:0,bounces:1},
-      {name:"Email 4",sent:32,delivered:32,opens:9, OR:28.13,clicks:3,CTR:9.38, CTOR:33.33,optOuts:0,bounces:0},
-      {name:"Email 5",sent:32,delivered:32,opens:9, OR:28.13,clicks:4,CTR:12.50,CTOR:44.44,optOuts:1,bounces:0}
+      {name:"Email 1",sent:37,delivered:35,opens:7,OR:20.0,clicks:4,CTR:11.43,CTOR:57.14,optOuts:0,bounces:2},
+      {name:"Email 2",sent:34,delivered:34,opens:13,OR:38.24,clicks:1,CTR:2.94,CTOR:7.69,optOuts:0,bounces:0},
+      {name:"Email 3",sent:34,delivered:33,opens:13,OR:39.39,clicks:4,CTR:12.12,CTOR:30.77,optOuts:0,bounces:1},
+      {name:"Email 4",sent:33,delivered:33,opens:9,OR:27.27,clicks:3,CTR:9.09,CTOR:33.33,optOuts:0,bounces:0},
+      {name:"Email 5",sent:33,delivered:33,opens:9,OR:27.27,clicks:4,CTR:12.12,CTOR:44.44,optOuts:1,bounces:0}
     ]
   },
   {
     id:"qb96-consulting", label:"Quebec Bill 96 — Consulting",
     desc:"Industry cohort nurture for Consulting leads around Quebec Bill 96 compliance.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:45, completed:29, completedPct:64.44,
+    color:"#ec388a", started:52, completed:31, completedPct:59.62,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:36,delivered:36,opens:3,OR:8.33, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 2",sent:34,delivered:33,opens:2,OR:6.06, clicks:1,CTR:3.03,CTOR:50.00,optOuts:0,bounces:1},
-      {name:"Email 3",sent:33,delivered:32,opens:3,OR:9.38, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 4",sent:30,delivered:30,opens:4,OR:13.33,clicks:2,CTR:6.67,CTOR:50.00,optOuts:0,bounces:0},
-      {name:"Email 5",sent:29,delivered:29,opens:2,OR:6.90, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0}
+      {name:"Email 1",sent:52,delivered:51,opens:7,OR:13.73,clicks:1,CTR:1.96,CTOR:14.29,optOuts:1,bounces:1},
+      {name:"Email 2",sent:41,delivered:39,opens:3,OR:7.69,clicks:2,CTR:5.13,CTOR:66.67,optOuts:0,bounces:2},
+      {name:"Email 3",sent:34,delivered:32,opens:4,OR:12.5,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2},
+      {name:"Email 4",sent:33,delivered:33,opens:5,OR:15.15,clicks:2,CTR:6.06,CTOR:40.0,optOuts:0,bounces:0},
+      {name:"Email 5",sent:32,delivered:32,opens:3,OR:9.38,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
     ]
   },
   {
     id:"qb96-finance", label:"Quebec Bill 96 — Finance",
     desc:"Industry cohort nurture for Finance leads around Quebec Bill 96 compliance.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:33, completed:0, completedPct:0,
+    color:"#ec388a", started:35, completed:19, completedPct:54.29,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:23,delivered:21,opens:1,OR:4.76, clicks:1,CTR:4.76,CTOR:100.00,optOuts:0,bounces:2},
-      {name:"Email 2",sent:20,delivered:20,opens:5,OR:25.00,clicks:0,CTR:0.00,CTOR:0.00,  optOuts:0,bounces:0},
-      {name:"Email 3",sent:20,delivered:20,opens:7,OR:35.00,clicks:1,CTR:5.00,CTOR:14.29, optOuts:0,bounces:0},
-      {name:"Email 4",sent:20,delivered:20,opens:3,OR:15.00,clicks:1,CTR:5.00,CTOR:33.33, optOuts:0,bounces:0},
-      {name:"Email 5",sent:20,delivered:20,opens:3,OR:15.00,clicks:1,CTR:5.00,CTOR:33.33, optOuts:1,bounces:0}
+      {name:"Email 1",sent:25,delivered:23,opens:2,OR:8.7,clicks:2,CTR:8.7,CTOR:100.0,optOuts:0,bounces:2},
+      {name:"Email 2",sent:21,delivered:21,opens:5,OR:23.81,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 3",sent:20,delivered:20,opens:7,OR:35.0,clicks:1,CTR:5.0,CTOR:14.29,optOuts:0,bounces:0},
+      {name:"Email 4",sent:20,delivered:20,opens:3,OR:15.0,clicks:1,CTR:5.0,CTOR:33.33,optOuts:0,bounces:0},
+      {name:"Email 5",sent:20,delivered:18,opens:3,OR:16.67,clicks:1,CTR:5.56,CTOR:33.33,optOuts:1,bounces:2}
     ]
   },
   {
     id:"qb96-retail", label:"Quebec Bill 96 — Retail",
     desc:"Industry cohort nurture for Retail leads around Quebec Bill 96 compliance.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign + AudienceAI",
-    color:"#ec388a", started:21, completed:0, completedPct:0,
+    color:"#ec388a", started:25, completed:4, completedPct:16.0,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:11,delivered:10,opens:5,OR:50.00,clicks:3,CTR:30.00,CTOR:60.00,optOuts:0,bounces:1},
-      {name:"Email 2",sent:8, delivered:4, opens:3,OR:75.00,clicks:2,CTR:50.00,CTOR:66.67,optOuts:0,bounces:4},
-      {name:"Email 3",sent:4, delivered:4, opens:2,OR:50.00,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 4",sent:3, delivered:3, opens:1,OR:33.33,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 5",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:15,delivered:14,opens:5,OR:35.71,clicks:3,CTR:21.43,CTOR:60.0,optOuts:0,bounces:1},
+      {name:"Email 2",sent:11,delivered:6,opens:3,OR:50.0,clicks:2,CTR:33.33,CTOR:66.67,optOuts:0,bounces:5},
+      {name:"Email 3",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 4",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 5",sent:4,delivered:4,opens:1,OR:25.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1905,28 +1941,28 @@ var CAMP_NURTURES = [
     id:"ecommerce-shopify", label:"Website Localization for Ecommerce — Shopify",
     desc:"Shopify-specific ecommerce localization nurture.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#6531CC", started:12, completed:0, completedPct:0,
+    color:"#6531CC", started:12, completed:1, completedPct:8.33,
     status:"paused", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",sent:12,delivered:12,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
+      {name:"Email 4",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
+      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
     id:"black-friday", label:"Black Friday Retail",
     desc:"Seasonal campaign nurture for Black Friday retail localization leads.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#03002C", started:14, completed:3, completedPct:21.43,
+    color:"#03002C", started:14, completed:4, completedPct:28.57,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:14,delivered:14,opens:2,OR:14.29,clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 2",sent:11,delivered:11,opens:1,OR:9.09, clicks:0,CTR:0.00,CTOR:0.00, optOuts:0,bounces:0},
-      {name:"Email 3",sent:4, delivered:4, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0},
-      {name:"Email 4",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0},
-      {name:"Email 5",sent:3, delivered:3, opens:0,OR:0.00, clicks:0,CTR:0.00,CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",sent:14,delivered:14,opens:2,OR:14.29,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 2",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 3",sent:14,delivered:14,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 5",sent:12,delivered:12,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1960,26 +1996,26 @@ var CAMP_NURTURES = [
     id:"aig-linkedin", label:"AI Governance — LinkedIn",
     desc:"LinkedIn Campaign nurture for AI governance leads. Just launched.",
     type:"LinkedIn Campaign", source:"LinkedIn Campaign",
-    color:"#ec388a", started:0, completed:0, completedPct:0,
+    color:"#ec388a", started:247, completed:0, completedPct:0,
     status:"live", note:"Just Launched", flags:[],
     steps:[
-      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",sent:242,delivered:232,opens:28,OR:12.07,clicks:6,CTR:2.59,CTOR:21.43,optOuts:1,bounces:10},
+      {name:"Email 2",sent:214,delivered:211,opens:16,OR:7.58,clicks:3,CTR:1.42,CTOR:18.75,optOuts:2,bounces:3},
+      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0.0,clicks:0,CTR:0.0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
     id:"aig-unengaged", label:"AI Governance — Unengaged Audiences",
-    desc:"Re-engagement nurture targeting unengaged contacts around AI governance. Just launched.",
+    desc:"Re-engagement nurture targeting unengaged contacts around AI governance.",
     type:"Current Database", source:"Current Database",
-    color:"#FA6419", started:85696, completed:0, completedPct:0,
-    status:"live", note:"Just Launched",
-    flags:["Cold list — benchmark open rate is 8–12%. Do not compare to warm nurtures."],
+    color:"#FA6419", started:95024, completed:0, completedPct:0,
+    status:"live", note:null,
+    flags:["Cold list — benchmark open rate is 8–12%. Do not compare to warm nurtures.","Email 1 had a 22.7% bounce rate — large unvalidated list. Email 2 onwards delivering normally."],
     steps:[
-      {name:"Email 1",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",sent:89010,delivered:68793,opens:1679,OR:2.44,clicks:237,CTR:0.34,CTOR:14.12,optOuts:23,bounces:20217},
+      {name:"Email 2",sent:81868,delivered:81050,opens:2149,OR:2.65,clicks:303,CTR:0.37,CTOR:14.10,optOuts:73,bounces:818},
+      {name:"Email 3",sent:74266,delivered:73976,opens:804, OR:1.09,clicks:134,CTR:0.18,CTOR:16.67,optOuts:47,bounces:290},
+      {name:"Email 4",sent:0,    delivered:0,    opens:0,   OR:0,   clicks:0,  CTR:0,   CTOR:null, optOuts:0, bounces:0}
     ]
   },
   // ── ENDED ────────────────────────────────────────────────
