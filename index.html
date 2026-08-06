@@ -421,6 +421,15 @@ td{padding:10px 12px;}
 .ins-deep-toggle{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 20px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:0;transition:all .2s;user-select:none;}
 .ins-deep-toggle:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
 
+.dd-type-pill{font-size:11px;font-weight:600;padding:5px 14px;border-radius:6px;border:1.5px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
+.dd-type-pill:hover{border-color:var(--blue-primary);color:var(--blue-primary);}
+.dd-active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark);}
+.dd-type-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:10px;display:inline-block;}
+.dd-subj-row{padding:8px 0;border-bottom:0.5px solid var(--border);display:flex;gap:10px;align-items:flex-start;}
+.dd-subj-row:last-child{border-bottom:none;}
+.dd-subj-num{font-size:11px;font-weight:800;flex-shrink:0;width:16px;}
+.dd-subj-text{font-size:12px;color:var(--blue-dark);line-height:1.4;flex:1;}
+.dd-subj-stat{font-size:10px;font-weight:700;flex-shrink:0;}
 /* ── OUR AUDIENCE TAB ── */
 .aud-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);}
 .aud-signal-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;}
@@ -691,16 +700,30 @@ td{padding:10px 12px;}
 
   <div id="deep-dive" style="display:none;">
 
-    <div class="cg-2" style="margin-top:20px;">
-      <div class="cc">
-        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Top 5 Subject Lines by Open Rate</div>
-        <div class="cc-desc">Highest-performing subjects — 500+ sends only.</div>
-        <div id="top-or"></div>
+    <!-- Subject lines with inline type selector -->
+    <div class="cc" style="margin-top:20px;margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--blue-dark);">Top Subject Lines</div>
+          <div class="cc-desc" style="margin-top:2px;">Filter by email type — webinar, newsletter, event, and nurture serve different purposes.</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button class="dd-type-pill dd-active" onclick="setDDType('all',this)">All</button>
+          <button class="dd-type-pill" onclick="setDDType('webinar',this)">Webinar</button>
+          <button class="dd-type-pill" onclick="setDDType('newsletter',this)">Newsletter</button>
+          <button class="dd-type-pill" onclick="setDDType('event',this)">Event</button>
+          <button class="dd-type-pill" onclick="setDDType('nurture',this)">Nurture</button>
+        </div>
       </div>
-      <div class="cc">
-        <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">Top 5 Subject Lines by CTOR</div>
-        <div class="cc-desc">Best at converting openers into clickers.</div>
-        <div id="top-ctor"></div>
+      <div class="cg-2">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:8px;">By Open Rate</div>
+          <div id="top-or"></div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:8px;">By CTOR</div>
+          <div id="top-ctor"></div>
+        </div>
       </div>
     </div>
 
@@ -1041,29 +1064,29 @@ var RAW = [
   {date:"Jul 9", month:"July",     type:"Newsletter",sent:84649,delivered:63304,uOpens:1205,OR:1.90, uClicks:341, CTR:0.54, CTOR:28.30,optOuts:26,oor:0.03,regs:null,subj:"How to prevent the 2 AM compliance panic attack",series:"NL",seqN:12,unengaged:true},
 
   // GL NEXT + TPT NEXT events — Jul 16
-  {date:"Jul 16",month:"July",     type:"Event",     sent:593,  delivered:341,  uOpens:41,  OR:12.02,uClicks:6,   CTR:1.76, CTOR:14.63,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — Games",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:15751,delivered:8672, uOpens:734, OR:8.46, uClicks:76,  CTR:0.88, CTOR:10.35,optOuts:15,oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Finance",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:1010, delivered:612,  uOpens:127, OR:20.75,uClicks:11,  CTR:1.80, CTOR:8.66, optOuts:1, oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Experience",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:4347, delivered:2386, uOpens:245, OR:10.27,uClicks:43,  CTR:1.80, CTOR:17.55,optOuts:3, oor:0.07,regs:null,subj:"TransPerfect NEXT EMEA — Digital",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:73,   delivered:47,   uOpens:7,   OR:14.89,uClicks:1,   CTR:2.13, CTOR:14.29,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce Research",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:12615,delivered:6886, uOpens:862, OR:12.52,uClicks:100, CTR:1.45, CTOR:11.60,optOuts:13,oor:0.10,regs:null,subj:"TransPerfect NEXT EMEA — Life Sciences",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:712,  delivered:452,  uOpens:56,  OR:12.39,uClicks:3,   CTR:0.66, CTOR:5.36, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce AI/ML",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:688,  delivered:429,  uOpens:64,  OR:14.92,uClicks:8,   CTR:1.86, CTOR:12.50,optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — eLearning",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:3030, delivered:1889, uOpens:349, OR:18.48,uClicks:68,  CTR:3.60, CTOR:19.48,optOuts:4, oor:0.13,regs:null,subj:"GlobalLink NEXT EMEA — Media",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:1048, delivered:605,  uOpens:140, OR:23.14,uClicks:7,   CTR:1.16, CTOR:5.00, optOuts:2, oor:0.19,regs:null,subj:"GlobalLink NEXT EMEA — GlobalLink",series:"NEXT",seqN:1},
-  {date:"Jul 16",month:"July",     type:"Event",     sent:85877,delivered:61528,uOpens:4089,OR:6.65, uClicks:890, CTR:1.45, CTOR:21.77,optOuts:48,oor:0.06,regs:null,subj:"GlobalLink NEXT USA — GlobalLink",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:593,  delivered:341,  uOpens:41,  OR:12.02,uClicks:6,   CTR:1.76, CTOR:14.63,optOuts:0, oor:0.00,regs:null,subj:"Games NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:15751,delivered:8672, uOpens:734, OR:8.46, uClicks:76,  CTR:0.88, CTOR:10.35,optOuts:15,oor:0.10,regs:null,subj:"Finance NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:1010, delivered:612,  uOpens:127, OR:20.75,uClicks:11,  CTR:1.80, CTOR:8.66, optOuts:1, oor:0.10,regs:null,subj:"Experience NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:4347, delivered:2386, uOpens:245, OR:10.27,uClicks:43,  CTR:1.80, CTOR:17.55,optOuts:3, oor:0.07,regs:null,subj:"Digital NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:73,   delivered:47,   uOpens:7,   OR:14.89,uClicks:1,   CTR:2.13, CTOR:14.29,optOuts:0, oor:0.00,regs:null,subj:"DataForce NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:12615,delivered:6886, uOpens:862, OR:12.52,uClicks:100, CTR:1.45, CTOR:11.60,optOuts:13,oor:0.10,regs:null,subj:"LifeSci NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:712,  delivered:452,  uOpens:56,  OR:12.39,uClicks:3,   CTR:0.66, CTOR:5.36, optOuts:0, oor:0.00,regs:null,subj:"DataForce NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:688,  delivered:429,  uOpens:64,  OR:14.92,uClicks:8,   CTR:1.86, CTOR:12.50,optOuts:0, oor:0.00,regs:null,subj:"Learn NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:3030, delivered:1889, uOpens:349, OR:18.48,uClicks:68,  CTR:3.60, CTOR:19.48,optOuts:4, oor:0.13,regs:null,subj:"Media NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:1048, delivered:605,  uOpens:140, OR:23.14,uClicks:7,   CTR:1.16, CTOR:5.00, optOuts:2, oor:0.19,regs:null,subj:"GlobalLink NEXT is coming to London this September",series:"NEXT",seqN:1},
+  {date:"Jul 16",month:"July",     type:"Event",     sent:85877,delivered:61528,uOpens:4089,OR:6.65, uClicks:890, CTR:1.45, CTOR:21.77,optOuts:48,oor:0.06,regs:null,subj:"GlobalLink NEXT is coming to San Francisco this October",series:"NEXT",seqN:1},
 
   // GL NEXT + TPT NEXT events — Jul 23
-  {date:"Jul 23",month:"July",     type:"Event",     sent:12139,delivered:11625,uOpens:1124,OR:9.67, uClicks:234, CTR:2.01, CTOR:20.82,optOuts:29,oor:0.24,regs:null,subj:"TransPerfect NEXT EMEA — Finance E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:611,  delivered:606,  uOpens:214, OR:35.31,uClicks:9,   CTR:1.49, CTOR:4.21, optOuts:3, oor:0.49,regs:null,subj:"GlobalLink NEXT EMEA — GlobalLink E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:2995, delivered:2950, uOpens:571, OR:19.36,uClicks:54,  CTR:1.83, CTOR:9.46, optOuts:14,oor:0.47,regs:null,subj:"TransPerfect NEXT EMEA — Media E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:997,  delivered:985,  uOpens:186, OR:18.88,uClicks:17,  CTR:1.73, CTOR:9.14, optOuts:3, oor:0.30,regs:null,subj:"TransPerfect NEXT EMEA — Experience E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:65,   delivered:65,   uOpens:10,  OR:15.38,uClicks:0,   CTR:0.00, CTOR:0.00, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — DataForce Research E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:716,  delivered:708,  uOpens:119, OR:16.81,uClicks:10,  CTR:1.41, CTOR:8.40, optOuts:3, oor:0.42,regs:null,subj:"TransPerfect NEXT EMEA — DataForce AI/ML E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:650,  delivered:628,  uOpens:91,  OR:14.49,uClicks:9,   CTR:1.43, CTOR:9.89, optOuts:3, oor:0.46,regs:null,subj:"TransPerfect NEXT EMEA — eLearning E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:11938,delivered:11765,uOpens:1714,OR:14.57,uClicks:137, CTR:1.16, CTOR:7.99, optOuts:32,oor:0.27,regs:null,subj:"TransPerfect NEXT EMEA — Life Sciences E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:482,  delivered:459,  uOpens:57,  OR:12.42,uClicks:3,   CTR:0.65, CTOR:5.26, optOuts:0, oor:0.00,regs:null,subj:"TransPerfect NEXT EMEA — Games E2",series:"NEXT",seqN:2},
-  {date:"Jul 23",month:"July",     type:"Event",     sent:78471,delivered:77252,uOpens:6117,OR:7.92, uClicks:1268,CTR:1.64, CTOR:20.73,optOuts:89,oor:0.11,regs:null,subj:"GlobalLink NEXT USA — GlobalLink E2",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:12139,delivered:11625,uOpens:1124,OR:9.67, uClicks:234, CTR:2.01, CTOR:20.82,optOuts:29,oor:0.24,regs:null,subj:"The financial services conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:611,  delivered:606,  uOpens:214, OR:35.31,uClicks:9,   CTR:1.49, CTOR:4.21, optOuts:3, oor:0.49,regs:null,subj:"The global content conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:2995, delivered:2950, uOpens:571, OR:19.36,uClicks:54,  CTR:1.83, CTOR:9.46, optOuts:14,oor:0.47,regs:null,subj:"The media conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:997,  delivered:985,  uOpens:186, OR:18.88,uClicks:17,  CTR:1.73, CTOR:9.14, optOuts:3, oor:0.30,regs:null,subj:"The events industry conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:65,   delivered:65,   uOpens:10,  OR:15.38,uClicks:0,   CTR:0.00, CTOR:0.00, optOuts:0, oor:0.00,regs:null,subj:"The research conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:716,  delivered:708,  uOpens:119, OR:16.81,uClicks:10,  CTR:1.41, CTOR:8.40, optOuts:3, oor:0.42,regs:null,subj:"The AI and machine learning conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:650,  delivered:628,  uOpens:91,  OR:14.49,uClicks:9,   CTR:1.43, CTOR:9.89, optOuts:3, oor:0.46,regs:null,subj:"Join the leaders moving L&D forward",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:11938,delivered:11765,uOpens:1714,OR:14.57,uClicks:137, CTR:1.16, CTOR:7.99, optOuts:32,oor:0.27,regs:null,subj:"The life sciences conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:482,  delivered:459,  uOpens:57,  OR:12.42,uClicks:3,   CTR:0.65, CTOR:5.26, optOuts:0, oor:0.00,regs:null,subj:"The gaming industry conversations shaping what comes next",series:"NEXT",seqN:2},
+  {date:"Jul 23",month:"July",     type:"Event",     sent:78471,delivered:77252,uOpens:6117,OR:7.92, uClicks:1268,CTR:1.64, CTOR:20.73,optOuts:89,oor:0.11,regs:null,subj:"The global content conversations shaping what comes next",series:"NEXT",seqN:2},
   {date:"Jul 30",month:"July",     type:"Newsletter",sent:42387,delivered:42235,uOpens:7241,OR:17.14,uClicks:1188,CTR:2.81, CTOR:16.41,optOuts:48,oor:0.11,regs:null,subj:"The AI questions nobody is answering yet",series:"NL",seqN:13}
 ];
 
@@ -1303,41 +1326,88 @@ function renderMonthPills(){
 function renderContent(){
   var bl=allData.filter(function(d){return d.sent>500;});
 
-  // Top 5 OR
-  var rankColors=[CI.BD,CI.B,CI.T,CI.O,CI.P];
-  var topOR=[...bl].sort(function(a,b){return b.OR-a.OR;}).slice(0,5);
-  document.getElementById("top-or").innerHTML=topOR.map(function(d,i){
-    return '<div class="subj-item">'+
-      '<div class="subj-rank" style="background:'+rgba(rankColors[i],.1)+';color:'+rankColors[i]+';">'+(i+1)+'</div>'+
-      '<div><div class="subj-text">'+d.subj+'</div>'+
-      '<div class="subj-meta">'+d.date+' · '+d.type+' · <strong style="color:'+rankColors[i]+'">'+d.OR.toFixed(1)+'% open rate</strong></div></div></div>';
-  }).join("");
+  // Build nurture pool from NURTURE + CAMP_NURTURES steps
+  var nurturePool = [];
+  ['tofu','mofu','bofu'].forEach(function(k){
+    var stage = NURTURE[k];
+    stage.steps.forEach(function(s){
+      if(s.sent > 0 && s.subj){
+        nurturePool.push({date:'Nurture',type:'Nurture',subj:s.subj,OR:s.OR,CTR:s.CTR,CTOR:s.CTOR||0,sent:s.sent,series:k.toUpperCase()});
+      }
+    });
+  });
+  CAMP_NURTURES.forEach(function(n){
+    n.steps.forEach(function(s){
+      if(s.sent > 0 && s.subj){
+        nurturePool.push({date:'Nurture',type:'Nurture',subj:s.subj,OR:s.OR,CTR:s.CTR,CTOR:s.CTOR||0,sent:s.sent,series:n.id});
+      }
+    });
+  });
 
-  // Top 5 CTOR
-  var topCTOR=[...bl].sort(function(a,b){return b.CTOR-a.CTOR;}).slice(0,5);
-  document.getElementById("top-ctor").innerHTML=topCTOR.map(function(d,i){
-    return '<div class="subj-item">'+
-      '<div class="subj-rank" style="background:'+rgba(rankColors[i],.1)+';color:'+rankColors[i]+';">'+(i+1)+'</div>'+
-      '<div><div class="subj-text">'+d.subj+'</div>'+
-      '<div class="subj-meta">'+d.date+' · '+d.type+' · <strong style="color:'+rankColors[i]+'">'+d.CTOR.toFixed(1)+'% CTOR</strong></div></div></div>';
-  }).join("");
+  var ddType = "all";
 
-  // Tone analysis
-  var tones=[
-    {n:"Direct Question / Personal Challenge",v:31.8,c:CI.BD,note:"'Your AI questions deserve a real answer.' · 'Got questions? Bring them here.'"},
-    {n:"Bold POV / Contrarian Hook",v:29.5,c:CI.T,note:"'Speed Isn't a Strategy for AI Translation' · 'Where AI Translation Actually Breaks'"},
-    {n:"Last Call / Urgency",v:28.8,c:CI.O,note:"'Last call: ...tomorrow at 12 PM CT' · 'Last Call: Bring Your AI Questions'"},
-    {n:"Stat-Led / Data-Driven",v:28.0,c:CI.P,note:"'74% Say AI Is a Priority. Here's What to Do With That'"},
-    {n:"Recording / Follow-Up",v:24.2,c:CI.BL,note:"'What we learned about AI...' · 'Missed our session? Here's what we covered.'"},
-    {n:"Descriptive / Topic Statement",v:23.4,c:CI.GR.replace("D2E6FA","a0b4c8"),note:"'Webinar: The 2026 Reality of AI...' · 'Live Webinar: When AI Translation Is Everywhere'"}
-  ];
-  var maxT=Math.max(...tones.map(function(t){return t.v;}));
-  document.getElementById("tone-chart").innerHTML=tones.map(function(t){
-    return '<div class="tone-row">'+
-      '<div class="tone-head"><span class="tone-name">'+t.n+'</span><span class="tone-score" style="color:'+t.c+';">'+t.v.toFixed(1)+'%</span></div>'+
-      '<div class="tone-track"><div class="tone-fill" style="width:'+((t.v/maxT)*100).toFixed(0)+'%;background:'+t.c+';"></div></div>'+
-      '<div class="tone-note">'+t.note+'</div></div>';
-  }).join("");
+  function getDDPool(){
+    var blasts = allData.filter(function(d){return d.sent>500&&!d.unengaged&&!d.abTest;});
+    if(ddType==="all") return blasts.concat(nurturePool);
+    if(ddType==="webinar") return blasts.filter(function(d){return d.type==="Webinar";});
+    if(ddType==="newsletter") return blasts.filter(function(d){return d.type==="Newsletter";});
+    if(ddType==="event") return blasts.filter(function(d){return d.type==="Event"||d.type==="Product";});
+    if(ddType==="nurture") return nurturePool;
+    return blasts;
+  }
+
+  function renderDDSubjects(){
+    var pool = getDDPool();
+    var rankColors=[CI.BD,CI.B,CI.T,CI.O,CI.P];
+    var topOR_data = pool.slice().sort(function(a,b){return b.OR-a.OR;}).slice(0,5);
+    var topCTOR_data = pool.slice().sort(function(a,b){return b.CTOR-a.CTOR;}).slice(0,5);
+    var _or = document.getElementById("top-or");
+    var _ctor = document.getElementById("top-ctor");
+    if(_or) _or.innerHTML = topOR_data.map(function(d,i){
+      return '<div class="subj-item">'+
+        '<div class="subj-rank" style="background:'+rgba(rankColors[i],.1)+';color:'+rankColors[i]+';">'+(i+1)+'</div>'+
+        '<div><div class="subj-text">'+escHtml(d.subj)+'</div>'+
+        '<div class="subj-meta">'+d.date+' · '+d.type+' · <strong style="color:'+rankColors[i]+'">'+d.OR.toFixed(1)+'% open rate</strong></div></div></div>';
+    }).join("");
+    if(_ctor) _ctor.innerHTML = topCTOR_data.map(function(d,i){
+      return '<div class="subj-item">'+
+        '<div class="subj-rank" style="background:'+rgba(rankColors[i],.1)+';color:'+rankColors[i]+';">'+(i+1)+'</div>'+
+        '<div><div class="subj-text">'+escHtml(d.subj)+'</div>'+
+        '<div class="subj-meta">'+d.date+' · '+d.type+' · <strong style="color:'+rankColors[i]+'">'+d.CTOR.toFixed(1)+'% CTOR</strong></div></div></div>';
+    }).join("");
+  }
+
+  function renderDDTone(){
+    var tones=[
+      {n:"Direct Question / Personal Challenge",v:31.8,c:CI.BD,note:"'Your AI questions deserve a real answer.' · 'Got questions? Bring them here.'"},
+      {n:"Bold POV / Contrarian Hook",v:29.5,c:CI.T,note:"'Speed Isn't a Strategy for AI Translation' · 'Where AI Translation Actually Breaks'"},
+      {n:"Last Call / Urgency",v:28.8,c:CI.O,note:"'Last call: ...tomorrow at 12 PM CT' · 'Last Call: Bring Your AI Questions'"},
+      {n:"Stat-Led / Data-Driven",v:28.0,c:CI.P,note:"'74% Say AI Is a Priority. Here's What to Do With That'"},
+      {n:"Recording / Follow-Up",v:24.2,c:CI.BL,note:"'What we learned about AI...' · 'Missed our session? Here's what we covered.'"},
+      {n:"Descriptive / Topic Statement",v:23.4,c:"#a0b4c8",note:"'Webinar: The 2026 Reality of AI...' · 'Live Webinar: When AI Translation Is Everywhere'"}
+    ];
+    var maxT=Math.max(...tones.map(function(t){return t.v;}));
+    var el=document.getElementById("tone-chart");
+    if(el) el.innerHTML=tones.map(function(t){
+      return '<div class="tone-row">'+
+        '<div class="tone-head"><span class="tone-name">'+t.n+'</span><span class="tone-score" style="color:'+t.c+';">'+t.v.toFixed(1)+'%</span></div>'+
+        '<div class="tone-track"><div class="tone-fill" style="width:'+((t.v/maxT)*100).toFixed(0)+'%;background:'+t.c+';"></div></div>'+
+        '<div class="tone-note">'+t.note+'</div></div>';
+    }).join("");
+  }
+
+  window.setDDType = function(type, btn){
+    ddType = type;
+    document.querySelectorAll(".dd-type-pill").forEach(function(b){ b.classList.remove("dd-active"); });
+    btn.classList.add("dd-active");
+    renderDDSubjects();
+  };
+
+  // Remove old setDDMetric if called
+  window.setDDMetric = window.setDDType;
+
+  renderDDSubjects();
+  renderDDTone();
 
   // Formula analysis
   var formulas=[
@@ -1662,12 +1732,12 @@ var NURTURE = {
     color:"#6531CC", bg:"#EBE0FF",
     started:251, completed:91, completedPct:36.25,
     steps:[
-      {name:"Email 1",sent:199,delivered:184,opens:31,OR:16.85,clicks:5,CTR:2.72,CTOR:16.13,optOuts:1,bounces:15},
-      {name:"Email 2",sent:172,delivered:157,opens:35,OR:22.29,clicks:2,CTR:1.27,CTOR:5.71, optOuts:1,bounces:15},
-      {name:"Email 3",sent:148,delivered:134,opens:28,OR:20.90,clicks:6,CTR:4.48,CTOR:21.43,optOuts:0,bounces:14},
-      {name:"Email 4",sent:129,delivered:124,opens:18,OR:14.52,clicks:1,CTR:0.81,CTOR:5.56, optOuts:0,bounces:5},
-      {name:"Email 5",sent:96, delivered:92, opens:11,OR:11.96,clicks:1,CTR:1.09,CTOR:9.09, optOuts:0,bounces:4},
-      {name:"Email 6",sent:87, delivered:83, opens:14,OR:16.87,clicks:4,CTR:4.82,CTOR:28.57,optOuts:0,bounces:4}
+      {name:"Email 1",subj:"Does Your AI Strategy Include Website Localization?",sent:199,delivered:184,opens:31,OR:16.85,clicks:5,CTR:2.72,CTOR:16.13,optOuts:1,bounces:15},
+      {name:"Email 2",subj:"Scaling Global Content Across 10+ Markets? Avoid These Pitfalls.",sent:172,delivered:157,opens:35,OR:22.29,clicks:2,CTR:1.27,CTOR:5.71, optOuts:1,bounces:15},
+      {name:"Email 3",subj:"Why AI Alone Falls Short for Website Localization",sent:148,delivered:134,opens:28,OR:20.90,clicks:6,CTR:4.48,CTOR:21.43,optOuts:0,bounces:14},
+      {name:"Email 4",subj:"Localized…But Still Invisible? Fix Your Multilingual SEO.",sent:129,delivered:124,opens:18,OR:14.52,clicks:1,CTR:0.81,CTOR:5.56, optOuts:0,bounces:5},
+      {name:"Email 5",subj:"76% Prefer Sites in Their Native Language. Is Yours Ready?",sent:96, delivered:92, opens:11,OR:11.96,clicks:1,CTR:1.09,CTOR:9.09, optOuts:0,bounces:4},
+      {name:"Email 6",subj:"Real Results From 15,000+ Pages of Localized Content",sent:87, delivered:83, opens:14,OR:16.87,clicks:4,CTR:4.82,CTOR:28.57,optOuts:0,bounces:4}
     ]
   },
   mofu: {
@@ -1676,12 +1746,12 @@ var NURTURE = {
     color:"#003FC7", bg:"#D2E6FA",
     started:99, completed:28, completedPct:28.28,
     steps:[
-      {name:"Email 1",sent:88,delivered:85,opens:24,OR:28.24,clicks:6,CTR:7.06, CTOR:25.00,optOuts:0,bounces:3},
-      {name:"Email 2",sent:65,delivered:61,opens:12,OR:19.67,clicks:5,CTR:8.20, CTOR:41.67,optOuts:0,bounces:4},
-      {name:"Email 3",sent:56,delivered:50,opens:13,OR:26.00,clicks:1,CTR:2.00, CTOR:7.69, optOuts:0,bounces:6},
-      {name:"Email 4",sent:51,delivered:49,opens:10,OR:20.41,clicks:2,CTR:4.08, CTOR:20.00,optOuts:0,bounces:2},
-      {name:"Email 5",sent:43,delivered:36,opens:6, OR:16.67,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:7},
-      {name:"Email 6",sent:31,delivered:27,opens:9, OR:33.33,clicks:4,CTR:14.81,CTOR:44.44,optOuts:0,bounces:4}
+      {name:"Email 1",subj:"How Lufthansa, Barry's, and SITA Localized in Days",sent:88,delivered:85,opens:24,OR:28.24,clicks:6,CTR:7.06, CTOR:25.00,optOuts:0,bounces:3},
+      {name:"Email 2",subj:"How Leading Brands Operationalize AI in Website Localization",sent:65,delivered:61,opens:12,OR:19.67,clicks:5,CTR:8.20, CTOR:41.67,optOuts:0,bounces:4},
+      {name:"Email 3",subj:"8x Faster. 90% Cheaper. What Smarter Website Localization Looks Like.",sent:56,delivered:50,opens:13,OR:26.00,clicks:1,CTR:2.00, CTOR:7.69, optOuts:0,bounces:6},
+      {name:"Email 4",subj:"How Leading Brands Adapt Localization to Every Industry",sent:51,delivered:49,opens:10,OR:20.41,clicks:2,CTR:4.08, CTOR:20.00,optOuts:0,bounces:2},
+      {name:"Email 5",subj:"Where to Start with Website Localization? Find Out in 2 Minutes.",sent:43,delivered:36,opens:6, OR:16.67,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:7},
+      {name:"Email 6",subj:"74% Faster. 50% Cheaper. Here's How Global Teams Localize Smarter",sent:31,delivered:27,opens:9, OR:33.33,clicks:4,CTR:14.81,CTOR:44.44,optOuts:0,bounces:4}
     ]
   },
   bofu: {
@@ -1690,11 +1760,11 @@ var NURTURE = {
     color:"#00966D", bg:"#D0F5EE",
     started:41, completed:7, completedPct:17.07,
     steps:[
-      {name:"Email 1",sent:38,delivered:36,opens:12,OR:33.33,clicks:9,CTR:25.00,CTOR:75.00,optOuts:0,bounces:2},
-      {name:"Email 2",sent:23,delivered:22,opens:9, OR:40.91,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 3",sent:19,delivered:18,opens:4, OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
-      {name:"Email 4",sent:13,delivered:11,opens:4, OR:36.36,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:2},
-      {name:"Email 5",sent:9,  delivered:7, opens:1, OR:14.29,clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:2}
+      {name:"Email 1",subj:"Achieve 90% Cost Reduction in Website Localization. Here's How.",sent:38,delivered:36,opens:12,OR:33.33,clicks:9,CTR:25.00,CTOR:75.00,optOuts:0,bounces:2},
+      {name:"Email 2",subj:"Let's Make Website Localization Easy",sent:23,delivered:22,opens:9, OR:40.91,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 3",subj:"What Website Localization Looks Like When It's Done Right",sent:19,delivered:18,opens:4, OR:22.22,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:1},
+      {name:"Email 4",subj:"Website Localization Q&A: Join Our Next Office Hours",sent:13,delivered:11,opens:4, OR:36.36,clicks:0,CTR:0.00, CTOR:0.00, optOuts:0,bounces:2},
+      {name:"Email 5",subj:"How Leading Brands Localize at Scale While Cutting Costs",sent:9,  delivered:7, opens:1, OR:14.29,clicks:0,CTR:0.00, CTOR:null, optOuts:0,bounces:2}
     ]
   }
 };
@@ -1792,10 +1862,10 @@ var CAMP_NURTURES = [
     color:"#003FC7", started:83, completed:43, completedPct:58.11,
     status:"ended", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:66,delivered:64,opens:13,OR:20.31,clicks:4,CTR:6.25, CTOR:30.77,optOuts:0,bounces:2},
-      {name:"Email 2",sent:55,delivered:55,opens:12,OR:21.82,clicks:3,CTR:5.45, CTOR:25.00,optOuts:0,bounces:0},
-      {name:"Email 3",sent:52,delivered:52,opens:15,OR:28.85,clicks:3,CTR:5.77, CTOR:20.00,optOuts:0,bounces:0},
-      {name:"Email 4",sent:47,delivered:45,opens:9, OR:20.00,clicks:3,CTR:6.67, CTOR:33.33,optOuts:0,bounces:2}
+      {name:"Email 1",subj:"Is your global content setup helping or hurting performance?",sent:66,delivered:64,opens:13,OR:20.31,clicks:4,CTR:6.25, CTOR:30.77,optOuts:0,bounces:2},
+      {name:"Email 2",subj:"The framework behind the 74% prioritizing AI strategies",sent:55,delivered:55,opens:12,OR:21.82,clicks:3,CTR:5.45, CTOR:25.00,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"How Hilton scaled to 70+ languages without adding headcount",sent:52,delivered:52,opens:15,OR:28.85,clicks:3,CTR:5.77, CTOR:20.00,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"20 minutes to discuss your 2026 localization strategy",sent:47,delivered:45,opens:9, OR:20.00,clicks:3,CTR:6.67, CTOR:33.33,optOuts:0,bounces:2}
     ]
   },
   {
@@ -1806,11 +1876,11 @@ var CAMP_NURTURES = [
     status:"ended", note:null,
     flags:["Cold list benchmark: 8–12% open rate is healthy here — do not compare to warm nurtures."],
     steps:[
-      {name:"Email 1",sent:70945,delivered:62448,opens:6332,OR:10.14,clicks:2028,CTR:3.25,CTOR:32.03,optOuts:78, bounces:8497},
-      {name:"Email 2",sent:63363,delivered:62150,opens:3698,OR:5.95, clicks:1452,CTR:2.34,CTOR:39.26,optOuts:35, bounces:1213},
-      {name:"Email 3",sent:62995,delivered:61374,opens:4980,OR:8.11, clicks:1738,CTR:2.83,CTOR:34.90,optOuts:38, bounces:1621},
-      {name:"Email 4",sent:62225,delivered:60768,opens:6583,OR:10.83,clicks:1300,CTR:2.14,CTOR:19.75,optOuts:35, bounces:1457},
-      {name:"Email 5",sent:61478,delivered:60452,opens:4877,OR:8.07, clicks:1285,CTR:2.13,CTOR:26.35,optOuts:37, bounces:1026}
+      {name:"Email 1",subj:"Your localization strategy might already be outdated",sent:70945,delivered:62448,opens:6332,OR:10.14,clicks:2028,CTR:3.25,CTOR:32.03,optOuts:78, bounces:8497},
+      {name:"Email 2",subj:"Why 74% prioritize AI but few have scaled it",sent:63363,delivered:62150,opens:3698,OR:5.95, clicks:1452,CTR:2.34,CTOR:39.26,optOuts:35, bounces:1213},
+      {name:"Email 3",subj:"46% say this is their biggest constraint",sent:62995,delivered:61374,opens:4980,OR:8.11, clicks:1738,CTR:2.83,CTOR:34.90,optOuts:38, bounces:1621},
+      {name:"Email 4",subj:"If you can't measure it, you can't defend it",sent:62225,delivered:60768,opens:6583,OR:10.83,clicks:1300,CTR:2.14,CTOR:19.75,optOuts:35, bounces:1457},
+      {name:"Email 5",subj:"The 2026 localization playbook your competitors are reading",sent:61478,delivered:60452,opens:4877,OR:8.07, clicks:1285,CTR:2.13,CTOR:26.35,optOuts:37, bounces:1026}
     ]
   },
   {
@@ -1820,9 +1890,9 @@ var CAMP_NURTURES = [
     color:"#3BBFB5", started:25377, completed:23987, completedPct:94.52,
     status:"ended", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:25288,delivered:24731,opens:4801,OR:19.41,clicks:2746,CTR:11.10,CTOR:57.20,optOuts:78,bounces:557},
-      {name:"Email 2",sent:24213,delivered:24096,opens:3393,OR:14.08,clicks:1126,CTR:4.67, CTOR:33.19,optOuts:41,bounces:117},
-      {name:"Email 3",sent:24091,delivered:23973,opens:3353,OR:13.99,clicks:664, CTR:2.77, CTOR:19.80,optOuts:33,bounces:118}
+      {name:"Email 1",subj:"Localization isn't the goal. Performance is.",sent:25288,delivered:24731,opens:4801,OR:19.41,clicks:2746,CTR:11.10,CTOR:57.20,optOuts:78,bounces:557},
+      {name:"Email 2",subj:"What performance-led localization looks like in the real world",sent:24213,delivered:24096,opens:3393,OR:14.08,clicks:1126,CTR:4.67, CTOR:33.19,optOuts:41,bounces:117},
+      {name:"Email 3",subj:"If the initiative is high-stakes, the setup matters",sent:24091,delivered:23973,opens:3353,OR:13.99,clicks:664, CTR:2.77, CTOR:19.80,optOuts:33,bounces:118}
     ]
   },
   {
@@ -1833,10 +1903,10 @@ var CAMP_NURTURES = [
     status:"ended", note:null,
     flags:["22.2% bounce rate on Email 1 — review list quality and Japan deliverability settings."],
     steps:[
-      {name:"Email 1",sent:773,delivered:601,opens:138,OR:22.96,clicks:10,CTR:1.66,CTOR:7.25, optOuts:6,bounces:172},
-      {name:"Email 2",sent:590,delivered:577,opens:79, OR:13.69,clicks:9, CTR:1.56,CTOR:11.39,optOuts:2,bounces:13},
-      {name:"Email 3",sent:577,delivered:545,opens:126,OR:23.12,clicks:4, CTR:0.73,CTOR:3.17, optOuts:1,bounces:32},
-      {name:"Email 4",sent:543,delivered:537,opens:81, OR:15.08,clicks:2, CTR:0.37,CTOR:2.47, optOuts:2,bounces:6}
+      {name:"Email 1",subj:"Is your website ready for the language your visitors actually use?",sent:773,delivered:601,opens:138,OR:22.96,clicks:10,CTR:1.66,CTOR:7.25, optOuts:6,bounces:172},
+      {name:"Email 2",subj:"74% say AI is a top priority — only 26% have embedded it",sent:590,delivered:577,opens:79, OR:13.69,clicks:9, CTR:1.56,CTOR:11.39,optOuts:2,bounces:13},
+      {name:"Email 3",subj:"The localization questions most teams wish they'd asked sooner",sent:577,delivered:545,opens:126,OR:23.12,clicks:4, CTR:0.73,CTOR:3.17, optOuts:1,bounces:32},
+      {name:"Email 4",subj:"20 minutes to map your website localization strategy",sent:543,delivered:537,opens:81, OR:15.08,clicks:2, CTR:0.37,CTOR:2.47, optOuts:2,bounces:6}
     ]
   },
   {
@@ -1846,11 +1916,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:20772, completed:114, completedPct:0.55,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:20605,delivered:20369,opens:5214,OR:25.6,clicks:1186,CTR:5.82,CTOR:22.75,optOuts:30,bounces:236},
-      {name:"Email 2",sent:19864,delivered:10710,opens:3216,OR:30.03,clicks:1215,CTR:11.34,CTOR:37.78,optOuts:16,bounces:9154},
-      {name:"Email 3",sent:16632,delivered:9329,opens:2553,OR:27.37,clicks:945,CTR:10.13,CTOR:37.02,optOuts:14,bounces:7303},
-      {name:"Email 4",sent:15274,delivered:15231,opens:4073,OR:26.74,clicks:1114,CTR:7.31,CTOR:27.35,optOuts:16,bounces:43},
-      {name:"Email 5",sent:13019,delivered:12985,opens:2876,OR:22.15,clicks:947,CTR:7.29,CTOR:32.93,optOuts:19,bounces:34}
+      {name:"Email 1",subj:"Your campaigns, your site, and your emails must be in French in Quebec.",sent:20605,delivered:20369,opens:5214,OR:25.6,clicks:1186,CTR:5.82,CTOR:22.75,optOuts:30,bounces:236},
+      {name:"Email 2",subj:"Translating your homepage isn't enough for Bill 96. The OQLF can inspect everything.",sent:19864,delivered:10710,opens:3216,OR:30.03,clicks:1215,CTR:11.34,CTOR:37.78,optOuts:16,bounces:9154},
+      {name:"Email 3",subj:"The best marketing teams in Quebec are compliant and high-converting.",sent:16632,delivered:9329,opens:2553,OR:27.37,clicks:945,CTR:10.13,CTOR:37.02,optOuts:14,bounces:7303},
+      {name:"Email 4",subj:"Bill 96 compliance is the floor. Here's how to make it a growth strategy.",sent:15274,delivered:15231,opens:4073,OR:26.74,clicks:1114,CTR:7.31,CTOR:27.35,optOuts:16,bounces:43},
+      {name:"Email 5",subj:"Compliance and what comes after with Bill 96 in Quebec.",sent:13019,delivered:12985,opens:2876,OR:22.15,clicks:947,CTR:7.29,CTOR:32.93,optOuts:19,bounces:34}
     ]
   },
   {
@@ -1860,11 +1930,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:111, completed:80, completedPct:72.07,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:101,delivered:96,opens:12,OR:12.5,clicks:2,CTR:2.08,CTOR:16.67,optOuts:0,bounces:5},
-      {name:"Email 2",sent:98,delivered:85,opens:18,OR:21.18,clicks:8,CTR:9.41,CTOR:44.44,optOuts:0,bounces:13},
-      {name:"Email 3",sent:86,delivered:85,opens:23,OR:27.06,clicks:7,CTR:8.24,CTOR:30.43,optOuts:1,bounces:1},
-      {name:"Email 4",sent:85,delivered:83,opens:21,OR:25.3,clicks:8,CTR:9.64,CTOR:38.1,optOuts:0,bounces:2},
-      {name:"Email 5",sent:82,delivered:80,opens:7,OR:8.75,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2}
+      {name:"Email 1",subj:"Bill 96 covers more than your website. For operations teams, the scope is much wider.",sent:101,delivered:96,opens:12,OR:12.5,clicks:2,CTR:2.08,CTOR:16.67,optOuts:0,bounces:5},
+      {name:"Email 2",subj:"Every specification change is a compliance event under Bill 96. Here's how to stay on top of it.",sent:98,delivered:85,opens:18,OR:21.18,clicks:8,CTR:9.41,CTOR:44.44,optOuts:0,bounces:13},
+      {name:"Email 3",subj:"One complaint from a Quebec employee could trigger an OQLF audit of your entire documentation library.",sent:86,delivered:85,opens:23,OR:27.06,clicks:7,CTR:8.24,CTOR:30.43,optOuts:1,bounces:1},
+      {name:"Email 4",subj:"How to avoid an OQLF investigation under Bill 96.",sent:85,delivered:83,opens:21,OR:25.3,clicks:8,CTR:9.64,CTOR:38.1,optOuts:0,bounces:2},
+      {name:"Email 5",subj:"Let's have a direct conversation about your Quebec compliance exposure.",sent:82,delivered:80,opens:7,OR:8.75,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2}
     ]
   },
   {
@@ -1874,11 +1944,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:48, completed:31, completedPct:64.58,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:37,delivered:35,opens:7,OR:20.0,clicks:4,CTR:11.43,CTOR:57.14,optOuts:0,bounces:2},
-      {name:"Email 2",sent:34,delivered:34,opens:13,OR:38.24,clicks:1,CTR:2.94,CTOR:7.69,optOuts:0,bounces:0},
-      {name:"Email 3",sent:34,delivered:33,opens:13,OR:39.39,clicks:4,CTR:12.12,CTOR:30.77,optOuts:0,bounces:1},
-      {name:"Email 4",sent:33,delivered:33,opens:9,OR:27.27,clicks:3,CTR:9.09,CTOR:33.33,optOuts:0,bounces:0},
-      {name:"Email 5",sent:33,delivered:33,opens:9,OR:27.27,clicks:4,CTR:12.12,CTOR:44.44,optOuts:1,bounces:0}
+      {name:"Email 1",subj:"If your product reaches Quebec users, Bill 96 applies to much more than your website.",sent:37,delivered:35,opens:7,OR:20.0,clicks:4,CTR:11.43,CTOR:57.14,optOuts:0,bounces:2},
+      {name:"Email 2",subj:"Shipping features weekly means your French content needs to keep up automatically.",sent:34,delivered:34,opens:13,OR:38.24,clicks:1,CTR:2.94,CTOR:7.69,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"Every release your team ships without French parity is a compliance gap.",sent:34,delivered:33,opens:13,OR:39.39,clicks:4,CTR:12.12,CTOR:30.77,optOuts:0,bounces:1},
+      {name:"Email 4",subj:"Use this checklist to see where your Bill 96's Quebec coverage actually stands.",sent:33,delivered:33,opens:9,OR:27.27,clicks:3,CTR:9.09,CTOR:33.33,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"Want to talk through how other product teams have set up their Quebec compliance?",sent:33,delivered:33,opens:9,OR:27.27,clicks:4,CTR:12.12,CTOR:44.44,optOuts:1,bounces:0}
     ]
   },
   {
@@ -1888,11 +1958,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:52, completed:31, completedPct:59.62,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:52,delivered:51,opens:7,OR:13.73,clicks:1,CTR:1.96,CTOR:14.29,optOuts:1,bounces:1},
-      {name:"Email 2",sent:41,delivered:39,opens:3,OR:7.69,clicks:2,CTR:5.13,CTOR:66.67,optOuts:0,bounces:2},
-      {name:"Email 3",sent:34,delivered:32,opens:4,OR:12.5,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2},
-      {name:"Email 4",sent:33,delivered:33,opens:5,OR:15.15,clicks:2,CTR:6.06,CTOR:40.0,optOuts:0,bounces:0},
-      {name:"Email 5",sent:32,delivered:32,opens:3,OR:9.38,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Most companies with Quebec operations haven't fully mapped their Bill 96 exposure.",sent:52,delivered:51,opens:7,OR:13.73,clicks:1,CTR:1.96,CTOR:14.29,optOuts:1,bounces:1},
+      {name:"Email 2",subj:"Most companies with Quebec operations haven't fully mapped their Bill 96 exposure.",sent:41,delivered:39,opens:3,OR:7.69,clicks:2,CTR:5.13,CTOR:66.67,optOuts:0,bounces:2},
+      {name:"Email 3",subj:"Your clients can go from compliance gap assessment to remediation in days.",sent:34,delivered:32,opens:4,OR:12.5,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:2},
+      {name:"Email 4",subj:"The data that makes the case when clients need to justify the localization investment.",sent:33,delivered:33,opens:5,OR:15.15,clicks:2,CTR:6.06,CTOR:40.0,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"Consulting firms value us as a delivery and advisory partner.",sent:32,delivered:32,opens:3,OR:9.38,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1902,11 +1972,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:35, completed:19, completedPct:54.29,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:25,delivered:23,opens:2,OR:8.7,clicks:2,CTR:8.7,CTOR:100.0,optOuts:0,bounces:2},
-      {name:"Email 2",sent:21,delivered:21,opens:5,OR:23.81,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 3",sent:20,delivered:20,opens:7,OR:35.0,clicks:1,CTR:5.0,CTOR:14.29,optOuts:0,bounces:0},
-      {name:"Email 4",sent:20,delivered:20,opens:3,OR:15.0,clicks:1,CTR:5.0,CTOR:33.33,optOuts:0,bounces:0},
-      {name:"Email 5",sent:20,delivered:18,opens:3,OR:16.67,clicks:1,CTR:5.56,CTOR:33.33,optOuts:1,bounces:2}
+      {name:"Email 1",subj:"Bill 96's active enforcement has higher stakes for regulated businesses.",sent:25,delivered:23,opens:2,OR:8.7,clicks:2,CTR:8.7,CTOR:100.0,optOuts:0,bounces:2},
+      {name:"Email 2",subj:"Your online banking portals, disclosures, and statements are in scope for Bill 96.",sent:21,delivered:21,opens:5,OR:23.81,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"An OQLF complaint in financial services triggers more than just a fine.",sent:20,delivered:20,opens:7,OR:35.0,clicks:1,CTR:5.0,CTOR:14.29,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"AI translation in financial services needs the right localization for risk control.",sent:20,delivered:20,opens:3,OR:15.0,clicks:1,CTR:5.0,CTOR:33.33,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"A direct conversation about your Quebec compliance management.",sent:20,delivered:18,opens:3,OR:16.67,clicks:1,CTR:5.56,CTOR:33.33,optOuts:1,bounces:2}
     ]
   },
   {
@@ -1916,11 +1986,11 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:25, completed:4, completedPct:16.0,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:15,delivered:14,opens:5,OR:35.71,clicks:3,CTR:21.43,CTOR:60.0,optOuts:0,bounces:1},
-      {name:"Email 2",sent:11,delivered:6,opens:3,OR:50.0,clicks:2,CTR:33.33,CTOR:66.67,optOuts:0,bounces:5},
-      {name:"Email 3",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 4",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 5",sent:4,delivered:4,opens:1,OR:25.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Quebec shoppers are more likely to buy when the customer experience is in French.",sent:15,delivered:14,opens:5,OR:35.71,clicks:3,CTR:21.43,CTOR:60.0,optOuts:0,bounces:1},
+      {name:"Email 2",subj:"Translating your website homepage is not enough for Bill 96 investigations.",sent:11,delivered:6,opens:3,OR:50.0,clicks:2,CTR:33.33,CTOR:66.67,optOuts:0,bounces:5},
+      {name:"Email 3",subj:"The brands winning in Quebec are using Bill 96 to close the gap on competitors who aren't compliant.",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"Run this Quebec coverage checklist before a customer reports you to the OQLF.",sent:5,delivered:5,opens:2,OR:40.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"Where do you stand with Quebec compliance and market strategy?",sent:4,delivered:4,opens:1,OR:25.0,clicks:0,CTR:0.0,CTOR:0.0,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1930,11 +2000,11 @@ var CAMP_NURTURES = [
     color:"#6531CC", started:11, completed:1, completedPct:9.09,
     status:"ended", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"40% of buyers leave when sites aren't in their language",sent:2,delivered:2,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"M&S cut translation costs 50% without a CMS migration",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"70% more organic traffic in 12 months",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"47% lower localization costs across 45 sites",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"20 minutes to find where revenue is leaking",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1944,11 +2014,11 @@ var CAMP_NURTURES = [
     color:"#6531CC", started:12, completed:1, completedPct:8.33,
     status:"paused", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:12,delivered:12,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
-      {name:"Email 4",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
-      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Your Shopify store is multilingual. Here's what comes next.",sent:12,delivered:12,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"Your Shopify store is multilingual. Here's what comes next.",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"AI gets your Shopify store translated. This gets it found.",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
+      {name:"Email 4",subj:"AI translation ships content. This makes sure it's right before it lands.",sent:2,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:1},
+      {name:"Email 5",subj:"20 minutes to see what your AI investment is actually producing",sent:1,delivered:1,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1958,11 +2028,11 @@ var CAMP_NURTURES = [
     color:"#03002C", started:14, completed:4, completedPct:28.57,
     status:"live", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:14,delivered:14,opens:2,OR:14.29,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 2",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 3",sent:14,delivered:14,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
-      {name:"Email 5",sent:12,delivered:12,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"The brands winning cross-border this holiday season",sent:14,delivered:14,opens:2,OR:14.29,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"Ready to sell in a new market? Here's what to check first.",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"Is your tech stack ready to get stress-tested during peak season?",sent:14,delivered:14,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"What performance-led localization looks like in retail",sent:14,delivered:14,opens:1,OR:7.14,clicks:0,CTR:0,CTOR:0.0,optOuts:0,bounces:0},
+      {name:"Email 5",subj:"Planning for peak season? Let's map it out",sent:12,delivered:12,opens:0,OR:0.0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
@@ -1972,10 +2042,10 @@ var CAMP_NURTURES = [
     color:"#003FC7", started:12, completed:0, completedPct:0,
     status:"ended", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:3,delivered:3,opens:1,OR:33.33,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
-      {name:"Email 2",sent:2,delivered:2,opens:1,OR:50.00,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
-      {name:"Email 3",sent:1,delivered:1,opens:1,OR:100.0,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,    clicks:0,CTR:0,   CTOR:null, optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Is your global content setup helping or hurting performance?",sent:3,delivered:3,opens:1,OR:33.33,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"The framework behind the 74% prioritizing AI strategies",sent:2,delivered:2,opens:1,OR:50.00,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"How Rapha scaled localization without rebuilding their entire workflow",sent:1,delivered:1,opens:1,OR:100.0,clicks:0,CTR:0.00,CTOR:0.00,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"20 minutes to discuss your 2026 localization strategy",sent:0,delivered:0,opens:0,OR:0,    clicks:0,CTR:0,   CTOR:null, optOuts:0,bounces:0}
     ]
   },
   {
@@ -1985,10 +2055,10 @@ var CAMP_NURTURES = [
     color:"#003FC7", started:15, completed:0, completedPct:0,
     status:"ended", note:null, flags:[],
     steps:[
-      {name:"Email 1",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 2",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 3",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
-      {name:"Email 4",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Is your global content setup helping or hurting performance?",sent:3,delivered:3,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"The framework behind the 74% prioritizing AI strategies",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 3",subj:"How leading travel brands reach more markets without rebuilding content",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0},
+      {name:"Email 4",subj:"20 minutes to discuss your 2026 localization strategy",sent:0,delivered:0,opens:0,OR:0,clicks:0,CTR:0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   // ── AI GOVERNANCE NURTURES (NEW) ─────────────────────────
@@ -1999,9 +2069,9 @@ var CAMP_NURTURES = [
     color:"#ec388a", started:247, completed:0, completedPct:0,
     status:"live", note:"Just Launched", flags:[],
     steps:[
-      {name:"Email 1",sent:242,delivered:232,opens:28,OR:12.07,clicks:6,CTR:2.59,CTOR:21.43,optOuts:1,bounces:10},
-      {name:"Email 2",sent:214,delivered:211,opens:16,OR:7.58,clicks:3,CTR:1.42,CTOR:18.75,optOuts:2,bounces:3},
-      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0.0,clicks:0,CTR:0.0,CTOR:null,optOuts:0,bounces:0}
+      {name:"Email 1",subj:"{{Recipient.Owner.FirstName}}, your 3-Part AI Governance Operating Model [Inside]",sent:242,delivered:232,opens:28,OR:12.07,clicks:6,CTR:2.59,CTOR:21.43,optOuts:1,bounces:10},
+      {name:"Email 2",subj:"How to prevent the 2 AM compliance panic attack",sent:214,delivered:211,opens:16,OR:7.58,clicks:3,CTR:1.42,CTOR:18.75,optOuts:2,bounces:3},
+      {name:"Email 3",subj:"A simple illustration: the cost of unchecked risk",sent:1,delivered:1,opens:0,OR:0.0,clicks:0,CTR:0.0,CTOR:null,optOuts:0,bounces:0}
     ]
   },
   {
@@ -2012,10 +2082,10 @@ var CAMP_NURTURES = [
     status:"live", note:null,
     flags:["Cold list — benchmark open rate is 8–12%. Do not compare to warm nurtures.","Email 1 had a 22.7% bounce rate — large unvalidated list. Email 2 onwards delivering normally."],
     steps:[
-      {name:"Email 1",sent:89010,delivered:68793,opens:1679,OR:2.44,clicks:237,CTR:0.34,CTOR:14.12,optOuts:23,bounces:20217},
-      {name:"Email 2",sent:81868,delivered:81050,opens:2149,OR:2.65,clicks:303,CTR:0.37,CTOR:14.10,optOuts:73,bounces:818},
-      {name:"Email 3",sent:74266,delivered:73976,opens:804, OR:1.09,clicks:134,CTR:0.18,CTOR:16.67,optOuts:47,bounces:290},
-      {name:"Email 4",sent:0,    delivered:0,    opens:0,   OR:0,   clicks:0,  CTR:0,   CTOR:null, optOuts:0, bounces:0}
+      {name:"Email 1",subj:"Your AI is already making decisions. Do you know which ones?",sent:89010,delivered:68793,opens:1679,OR:2.44,clicks:237,CTR:0.34,CTOR:14.12,optOuts:23,bounces:20217},
+      {name:"Email 2",subj:"Is AI reducing work, or just moving it downstream?",sent:81868,delivered:81050,opens:2149,OR:2.65,clicks:303,CTR:0.37,CTOR:14.10,optOuts:73,bounces:818},
+      {name:"Email 3",subj:"How do you know what your AI is actually shipping?",sent:74266,delivered:73976,opens:804, OR:1.09,clicks:134,CTR:0.18,CTOR:16.67,optOuts:47,bounces:290},
+      {name:"Email 4",subj:"Still worth a read before you close out the quarter.",sent:0,    delivered:0,    opens:0,   OR:0,   clicks:0,  CTR:0,   CTOR:null, optOuts:0, bounces:0}
     ]
   },
   // ── ENDED ────────────────────────────────────────────────
@@ -2027,11 +2097,11 @@ var CAMP_NURTURES = [
     status:"ended", note:null,
     flags:["Campaign did not scale — only 2 leads enrolled. Program has ended."],
     steps:[
-      {name:"Email 1",sent:2,delivered:2,opens:1,OR:50.00,clicks:1,CTR:50.00,CTOR:100.00,optOuts:0,bounces:0},
-      {name:"Email 2",sent:2,delivered:2,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
-      {name:"Email 3",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
-      {name:"Email 4",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
-      {name:"Email 5",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0}
+      {name:"Email 1",subj:"Translation isn't dead. It's just being mismanaged.",sent:2,delivered:2,opens:1,OR:50.00,clicks:1,CTR:50.00,CTOR:100.00,optOuts:0,bounces:0},
+      {name:"Email 2",subj:"The quiet cost of decentralized translation",sent:2,delivered:2,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 3",subj:"Not all content deserves the same level of control",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 4",subj:"What governed AI translation looks like in practice",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0},
+      {name:"Email 5",subj:"One conversation worth having before your next launch",sent:1,delivered:1,opens:0,OR:0.00, clicks:0,CTR:0.00, CTOR:null,  optOuts:0,bounces:0}
     ]
   }
 ];
